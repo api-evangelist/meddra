@@ -16,3 +16,12 @@ apis:
     type: Documentation
   description: >-
     MedDRA (Medical Dictionary for Regulatory Activities) and the WHO Drug Dictionary provide standardized medical terminology APIs for adverse event coding, drug safety reporting, and pharmacovigilance. APIs enable term lookup, hierarchy navigation, and coding validation for regulatory submissions.
+common:
+- url: https://www.meddra.org/
+  type: Portal
+- url: https://www.meddra.org/
+  type: Website
+maintainer:
+  name: Kin Lane
+  email: kin@apievangelist.com
+modified: '2026-03-18'
