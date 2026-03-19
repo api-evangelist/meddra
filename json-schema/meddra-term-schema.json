@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json",
+  "title": "MedDRA Term",
+  "description": "A term in the Medical Dictionary for Regulatory Activities (MedDRA) hierarchy",
+  "type": "object",
+  "required": ["code", "termText", "level", "current"],
+  "properties": {
+    "code": {
+      "type": "integer",
+      "description": "MedDRA numeric term code (8 digits)",
+      "minimum": 10000000,
+      "maximum": 99999999
+    },
+    "termText": {
+      "type": "string",
+      "description": "Official MedDRA term name",
+      "maxLength": 100
+    },
+    "level": {
+      "type": "string",
+      "enum": ["SOC", "HLGT", "HLT", "PT", "LLT"],
+      "description": "Hierarchy level: SOC=System Organ Class, HLGT=High Level Group Term, HLT=High Level Term, PT=Preferred Term, LLT=Lowest Level Term"
+    },
+    "current": {
+      "type": "boolean",
+      "description": "Whether this term is current and not deprecated/retired"
+    },
+    "primarySOCCode": {
+      "type": "integer",
+      "description": "Code of the primary System Organ Class for this term"
+    },
+    "primarySOCName": {
+      "type": "string",
+      "description": "Name of the primary System Organ Class"
+    },
+    "version": {
+      "type": "string",
+      "description": "MedDRA dictionary version (e.g., 27.0)",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
+    "language": {
+      "type": "string",
+      "description": "ISO 639-1 language code",
+      "default": "en"
+    },
+    "allSOCLinks": {
+      "type": "array",
+      "description": "All SOC associations (a PT can belong to multiple SOCs)",
+      "items": {
+        "type": "object",
+        "required": ["socCode", "socName", "isPrimary"],
+        "properties": {
+          "socCode": {
+            "type": "integer"
+          },
+          "socName": {
+            "type": "string"
+          },
+          "isPrimary": {
+            "type": "boolean",
+            "description": "True if this is the primary SOC pathway"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "HierarchyLevels": {
+      "description": "MedDRA 5-level hierarchy",
+      "type": "string",
+      "enum": ["SOC", "HLGT", "HLT", "PT", "LLT"],
+      "x-description": {
+        "SOC": "System Organ Class — highest level, 27 classes (e.g., Hepatobiliary disorders)",
+        "HLGT": "High Level Group Term — groups multiple HLTs",
+        "HLT": "High Level Term — groups related PTs",
+        "PT": "Preferred Term — distinct medical concept for use in submissions",
+        "LLT": "Lowest Level Term — verbatim terms mapped to a PT"
+      }
+    }
+  }
+}

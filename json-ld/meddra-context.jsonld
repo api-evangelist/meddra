@@ -1,0 +1,64 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "meddra": "https://www.meddra.org/ontology/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "MedDRATerm": "skos:Concept",
+    "code": {
+      "@id": "schema:identifier",
+      "@type": "xsd:integer"
+    },
+    "termText": "skos:prefLabel",
+    "level": {
+      "@id": "meddra:hierarchyLevel",
+      "@type": "xsd:string"
+    },
+    "current": {
+      "@id": "schema:activeStatus",
+      "@type": "xsd:boolean"
+    },
+    "version": {
+      "@id": "schema:version",
+      "@type": "xsd:string"
+    },
+    "language": {
+      "@id": "schema:inLanguage",
+      "@type": "xsd:string"
+    },
+    "primarySOCCode": {
+      "@id": "skos:broader",
+      "@type": "xsd:integer"
+    },
+    "primarySOCName": {
+      "@id": "meddra:primarySOCName",
+      "@type": "xsd:string"
+    },
+    "allSOCLinks": {
+      "@id": "skos:broaderTransitive",
+      "@container": "@set"
+    },
+    "SOC": {
+      "@id": "meddra:SystemOrganClass",
+      "@type": "skos:ConceptScheme"
+    },
+    "HLGT": {
+      "@id": "meddra:HighLevelGroupTerm",
+      "@type": "skos:Concept"
+    },
+    "HLT": {
+      "@id": "meddra:HighLevelTerm",
+      "@type": "skos:Concept"
+    },
+    "PT": {
+      "@id": "meddra:PreferredTerm",
+      "@type": "skos:Concept"
+    },
+    "LLT": {
+      "@id": "meddra:LowestLevelTerm",
+      "@type": "skos:Concept"
+    }
+  }
+}

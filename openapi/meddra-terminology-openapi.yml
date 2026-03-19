@@ -1,0 +1,451 @@
+openapi: 3.1.0
+info:
+  title: MedDRA Medical Dictionary for Regulatory Activities API
+  description: >-
+    MedDRA (Medical Dictionary for Regulatory Activities) and the WHO Drug
+    Dictionary provide standardized medical terminology APIs for adverse event
+    coding, drug safety reporting, and pharmacovigilance. APIs enable term lookup,
+    hierarchy navigation, and coding validation for regulatory submissions to
+    ICH, FDA, EMA, and other health authorities.
+  version: 27.0.0
+  contact:
+    name: MedDRA MSSO Support
+    url: https://www.meddra.org/contact-msso
+  license:
+    name: MedDRA License Agreement
+    url: https://www.meddra.org/license-subscription
+externalDocs:
+  description: MedDRA Documentation
+  url: https://www.meddra.org/
+servers:
+  - url: https://api.meddra.example.com/v1
+    description: MedDRA API server (requires subscription)
+security:
+  - APIKey: []
+  - BearerAuth: []
+paths:
+  /terms/search:
+    get:
+      operationId: searchTerms
+      summary: Search MedDRA terms
+      description: >-
+        Search for MedDRA terms by text string across any or all levels of the
+        MedDRA hierarchy (SOC, HLGT, HLT, PT, LLT). Returns matching terms with
+        their codes and hierarchy context.
+      tags:
+        - Terms
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+            minLength: 2
+          description: Search text (partial match supported)
+        - name: level
+          in: query
+          schema:
+            type: string
+            enum: [SOC, HLGT, HLT, PT, LLT, ALL]
+            default: ALL
+          description: MedDRA hierarchy level to search
+        - name: version
+          in: query
+          schema:
+            type: string
+          description: MedDRA version (e.g., 27.0); defaults to current
+        - name: language
+          in: query
+          schema:
+            type: string
+            default: en
+          description: Language for term text (en, ja, de, fr, es, zh, etc.)
+        - name: currentOnly
+          in: query
+          schema:
+            type: boolean
+            default: true
+          description: Return only current (non-deprecated) terms
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+            maximum: 500
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TermSearchResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /terms/{termCode}:
+    get:
+      operationId: getTerm
+      summary: Get a term by code
+      description: >-
+        Retrieve a specific MedDRA term by its numeric code, returning the term
+        name, level, current status, and parent/child hierarchy links.
+      tags:
+        - Terms
+      parameters:
+        - name: termCode
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: MedDRA term code (e.g., 10019211 for HLT "Hepatic failures")
+        - name: level
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [SOC, HLGT, HLT, PT, LLT]
+        - name: version
+          in: query
+          schema:
+            type: string
+        - name: language
+          in: query
+          schema:
+            type: string
+            default: en
+      responses:
+        '200':
+          description: Term details with hierarchy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TermDetail'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /hierarchy/{level}/{code}/children:
+    get:
+      operationId: getTermChildren
+      summary: Get child terms in hierarchy
+      description: >-
+        Navigate down the MedDRA hierarchy. For a given term code and level,
+        return all direct child terms at the next lower level.
+      tags:
+        - Hierarchy
+      parameters:
+        - name: level
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [SOC, HLGT, HLT, PT]
+          description: Level of the parent term
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Code of the parent term
+        - name: version
+          in: query
+          schema:
+            type: string
+        - name: language
+          in: query
+          schema:
+            type: string
+            default: en
+      responses:
+        '200':
+          description: Child terms
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TermListResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /hierarchy/{level}/{code}/parents:
+    get:
+      operationId: getTermParents
+      summary: Get parent terms in hierarchy
+      description: >-
+        Navigate up the MedDRA hierarchy. Returns all parent terms for a given
+        term across all primary SOC pathways.
+      tags:
+        - Hierarchy
+      parameters:
+        - name: level
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [HLGT, HLT, PT, LLT]
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: version
+          in: query
+          schema:
+            type: string
+        - name: language
+          in: query
+          schema:
+            type: string
+            default: en
+      responses:
+        '200':
+          description: Parent terms
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TermListResponse'
+  /soc:
+    get:
+      operationId: listSOC
+      summary: List all System Organ Classes
+      description: >-
+        Retrieve all 27 System Organ Classes (SOCs) in the current MedDRA version.
+        SOCs are the highest level of the MedDRA hierarchy.
+      tags:
+        - Hierarchy
+      parameters:
+        - name: version
+          in: query
+          schema:
+            type: string
+        - name: language
+          in: query
+          schema:
+            type: string
+            default: en
+      responses:
+        '200':
+          description: All SOCs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TermListResponse'
+  /validate/code:
+    post:
+      operationId: validateCode
+      summary: Validate a MedDRA code
+      description: >-
+        Validate one or more MedDRA codes to confirm they are current, valid, and
+        exist at the specified hierarchy level. Used for submission validation.
+      tags:
+        - Validation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidationRequest'
+      responses:
+        '200':
+          description: Validation results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResponse'
+  /versions:
+    get:
+      operationId: listVersions
+      summary: List available MedDRA versions
+      description: Returns all MedDRA dictionary versions available through the API.
+      tags:
+        - Versions
+      responses:
+        '200':
+          description: Available versions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  versions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        version:
+                          type: string
+                        releaseDate:
+                          type: string
+                          format: date
+                        current:
+                          type: boolean
+components:
+  securitySchemes:
+    APIKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+    BearerAuth:
+      type: http
+      scheme: bearer
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Term not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    MedDRATerm:
+      type: object
+      description: A MedDRA terminology term
+      properties:
+        code:
+          type: integer
+          description: MedDRA numeric term code
+        termText:
+          type: string
+          description: Term name in the requested language
+        level:
+          type: string
+          enum: [SOC, HLGT, HLT, PT, LLT]
+        current:
+          type: boolean
+          description: Whether the term is current (not deprecated)
+        primarySOCCode:
+          type: integer
+          description: Code of the primary System Organ Class
+        primarySOCName:
+          type: string
+        version:
+          type: string
+    TermDetail:
+      allOf:
+        - $ref: '#/components/schemas/MedDRATerm'
+        - type: object
+          properties:
+            parents:
+              type: array
+              items:
+                $ref: '#/components/schemas/MedDRATerm'
+              description: Parent terms at the next higher level
+            children:
+              type: array
+              items:
+                $ref: '#/components/schemas/MedDRATerm'
+              description: Child terms at the next lower level
+            allSOCLinks:
+              type: array
+              items:
+                type: object
+                properties:
+                  socCode: { type: integer }
+                  socName: { type: string }
+                  isPrimary: { type: boolean }
+              description: All SOC links (a PT may belong to multiple SOCs)
+            predecessors:
+              type: array
+              description: Previous codes in older MedDRA versions
+              items:
+                type: object
+                properties:
+                  code: { type: integer }
+                  version: { type: string }
+    TermSearchResponse:
+      type: object
+      properties:
+        terms:
+          type: array
+          items:
+            $ref: '#/components/schemas/MedDRATerm'
+        totalCount:
+          type: integer
+        version:
+          type: string
+        limit:
+          type: integer
+        offset:
+          type: integer
+    TermListResponse:
+      type: object
+      properties:
+        terms:
+          type: array
+          items:
+            $ref: '#/components/schemas/MedDRATerm'
+        count:
+          type: integer
+        version:
+          type: string
+    ValidationRequest:
+      type: object
+      required:
+        - codes
+      properties:
+        codes:
+          type: array
+          minItems: 1
+          maxItems: 100
+          items:
+            type: object
+            required:
+              - code
+              - level
+            properties:
+              code:
+                type: integer
+              level:
+                type: string
+                enum: [SOC, HLGT, HLT, PT, LLT]
+        version:
+          type: string
+    ValidationResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+              level:
+                type: string
+              valid:
+                type: boolean
+              current:
+                type: boolean
+              termText:
+                type: string
+              error:
+                type: string
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+tags:
+  - name: Terms
+    description: MedDRA term search and retrieval
+  - name: Hierarchy
+    description: MedDRA hierarchy navigation (SOC → HLGT → HLT → PT → LLT)
+  - name: Validation
+    description: Code validation for regulatory submissions
+  - name: Versions
+    description: Dictionary version management
