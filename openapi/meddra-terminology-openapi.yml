@@ -353,9 +353,9 @@ components:
               items:
                 type: object
                 properties:
-                  socCode: { type: integer }
-                  socName: { type: string }
-                  isPrimary: { type: boolean }
+                  socCode: {type: integer}
+                  socName: {type: string}
+                  isPrimary: {type: boolean}
               description: All SOC links (a PT may belong to multiple SOCs)
             predecessors:
               type: array
@@ -363,8 +363,8 @@ components:
               items:
                 type: object
                 properties:
-                  code: { type: integer }
-                  version: { type: string }
+                  code: {type: integer}
+                  version: {type: string}
     TermSearchResponse:
       type: object
       properties:
@@ -441,10 +441,10 @@ components:
         message:
           type: string
 tags:
-  - name: Terms
-    description: MedDRA term search and retrieval
   - name: Hierarchy
     description: MedDRA hierarchy navigation (SOC → HLGT → HLT → PT → LLT)
+  - name: Terms
+    description: MedDRA term search and retrieval
   - name: Validation
     description: Code validation for regulatory submissions
   - name: Versions
