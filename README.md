@@ -1,10 +1,11 @@
-# Unknown (meddra)
+# MedDRA (meddra)
+MedDRA (Medical Dictionary for Regulatory Activities) is a clinically validated international medical terminology dictionary used by regulatory authorities and the regulated biopharmaceutical industry.
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/apis.yml)
 
 ## Timestamps
 
-- **Modified:** 2026-03-18 
+- **Modified:** 2026-04-28
 
 ## APIs
 
@@ -12,7 +13,6 @@
 MedDRA (Medical Dictionary for Regulatory Activities) and the WHO Drug Dictionary provide standardized medical terminology APIs for adverse event coding, drug safety reporting, and pharmacovigilance. APIs enable term lookup, hierarchy navigation, and coding validation for regulatory submissions.
 
 **Human URL:** [https://www.meddra.org/](https://www.meddra.org/)
-
 
 #### Tags:
 
@@ -32,3 +32,9 @@ MedDRA (Medical Dictionary for Regulatory Activities) and the WHO Drug Dictionar
 - [OpenAPI](https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/openapi/meddra-terminology-openapi.yml)
 - [JSONSchema](https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json)
 - [JSONLDContext](https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld)
+
+## Maintainer
+
+**Name:** Kin Lane
+
+**Email:** kin@apievangelist.com
