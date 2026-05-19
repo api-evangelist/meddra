@@ -1,0 +1,200 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: MedDRA Medical Dictionary for Regulatory Activities API — Hierarchy
+  description: 'MedDRA Medical Dictionary for Regulatory Activities API — Hierarchy. 3 operations. Lead operation: Get child
+    terms in hierarchy. Self-contained Naftiko capability covering one Meddra business surface.'
+  tags:
+  - Meddra
+  - Hierarchy
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MEDDRA_API_KEY: MEDDRA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: terminology-hierarchy
+    baseUri: https://api.meddra.example.com/v1
+    description: MedDRA Medical Dictionary for Regulatory Activities API — Hierarchy business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: hierarchy-level-code-children
+      path: /hierarchy/{level}/{code}/children
+      operations:
+      - name: gettermchildren
+        method: GET
+        description: Get child terms in hierarchy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: level
+          in: path
+          type: string
+          description: Level of the parent term
+          required: true
+        - name: code
+          in: path
+          type: integer
+          description: Code of the parent term
+          required: true
+        - name: version
+          in: query
+          type: string
+        - name: language
+          in: query
+          type: string
+    - name: hierarchy-level-code-parents
+      path: /hierarchy/{level}/{code}/parents
+      operations:
+      - name: gettermparents
+        method: GET
+        description: Get parent terms in hierarchy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: level
+          in: path
+          type: string
+          required: true
+        - name: code
+          in: path
+          type: integer
+          required: true
+        - name: version
+          in: query
+          type: string
+        - name: language
+          in: query
+          type: string
+    - name: soc
+      path: /soc
+      operations:
+      - name: listsoc
+        method: GET
+        description: List all System Organ Classes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: version
+          in: query
+          type: string
+        - name: language
+          in: query
+          type: string
+    authentication:
+      type: bearer
+      token: '{{env.MEDDRA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: terminology-hierarchy-rest
+    port: 8080
+    description: REST adapter for MedDRA Medical Dictionary for Regulatory Activities API — Hierarchy. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/hierarchy/{level}/{code}/children
+      name: hierarchy-level-code-children
+      description: REST surface for hierarchy-level-code-children.
+      operations:
+      - method: GET
+        name: gettermchildren
+        description: Get child terms in hierarchy
+        call: terminology-hierarchy.gettermchildren
+        with:
+          level: rest.level
+          code: rest.code
+          version: rest.version
+          language: rest.language
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hierarchy/{level}/{code}/parents
+      name: hierarchy-level-code-parents
+      description: REST surface for hierarchy-level-code-parents.
+      operations:
+      - method: GET
+        name: gettermparents
+        description: Get parent terms in hierarchy
+        call: terminology-hierarchy.gettermparents
+        with:
+          level: rest.level
+          code: rest.code
+          version: rest.version
+          language: rest.language
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/soc
+      name: soc
+      description: REST surface for soc.
+      operations:
+      - method: GET
+        name: listsoc
+        description: List all System Organ Classes
+        call: terminology-hierarchy.listsoc
+        with:
+          version: rest.version
+          language: rest.language
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: terminology-hierarchy-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for MedDRA Medical Dictionary for Regulatory Activities API — Hierarchy. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: get-child-terms-hierarchy
+      description: Get child terms in hierarchy
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: terminology-hierarchy.gettermchildren
+      with:
+        level: tools.level
+        code: tools.code
+        version: tools.version
+        language: tools.language
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-parent-terms-hierarchy
+      description: Get parent terms in hierarchy
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: terminology-hierarchy.gettermparents
+      with:
+        level: tools.level
+        code: tools.code
+        version: tools.version
+        language: tools.language
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-system-organ-classes
+      description: List all System Organ Classes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: terminology-hierarchy.listsoc
+      with:
+        version: tools.version
+        language: tools.language
+      outputParameters:
+      - type: object
+        mapping: $.

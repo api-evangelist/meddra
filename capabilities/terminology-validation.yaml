@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: MedDRA Medical Dictionary for Regulatory Activities API — Validation
+  description: 'MedDRA Medical Dictionary for Regulatory Activities API — Validation. 1 operations. Lead operation: Validate
+    a MedDRA code. Self-contained Naftiko capability covering one Meddra business surface.'
+  tags:
+  - Meddra
+  - Validation
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MEDDRA_API_KEY: MEDDRA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: terminology-validation
+    baseUri: https://api.meddra.example.com/v1
+    description: MedDRA Medical Dictionary for Regulatory Activities API — Validation business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: validate-code
+      path: /validate/code
+      operations:
+      - name: validatecode
+        method: POST
+        description: Validate a MedDRA code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.MEDDRA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: terminology-validation-rest
+    port: 8080
+    description: REST adapter for MedDRA Medical Dictionary for Regulatory Activities API — Validation. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/validate/code
+      name: validate-code
+      description: REST surface for validate-code.
+      operations:
+      - method: POST
+        name: validatecode
+        description: Validate a MedDRA code
+        call: terminology-validation.validatecode
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: terminology-validation-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for MedDRA Medical Dictionary for Regulatory Activities API — Validation. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: validate-meddra-code
+      description: Validate a MedDRA code
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: terminology-validation.validatecode
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

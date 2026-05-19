@@ -1,0 +1,173 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: MedDRA Medical Dictionary for Regulatory Activities API — Terms
+  description: 'MedDRA Medical Dictionary for Regulatory Activities API — Terms. 2 operations. Lead operation: Search MedDRA
+    terms. Self-contained Naftiko capability covering one Meddra business surface.'
+  tags:
+  - Meddra
+  - Terms
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MEDDRA_API_KEY: MEDDRA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: terminology-terms
+    baseUri: https://api.meddra.example.com/v1
+    description: MedDRA Medical Dictionary for Regulatory Activities API — Terms business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: terms-search
+      path: /terms/search
+      operations:
+      - name: searchterms
+        method: GET
+        description: Search MedDRA terms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          description: Search text (partial match supported)
+          required: true
+        - name: level
+          in: query
+          type: string
+          description: MedDRA hierarchy level to search
+        - name: version
+          in: query
+          type: string
+          description: MedDRA version (e.g., 27.0); defaults to current
+        - name: language
+          in: query
+          type: string
+          description: Language for term text (en, ja, de, fr, es, zh, etc.)
+        - name: currentOnly
+          in: query
+          type: boolean
+          description: Return only current (non-deprecated) terms
+        - name: limit
+          in: query
+          type: integer
+        - name: offset
+          in: query
+          type: integer
+    - name: terms-termCode
+      path: /terms/{termCode}
+      operations:
+      - name: getterm
+        method: GET
+        description: Get a term by code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: termCode
+          in: path
+          type: integer
+          description: MedDRA term code (e.g., 10019211 for HLT "Hepatic failures")
+          required: true
+        - name: level
+          in: query
+          type: string
+          required: true
+        - name: version
+          in: query
+          type: string
+        - name: language
+          in: query
+          type: string
+    authentication:
+      type: bearer
+      token: '{{env.MEDDRA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: terminology-terms-rest
+    port: 8080
+    description: REST adapter for MedDRA Medical Dictionary for Regulatory Activities API — Terms. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/terms/search
+      name: terms-search
+      description: REST surface for terms-search.
+      operations:
+      - method: GET
+        name: searchterms
+        description: Search MedDRA terms
+        call: terminology-terms.searchterms
+        with:
+          q: rest.q
+          level: rest.level
+          version: rest.version
+          language: rest.language
+          currentOnly: rest.currentOnly
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/terms/{termcode}
+      name: terms-termcode
+      description: REST surface for terms-termCode.
+      operations:
+      - method: GET
+        name: getterm
+        description: Get a term by code
+        call: terminology-terms.getterm
+        with:
+          termCode: rest.termCode
+          level: rest.level
+          version: rest.version
+          language: rest.language
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: terminology-terms-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for MedDRA Medical Dictionary for Regulatory Activities API — Terms. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: search-meddra-terms
+      description: Search MedDRA terms
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: terminology-terms.searchterms
+      with:
+        q: tools.q
+        level: tools.level
+        version: tools.version
+        language: tools.language
+        currentOnly: tools.currentOnly
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-term-code
+      description: Get a term by code
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: terminology-terms.getterm
+      with:
+        termCode: tools.termCode
+        level: tools.level
+        version: tools.version
+        language: tools.language
+      outputParameters:
+      - type: object
+        mapping: $.
