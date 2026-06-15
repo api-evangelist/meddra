@@ -1,0 +1,1184 @@
+{
+  "item": [
+    {
+      "id": "f238f65f-ba46-4a1f-99f3-1e26edc4cf3b",
+      "name": "Hierarchy",
+      "description": {
+        "content": "MedDRA hierarchy navigation (SOC → HLGT → HLT → PT → LLT)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3e7badc9-fe7f-48d3-ae82-9b69ab9bf841",
+          "name": "Get child terms in hierarchy",
+          "request": {
+            "name": "Get child terms in hierarchy",
+            "description": {
+              "content": "Navigate down the MedDRA hierarchy. For a given term code and level, return all direct child terms at the next lower level.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hierarchy",
+                ":level",
+                ":code",
+                "children"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "en"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "level",
+                  "description": "(Required) Level of the parent term"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "code",
+                  "description": "(Required) Code of the parent term"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fcaca002-3a62-40bc-93ef-57db7133d50b",
+              "name": "Child terms",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hierarchy",
+                    ":level",
+                    ":code",
+                    "children"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "level",
+                      "description": "(Required) Level of the parent term"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "code",
+                      "description": "(Required) Code of the parent term"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"terms\": [\n    {\n      \"code\": 3101,\n      \"termText\": \"string\",\n      \"level\": \"LLT\",\n      \"current\": false,\n      \"primarySOCCode\": 9004,\n      \"primarySOCName\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"code\": 3041,\n      \"termText\": \"string\",\n      \"level\": \"LLT\",\n      \"current\": false,\n      \"primarySOCCode\": 3737,\n      \"primarySOCName\": \"string\",\n      \"version\": \"string\"\n    }\n  ],\n  \"count\": 9754,\n  \"version\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5eeb0534-637c-4f85-a20b-50901e965243",
+              "name": "Term not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hierarchy",
+                    ":level",
+                    ":code",
+                    "children"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "level",
+                      "description": "(Required) Level of the parent term"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "code",
+                      "description": "(Required) Code of the parent term"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11980365-0aff-4358-bbb7-8b186705dd21",
+          "name": "Get parent terms in hierarchy",
+          "request": {
+            "name": "Get parent terms in hierarchy",
+            "description": {
+              "content": "Navigate up the MedDRA hierarchy. Returns all parent terms for a given term across all primary SOC pathways.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hierarchy",
+                ":level",
+                ":code",
+                "parents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "en"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "level",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "68ba6d70-e171-4ed5-8136-41c3e3704bed",
+              "name": "Parent terms",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hierarchy",
+                    ":level",
+                    ":code",
+                    "parents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "level",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"terms\": [\n    {\n      \"code\": 3101,\n      \"termText\": \"string\",\n      \"level\": \"LLT\",\n      \"current\": false,\n      \"primarySOCCode\": 9004,\n      \"primarySOCName\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"code\": 3041,\n      \"termText\": \"string\",\n      \"level\": \"LLT\",\n      \"current\": false,\n      \"primarySOCCode\": 3737,\n      \"primarySOCName\": \"string\",\n      \"version\": \"string\"\n    }\n  ],\n  \"count\": 9754,\n  \"version\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cfd14a7a-9d3f-4bab-8eba-55478349659d",
+          "name": "List all System Organ Classes",
+          "request": {
+            "name": "List all System Organ Classes",
+            "description": {
+              "content": "Retrieve all 27 System Organ Classes (SOCs) in the current MedDRA version. SOCs are the highest level of the MedDRA hierarchy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "soc"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "en"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb4f4c1b-8a50-4ccb-80a6-fc402d281e06",
+              "name": "All SOCs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "soc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"terms\": [\n    {\n      \"code\": 3101,\n      \"termText\": \"string\",\n      \"level\": \"LLT\",\n      \"current\": false,\n      \"primarySOCCode\": 9004,\n      \"primarySOCName\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"code\": 3041,\n      \"termText\": \"string\",\n      \"level\": \"LLT\",\n      \"current\": false,\n      \"primarySOCCode\": 3737,\n      \"primarySOCName\": \"string\",\n      \"version\": \"string\"\n    }\n  ],\n  \"count\": 9754,\n  \"version\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "edb87208-6e47-441b-b936-c2e445665fe1",
+      "name": "Terms",
+      "description": {
+        "content": "MedDRA term search and retrieval",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "543ee46a-6ea0-4813-8e40-c4b60954d5a5",
+          "name": "Search MedDRA terms",
+          "request": {
+            "name": "Search MedDRA terms",
+            "description": {
+              "content": "Search for MedDRA terms by text string across any or all levels of the MedDRA hierarchy (SOC, HLGT, HLT, PT, LLT). Returns matching terms with their codes and hierarchy context.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "terms",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Search text (partial match supported)"
+                },
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "ALL",
+                  "description": "MedDRA hierarchy level to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "MedDRA version (e.g., 27.0); defaults to current"
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "en",
+                  "description": "Language for term text (en, ja, de, fr, es, zh, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "key": "currentOnly",
+                  "value": "true",
+                  "description": "Return only current (non-deprecated) terms"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1b60b3b-7222-48b5-98e9-27b79b076845",
+              "name": "Search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "terms",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "ALL"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currentOnly",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"terms\": [\n    {\n      \"code\": 5496,\n      \"termText\": \"string\",\n      \"level\": \"HLT\",\n      \"current\": true,\n      \"primarySOCCode\": 490,\n      \"primarySOCName\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"code\": 9275,\n      \"termText\": \"string\",\n      \"level\": \"PT\",\n      \"current\": false,\n      \"primarySOCCode\": 9835,\n      \"primarySOCName\": \"string\",\n      \"version\": \"string\"\n    }\n  ],\n  \"totalCount\": 5468,\n  \"version\": \"string\",\n  \"limit\": 9216,\n  \"offset\": 9199\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8f36ea8-79b6-464b-8984-9fae9e52af7f",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "terms",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "ALL"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currentOnly",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09466b0d-8911-444a-844b-e2e9c4bfa0cf",
+              "name": "Authentication required or invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "terms",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "ALL"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currentOnly",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "605625ed-8ba4-498d-a07f-f4e3b79317b4",
+          "name": "Get a term by code",
+          "request": {
+            "name": "Get a term by code",
+            "description": {
+              "content": "Retrieve a specific MedDRA term by its numeric code, returning the term name, level, current status, and parent/child hierarchy links.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "terms",
+                ":termCode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "en"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "termCode",
+                  "description": "(Required) MedDRA term code (e.g., 10019211 for HLT \"Hepatic failures\")"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4003112-9056-4665-926a-c2a19fd68d5f",
+              "name": "Term details with hierarchy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "terms",
+                    ":termCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "termCode",
+                      "description": "(Required) MedDRA term code (e.g., 10019211 for HLT \"Hepatic failures\")"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3985,\n  \"termText\": \"string\",\n  \"level\": \"LLT\",\n  \"current\": true,\n  \"primarySOCCode\": 8914,\n  \"primarySOCName\": \"string\",\n  \"version\": \"string\",\n  \"parents\": [\n    {\n      \"code\": 7801,\n      \"termText\": \"string\",\n      \"level\": \"SOC\",\n      \"current\": false,\n      \"primarySOCCode\": 9422,\n      \"primarySOCName\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"code\": 6564,\n      \"termText\": \"string\",\n      \"level\": \"LLT\",\n      \"current\": true,\n      \"primarySOCCode\": 7074,\n      \"primarySOCName\": \"string\",\n      \"version\": \"string\"\n    }\n  ],\n  \"children\": [\n    {\n      \"code\": 971,\n      \"termText\": \"string\",\n      \"level\": \"PT\",\n      \"current\": false,\n      \"primarySOCCode\": 5729,\n      \"primarySOCName\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"code\": 7071,\n      \"termText\": \"string\",\n      \"level\": \"HLT\",\n      \"current\": true,\n      \"primarySOCCode\": 404,\n      \"primarySOCName\": \"string\",\n      \"version\": \"string\"\n    }\n  ],\n  \"allSOCLinks\": [\n    {\n      \"socCode\": 2036,\n      \"socName\": \"string\",\n      \"isPrimary\": true\n    },\n    {\n      \"socCode\": 1745,\n      \"socName\": \"string\",\n      \"isPrimary\": false\n    }\n  ],\n  \"predecessors\": [\n    {\n      \"code\": 9847,\n      \"version\": \"string\"\n    },\n    {\n      \"code\": 2768,\n      \"version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d9594bf-8a64-4028-8878-884263b500e7",
+              "name": "Term not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "terms",
+                    ":termCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "termCode",
+                      "description": "(Required) MedDRA term code (e.g., 10019211 for HLT \"Hepatic failures\")"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6f58b1d8-6ef3-4f90-97de-d112310452da",
+      "name": "Validation",
+      "description": {
+        "content": "Code validation for regulatory submissions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "20da7972-5494-4b01-a927-90e7c1084b43",
+          "name": "Validate a MedDRA code",
+          "request": {
+            "name": "Validate a MedDRA code",
+            "description": {
+              "content": "Validate one or more MedDRA codes to confirm they are current, valid, and exist at the specified hierarchy level. Used for submission validation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "validate",
+                "code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codes\": [\n    {\n      \"code\": \"<integer>\",\n      \"level\": \"<string>\"\n    }\n  ],\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7c7e90b0-fdf4-41b1-9841-e9561365b1fa",
+              "name": "Validation results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validate",
+                    "code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"codes\": [\n    {\n      \"code\": \"<integer>\",\n      \"level\": \"<string>\"\n    }\n  ],\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"code\": 6244,\n      \"level\": \"string\",\n      \"valid\": false,\n      \"current\": true,\n      \"termText\": \"string\",\n      \"error\": \"string\"\n    },\n    {\n      \"code\": 4249,\n      \"level\": \"string\",\n      \"valid\": true,\n      \"current\": true,\n      \"termText\": \"string\",\n      \"error\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "18da2194-ea1a-40ae-8c75-bde5cbd3a1e7",
+      "name": "Versions",
+      "description": {
+        "content": "Dictionary version management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "254fb99f-ec90-4e76-b6c5-ca07e9965423",
+          "name": "List available MedDRA versions",
+          "request": {
+            "name": "List available MedDRA versions",
+            "description": {
+              "content": "Returns all MedDRA dictionary versions available through the API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "19709e80-c28b-4818-8e7e-ed49790461b4",
+              "name": "Available versions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"versions\": [\n    {\n      \"version\": \"string\",\n      \"releaseDate\": \"1948-02-28\",\n      \"current\": true\n    },\n    {\n      \"version\": \"string\",\n      \"releaseDate\": \"1999-07-23\",\n      \"current\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.meddra.example.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fefdc87f-915e-4274-9f23-7793711abc79",
+    "name": "MedDRA Medical Dictionary for Regulatory Activities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "MedDRA (Medical Dictionary for Regulatory Activities) and the WHO Drug Dictionary provide standardized medical terminology APIs for adverse event coding, drug safety reporting, and pharmacovigilance. APIs enable term lookup, hierarchy navigation, and coding validation for regulatory submissions to ICH, FDA, EMA, and other health authorities.\n\nContact Support:\n Name: MedDRA MSSO Support",
+      "type": "text/plain"
+    }
+  }
+}

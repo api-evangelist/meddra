@@ -1,0 +1,254 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MedDRA Medical Dictionary for Regulatory Activities API",
+    "version": "27.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Terms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search MedDRA terms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.meddra.example.com/v1/terms/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search text (partial match supported)"
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "query",
+                "description": "MedDRA hierarchy level to search"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "MedDRA version (e.g., 27.0); defaults to current"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Language for term text (en, ja, de, fr, es, zh, etc.)"
+              },
+              {
+                "name": "currentOnly",
+                "value": "",
+                "type": "query",
+                "description": "Return only current (non-deprecated) terms"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search for MedDRA terms by text string across any or all levels of the MedDRA hierarchy (SOC, HLGT, HLT, PT, LLT). Returns matching terms with their codes and hierarchy context."
+        },
+        {
+          "info": {
+            "name": "Get a term by code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.meddra.example.com/v1/terms/:termCode",
+            "params": [
+              {
+                "name": "termCode",
+                "value": "",
+                "type": "path",
+                "description": "MedDRA term code (e.g., 10019211 for HLT \"Hepatic failures\")"
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific MedDRA term by its numeric code, returning the term name, level, current status, and parent/child hierarchy links."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Hierarchy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get child terms in hierarchy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.meddra.example.com/v1/hierarchy/:level/:code/children",
+            "params": [
+              {
+                "name": "level",
+                "value": "",
+                "type": "path",
+                "description": "Level of the parent term"
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "path",
+                "description": "Code of the parent term"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Navigate down the MedDRA hierarchy. For a given term code and level, return all direct child terms at the next lower level."
+        },
+        {
+          "info": {
+            "name": "Get parent terms in hierarchy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.meddra.example.com/v1/hierarchy/:level/:code/parents",
+            "params": [
+              {
+                "name": "level",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Navigate up the MedDRA hierarchy. Returns all parent terms for a given term across all primary SOC pathways."
+        },
+        {
+          "info": {
+            "name": "List all System Organ Classes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.meddra.example.com/v1/soc",
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve all 27 System Organ Classes (SOCs) in the current MedDRA version. SOCs are the highest level of the MedDRA hierarchy."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Validation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate a MedDRA code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.meddra.example.com/v1/validate/code",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate one or more MedDRA codes to confirm they are current, valid, and exist at the specified hierarchy level. Used for submission validation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Versions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List available MedDRA versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.meddra.example.com/v1/versions"
+          },
+          "docs": "Returns all MedDRA dictionary versions available through the API."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
