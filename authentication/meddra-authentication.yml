@@ -1,0 +1,21 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/meddra-terminology-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: APIKey
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  sources:
+  - openapi/meddra-terminology-openapi.yml
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/meddra-terminology-openapi.yml

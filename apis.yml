@@ -25,6 +25,10 @@ apis:
       terminology APIs for adverse event coding, drug safety reporting, and pharmacovigilance. APIs enable term lookup,
       hierarchy navigation, and coding validation for regulatory submissions.
 common:
+  - type: DomainSecurity
+    url: security/meddra-domain-security.yml
+  - type: Authentication
+    url: authentication/meddra-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/meddra-msso
   - url: https://www.meddra.org/
