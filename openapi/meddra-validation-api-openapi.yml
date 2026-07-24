@@ -1,0 +1,101 @@
+openapi: 3.1.0
+info:
+  title: MedDRA Medical Dictionary for Regulatory Activities Hierarchy Validation API
+  description: MedDRA (Medical Dictionary for Regulatory Activities) and the WHO Drug Dictionary provide standardized medical terminology APIs for adverse event coding, drug safety reporting, and pharmacovigilance. APIs enable term lookup, hierarchy navigation, and coding validation for regulatory submissions to ICH, FDA, EMA, and other health authorities.
+  version: 27.0.0
+  contact:
+    name: MedDRA MSSO Support
+    url: https://www.meddra.org/contact-msso
+  license:
+    name: MedDRA License Agreement
+    url: https://www.meddra.org/license-subscription
+servers:
+- url: https://api.meddra.example.com/v1
+  description: MedDRA API server (requires subscription)
+security:
+- APIKey: []
+- BearerAuth: []
+tags:
+- name: Validation
+  description: Code validation for regulatory submissions
+paths:
+  /validate/code:
+    post:
+      operationId: validateCode
+      summary: Validate a MedDRA code
+      description: Validate one or more MedDRA codes to confirm they are current, valid, and exist at the specified hierarchy level. Used for submission validation.
+      tags:
+      - Validation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidationRequest'
+      responses:
+        '200':
+          description: Validation results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResponse'
+components:
+  schemas:
+    ValidationResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+              level:
+                type: string
+              valid:
+                type: boolean
+              current:
+                type: boolean
+              termText:
+                type: string
+              error:
+                type: string
+    ValidationRequest:
+      type: object
+      required:
+      - codes
+      properties:
+        codes:
+          type: array
+          minItems: 1
+          maxItems: 100
+          items:
+            type: object
+            required:
+            - code
+            - level
+            properties:
+              code:
+                type: integer
+              level:
+                type: string
+                enum:
+                - SOC
+                - HLGT
+                - HLT
+                - PT
+                - LLT
+        version:
+          type: string
+  securitySchemes:
+    APIKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+    BearerAuth:
+      type: http
+      scheme: bearer
+externalDocs:
+  description: MedDRA Documentation
+  url: https://www.meddra.org/

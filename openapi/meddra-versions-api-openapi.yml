@@ -1,0 +1,60 @@
+openapi: 3.1.0
+info:
+  title: MedDRA Medical Dictionary for Regulatory Activities Hierarchy Versions API
+  description: MedDRA (Medical Dictionary for Regulatory Activities) and the WHO Drug Dictionary provide standardized medical terminology APIs for adverse event coding, drug safety reporting, and pharmacovigilance. APIs enable term lookup, hierarchy navigation, and coding validation for regulatory submissions to ICH, FDA, EMA, and other health authorities.
+  version: 27.0.0
+  contact:
+    name: MedDRA MSSO Support
+    url: https://www.meddra.org/contact-msso
+  license:
+    name: MedDRA License Agreement
+    url: https://www.meddra.org/license-subscription
+servers:
+- url: https://api.meddra.example.com/v1
+  description: MedDRA API server (requires subscription)
+security:
+- APIKey: []
+- BearerAuth: []
+tags:
+- name: Versions
+  description: Dictionary version management
+paths:
+  /versions:
+    get:
+      operationId: listVersions
+      summary: List available MedDRA versions
+      description: Returns all MedDRA dictionary versions available through the API.
+      tags:
+      - Versions
+      responses:
+        '200':
+          description: Available versions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  versions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        version:
+                          type: string
+                        releaseDate:
+                          type: string
+                          format: date
+                        current:
+                          type: boolean
+components:
+  securitySchemes:
+    APIKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+    BearerAuth:
+      type: http
+      scheme: bearer
+externalDocs:
+  description: MedDRA Documentation
+  url: https://www.meddra.org/
