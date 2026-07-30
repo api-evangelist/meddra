@@ -1,29 +1,92 @@
 aid: meddra
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/meddra.png
 url: https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/apis.yml
 apis:
-  - aid: meddra:meddra-api
-    name: MedDRA / WHO Drug Dictionary API
-    tags:
-      - Adverse Events
-      - Coding
-      - Medical Terminology
-      - Pharma
-    image: https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/image.png
-    humanURL: https://www.meddra.org/
-    baseURL: https://api.meddra.example.com
-    properties:
-      - url: https://www.meddra.org/
-        type: Documentation
-      - url: https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/openapi/meddra-terminology-openapi.yml
-        type: OpenAPI
-      - url: https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
-        type: JSONSchema
-      - url: https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
-        type: JSONLDContext
-    description: >-
-      MedDRA (Medical Dictionary for Regulatory Activities) and the WHO Drug Dictionary provide standardized medical
-      terminology APIs for adverse event coding, drug safety reporting, and pharmacovigilance. APIs enable term lookup,
-      hierarchy navigation, and coding validation for regulatory submissions.
+- aid: meddra:meddra-hierarchy-api
+  name: meddra Hierarchy API
+  description: MedDRA hierarchy navigation (SOC → HLGT → HLT → PT → LLT)
+  humanURL: https://www.meddra.org/
+  baseURL: https://api.meddra.example.com
+  tags:
+  - Hierarchy
+  properties:
+  - type: OpenAPI
+    url: openapi/meddra-hierarchy-api-openapi.yml
+  - type: Documentation
+    url: https://www.meddra.org/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+- aid: meddra:meddra-terms-api
+  name: meddra Terms API
+  description: MedDRA term search and retrieval
+  humanURL: https://www.meddra.org/
+  baseURL: https://api.meddra.example.com
+  tags:
+  - Terms
+  properties:
+  - type: OpenAPI
+    url: openapi/meddra-terms-api-openapi.yml
+  - type: Documentation
+    url: https://www.meddra.org/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+- aid: meddra:meddra-validation-api
+  name: meddra Validation API
+  description: Code validation for regulatory submissions
+  humanURL: https://www.meddra.org/
+  baseURL: https://api.meddra.example.com
+  tags:
+  - Validation
+  properties:
+  - type: OpenAPI
+    url: openapi/meddra-validation-api-openapi.yml
+  - type: Documentation
+    url: https://www.meddra.org/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+- aid: meddra:meddra-versions-api
+  name: meddra Versions API
+  description: Dictionary version management
+  humanURL: https://www.meddra.org/
+  baseURL: https://api.meddra.example.com
+  tags:
+  - Versions
+  properties:
+  - type: OpenAPI
+    url: openapi/meddra-versions-api-openapi.yml
+  - type: Documentation
+    url: https://www.meddra.org/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/meddra-agentic-access.yml
