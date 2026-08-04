@@ -1,0 +1,20 @@
+{
+  "provider": "meddra",
+  "sources": [
+    "meddra-hierarchy-api-openapi.yml",
+    "meddra-terms-api-openapi.yml",
+    "meddra-validation-api-openapi.yml",
+    "meddra-versions-api-openapi.yml"
+  ],
+  "outputs": [
+    "meddra-hierarchy-api-openapi.yml",
+    "meddra-terms-api-openapi.yml",
+    "meddra-validation-api-openapi.yml",
+    "meddra-versions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
