@@ -1,0 +1,150 @@
+{
+  "item": [
+    {
+      "id": "914c304b-8651-46f4-9f83-a21ea47da2a9",
+      "name": "Validation",
+      "description": {
+        "content": "Code validation for regulatory submissions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7245f222-e611-48f4-82b9-df4e2fbd4839",
+          "name": "Validate a MedDRA code",
+          "request": {
+            "name": "Validate a MedDRA code",
+            "description": {
+              "content": "Validate one or more MedDRA codes to confirm they are current, valid, and exist at the specified hierarchy level. Used for submission validation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "validate",
+                "code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codes\": [\n    {\n      \"code\": \"<integer>\",\n      \"level\": \"<string>\"\n    }\n  ],\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cca07a56-db00-41c4-9290-83c072520bad",
+              "name": "Validation results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validate",
+                    "code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"codes\": [\n    {\n      \"code\": \"<integer>\",\n      \"level\": \"<string>\"\n    }\n  ],\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"code\": 9983,\n      \"level\": \"string\",\n      \"valid\": false,\n      \"current\": true,\n      \"termText\": \"string\",\n      \"error\": \"string\"\n    },\n    {\n      \"code\": 6260,\n      \"level\": \"string\",\n      \"valid\": true,\n      \"current\": true,\n      \"termText\": \"string\",\n      \"error\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.meddra.example.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "16f851f4-c6b1-4968-88bb-e415efbcdabd",
+    "name": "MedDRA Medical Dictionary for Regulatory Activities Hierarchy Validation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "MedDRA (Medical Dictionary for Regulatory Activities) and the WHO Drug Dictionary provide standardized medical terminology APIs for adverse event coding, drug safety reporting, and pharmacovigilance. APIs enable term lookup, hierarchy navigation, and coding validation for regulatory submissions to ICH, FDA, EMA, and other health authorities.\n\nContact Support:\n Name: MedDRA MSSO Support",
+      "type": "text/plain"
+    }
+  }
+}

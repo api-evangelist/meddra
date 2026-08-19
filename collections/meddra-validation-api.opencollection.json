@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MedDRA Medical Dictionary for Regulatory Activities Hierarchy Validation API",
+    "version": "27.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Validation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate a MedDRA code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.meddra.example.com/v1/validate/code",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate one or more MedDRA codes to confirm they are current, valid, and exist at the specified hierarchy level. Used for submission validation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

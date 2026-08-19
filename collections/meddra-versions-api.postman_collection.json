@@ -1,0 +1,127 @@
+{
+  "item": [
+    {
+      "id": "1dcf29d4-d0b4-406d-9960-f2a60ce2a684",
+      "name": "Versions",
+      "description": {
+        "content": "Dictionary version management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "61e03f64-84f8-4df5-8708-4f78ff23ab9d",
+          "name": "List available MedDRA versions",
+          "request": {
+            "name": "List available MedDRA versions",
+            "description": {
+              "content": "Returns all MedDRA dictionary versions available through the API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d75f4ddd-3980-4505-8f89-0c2d5a6858f4",
+              "name": "Available versions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"versions\": [\n    {\n      \"version\": \"string\",\n      \"releaseDate\": \"1993-04-06\",\n      \"current\": false\n    },\n    {\n      \"version\": \"string\",\n      \"releaseDate\": \"1975-07-13\",\n      \"current\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.meddra.example.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9ce95ed4-c71b-4605-b500-f6eb2560dca1",
+    "name": "MedDRA Medical Dictionary for Regulatory Activities Hierarchy Versions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "MedDRA (Medical Dictionary for Regulatory Activities) and the WHO Drug Dictionary provide standardized medical terminology APIs for adverse event coding, drug safety reporting, and pharmacovigilance. APIs enable term lookup, hierarchy navigation, and coding validation for regulatory submissions to ICH, FDA, EMA, and other health authorities.\n\nContact Support:\n Name: MedDRA MSSO Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MedDRA Medical Dictionary for Regulatory Activities Hierarchy Versions API",
+    "version": "27.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Versions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List available MedDRA versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.meddra.example.com/v1/versions"
+          },
+          "docs": "Returns all MedDRA dictionary versions available through the API."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
