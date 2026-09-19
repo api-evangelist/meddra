@@ -1,130 +1,183 @@
 name: Meddra
 aid: meddra
-deliveryModel:
-  model: unknown
-  open_source: false
-  commercial: false
-  callable_host: false
-  label: Delivery model not determined — needs a product licence on record
-  confidence: low
-  source:
-  - openapi
-  generated: '2026-08-28'
-  method: derived
 specificationVersion: '0.23'
+deliveryModel:
+  model: licensed
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Licensed terminology - annual MSSO subscription; API access included with the subscription
+  confidence: high
+  source:
+  - plans
+  - openapi
+  generated: '2026-09-17'
+  method: searched
 accessModel:
-  pricing: freemium
-  onboarding: self-serve
+  pricing: subscription
+  onboarding: application
   trial: false
   try_now: false
   public: false
-  label: Freemium · Self-serve signup
-  confidence: medium
-  try_now_blocked_by: example-domain
+  label: Annual subscription - free for regulatory authorities and non-profits, sliding-scale fee for commercial
+  confidence: high
+  try_now_blocked_by: subscription-required
   source:
   - plans
   - authentication
-  - security
-  generated: '2026-09-03'
-  method: derived
+  generated: '2026-09-17'
+  method: searched
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/meddra.png
 url: https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/apis.yml
+description: >-
+  MedDRA (Medical Dictionary for Regulatory Activities) is the clinically validated international medical
+  terminology developed under the auspices of the International Council for Harmonisation (ICH) and used by
+  regulatory authorities and the regulated biopharmaceutical industry for adverse event coding, drug safety
+  reporting and pharmacovigilance. It is maintained by the MedDRA Maintenance and Support Services
+  Organization (MSSO), which publishes a new version twice a year in English and more than a dozen
+  translations. The MSSO operates a REST API programme so subscribers can embed MedDRA term search,
+  hierarchy navigation (SOC, HLGT, HLT, PT, LLT), SMQ analysis, version-impact reporting and subscription
+  validation in their own pharmacovigilance and clinical systems. Two API environments are operated: a
+  GxP-assessed one carrying four APIs for validated systems, and a wider non-GxP environment carrying
+  sixteen. Access requires an MSSO subscription.
+tags:
+  - Medical Terminology
+  - Pharmacovigilance
+  - Drug Safety
+  - Adverse Events
+  - Regulatory
+  - Clinical Trials
+  - Healthcare
+  - Life Sciences
+  - Standards
+  - Ontology
+created: '2026-05-03'
+modified: '2026-09-17'
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
 apis:
-- aid: meddra:meddra-hierarchy-api
-  name: meddra Hierarchy API
-  description: MedDRA hierarchy navigation (SOC → HLGT → HLT → PT → LLT)
-  humanURL: https://www.meddra.org/
-  baseURL: https://api.meddra.example.com
-  tags:
-  - Hierarchy
-  properties:
-  - type: OpenAPI
-    url: openapi/meddra-hierarchy-api-openapi.yml
-  - type: Documentation
-    url: https://www.meddra.org/
-  - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
-  - type: JSONLDContext
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
-- aid: meddra:meddra-terms-api
-  name: meddra Terms API
-  description: MedDRA term search and retrieval
-  humanURL: https://www.meddra.org/
-  baseURL: https://api.meddra.example.com
-  tags:
-  - Terms
-  properties:
-  - type: OpenAPI
-    url: openapi/meddra-terms-api-openapi.yml
-  - type: Documentation
-    url: https://www.meddra.org/
-  - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
-  - type: JSONLDContext
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
-- aid: meddra:meddra-validation-api
-  name: meddra Validation API
-  description: Code validation for regulatory submissions
-  humanURL: https://www.meddra.org/
-  baseURL: https://api.meddra.example.com
-  tags:
-  - Validation
-  properties:
-  - type: OpenAPI
-    url: openapi/meddra-validation-api-openapi.yml
-  - type: Documentation
-    url: https://www.meddra.org/
-  - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
-  - type: JSONLDContext
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
-- aid: meddra:meddra-versions-api
-  name: meddra Versions API
-  description: Dictionary version management
-  humanURL: https://www.meddra.org/
-  baseURL: https://api.meddra.example.com
-  tags:
-  - Versions
-  properties:
-  - type: OpenAPI
-    url: openapi/meddra-versions-api-openapi.yml
-  - type: Documentation
-    url: https://www.meddra.org/
-  - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
-  - type: JSONLDContext
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+  - aid: meddra:meddra-api
+    name: MedDRA API
+    description: >-
+      The MedDRA API published by the MSSO — term and SMQ search, term/SMQ detail, hierarchy navigation and
+      analysis, parent/child type lookup, term history, SMQ analysis, data-file download, search export,
+      language and release listings, version and data-impact reports, subscription validation, and an
+      unauthenticated status check. Sixteen operations in the non-GxP "Production" (formerly Sandbox)
+      environment; four of them (Details, Search, Status, Type) are also offered in the GxP-assessed
+      environment. Every operation but Status requires an OAuth 2.0 bearer token issued by the MedDRA
+      identity provider against a MedDRA subscription.
+    humanURL: https://www.meddra.org/meddra-apis
+    baseURL: https://mapisbx.meddra.org
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/meddra.png
+    tags:
+      - Medical Terminology
+      - Pharmacovigilance
+      - Adverse Events
+      - Search
+      - Hierarchy
+    properties:
+      - type: OpenAPI
+        url: openapi/meddra-api-openapi.yml
+      - type: OpenAPI
+        name: OpenAPI (provider-hosted)
+        url: https://mapisbx.meddra.org/swagger/v1/swagger.json
+      - type: Documentation
+        url: https://www.meddra.org/meddra-apis
+      - type: APIReference
+        url: https://mapisbx.meddra.org/index.html
+      - type: Authentication
+        url: authentication/meddra-authentication.yml
+      - type: OAuthScopes
+        url: scopes/meddra-scopes.yml
+      - type: ErrorCatalog
+        url: errors/meddra-problem-types.yml
+      - type: Overlay
+        url: overlays/meddra-api-overlay.yaml
+      - type: DataModel
+        url: data-model/meddra-data-model.yml
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+      - type: JSONLDContext
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
 common:
-  - type: AgenticAccess
-    url: agentic-access/meddra-agentic-access.yml
-  - type: DomainSecurity
-    url: security/meddra-domain-security.yml
-  - type: Authentication
-    url: authentication/meddra-authentication.yml
+  - type: Website
+    url: https://www.meddra.org/
+  - type: Portal
+    url: https://www.meddra.org/meddra-apis
+  - type: DeveloperPortal
+    url: https://www.meddra.org/meddra-apis
+  - type: Documentation
+    url: https://www.meddra.org/meddra-apis
+  - type: APIReference
+    url: https://mapisbx.meddra.org/index.html
+  - type: Support
+    url: https://www.meddra.org/contact
+  - type: Pricing
+    url: https://www.meddra.org/subscription-rates
+  - type: SignUp
+    url: https://www.meddra.org/subscription/subscription-form
   - type: LinkedIn
     url: https://www.linkedin.com/company/meddra-msso
-  - url: https://www.meddra.org/
-    type: Portal
-  - url: https://www.meddra.org/
-    type: Website
-  - url: https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/openapi/meddra-terminology-openapi.yml
-    type: OpenAPI
-  - url: https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
-    type: JSONSchema
-  - url: https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
-    type: JSONLDContext
-maintainer:
-  name: Kin Lane
-  email: kin@apievangelist.com
-modified: '2026-05-19'
-description: >-
-  MedDRA (Medical Dictionary for Regulatory Activities) is a clinically validated international medical terminology
-  dictionary used by regulatory authorities and the regulated biopharmaceutical industry.
+  - type: X-Downloads
+    url: https://www.meddra.org/software-packages
+  - type: Console
+    name: Swagger console
+    url: https://mapisbx.meddra.org/index.html
+  - type: Authentication
+    url: authentication/meddra-authentication.yml
+  - type: OAuthScopes
+    url: scopes/meddra-scopes.yml
+  - type: WellKnown
+    url: well-known/meddra-well-known.yml
+  - type: DomainSecurity
+    url: security/meddra-domain-security.yml
+  - type: Conventions
+    url: conventions/meddra-conventions.yml
+  - type: ErrorCatalog
+    url: errors/meddra-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/meddra-lifecycle.yml
+  - type: ChangeLog
+    url: changelog/meddra-changelog.yml
+  - type: Conformance
+    url: conformance/meddra-conformance.yml
+  - type: Compliance
+    url: conformance/meddra-conformance.yml
+  - type: Sandbox
+    url: sandbox/meddra-sandbox.yml
+  - type: DataModel
+    url: data-model/meddra-data-model.yml
+  - type: Packages
+    url: packages/meddra-packages.yml
+  - type: LLMsTxt
+    url: llms/meddra-llms.txt
+  - type: Overlay
+    url: overlays/meddra-api-overlay.yaml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: X-MCPServerCandidate
+    url: mcp/meddra-mcp.yml
+  - type: AgenticAccess
+    url: agentic-access/meddra-agentic-access.yml
+  - type: Plans
+    url: plans/meddra-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/meddra-rate-limits.yml
+  - type: FinOps
+    url: finops/meddra-finops.yml
+  - type: Rules
+    url: rules/meddra-jsonschema-spectral-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+x-enrichment:
+  date: '2026-09-17'
+  status: enriched
+  artifacts_added: 21
+  pass: local-v3
