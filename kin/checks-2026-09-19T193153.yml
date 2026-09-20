@@ -2,16 +2,16 @@
 kin_checks:
   slug: meddra
   schema_version: 0.22.0
-  scored_at: '2026-09-18'
-  run_ts: 2026-09-18T231945
+  scored_at: '2026-09-19'
+  run_ts: 2026-09-19T193153
   note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
     apply in `na`. Everything else in rubric/scoring-0.22.0.yml was earned; counts
     below let you verify that.
   counts:
     total: 136
-    earned: 43
+    earned: 39
     partial: 8
-    missed: 64
+    missed: 68
     na: 21
   checks:
   - id: multiple_apis
@@ -84,6 +84,9 @@ kin_checks:
     status: missed
   - id: examples_published
     status: missed
+  - id: portal_present
+    status: missed
+    detail: pointer liveness 0.0
   - id: documentation_present
     status: missed
     detail: pointer liveness 0.0
@@ -97,8 +100,17 @@ kin_checks:
     status: missed
   - id: postman_present
     status: missed
+  - id: support_channel
+    status: missed
+    detail: pointer liveness 0.0
   - id: blog_present
     status: missed
+  - id: pricing_link
+    status: missed
+    detail: pointer liveness 0.0
+  - id: sign_up_present
+    status: missed
+    detail: pointer liveness 0.0
   - id: terms_of_service
     status: missed
   - id: privacy_policy
