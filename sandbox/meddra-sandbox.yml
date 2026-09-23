@@ -1,0 +1,41 @@
+generated: '2026-09-17'
+method: searched
+source: https://files.meddra.org/www/Website%20Files/APIs/Summary%20of%20API%20Functions%20v2.pdf
+docs: https://www.meddra.org/meddra-apis
+note: 'The MSSO operates two API environments and says so plainly. The one harvested here - hosted at mapisbx.meddra.org
+  and titled "MedDRA API EUS SBX" in its own contract - was formerly called Sandbox and is now called "Production";
+  it carries all 16 APIs, is NOT maintained in a controlled GxP environment, and the MSSO directs users to it "for
+  non GxP validated systems ... or for testing purposes". A public Swagger UI is served at its root. There are no
+  published test credentials, test tokens or fixture values: a MedDRA user ID and an active MSSO subscription are
+  required to obtain a token, so the try-it console is browsable anonymously but not callable anonymously.'
+environments:
+- name: Production (formerly Sandbox)
+  gxp: false
+  operations: 16
+  host: https://mapisbx.meddra.org
+  console: https://mapisbx.meddra.org/index.html
+  spec: https://mapisbx.meddra.org/swagger/v1/swagger.json
+  intended_use: non-GxP applications and testing
+- name: GxP assessed production
+  gxp: true
+  operations: 4
+  apis:
+  - Details
+  - Search
+  - Status
+  - Type
+  host: null
+  intended_use: use inside GxP-assessed / validated systems
+  note: The host for this environment is not published; it is described in the subscriber-only programmer guide.
+console:
+  type: Swagger UI
+  url: https://mapisbx.meddra.org/index.html
+  status: 200
+  anonymous_browse: true
+  anonymous_call: false
+  note: GET /api/status is the one operation callable with no token (probed 2026-09-17, HTTP 200, body "API is Running").
+test_credentials:
+  published: false
+  note: None published. Credentials come from a MedDRA subscription; regulatory authorities and non-profits receive
+    a subscription at no charge.
+test_fixtures: []

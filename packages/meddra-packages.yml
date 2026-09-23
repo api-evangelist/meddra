@@ -1,0 +1,31 @@
+generated: '2026-09-17'
+method: searched
+source: npm registry search, PyPI, and the MedDRA API page https://www.meddra.org/meddra-apis
+note: 'The MSSO publishes NO first-party client library in any registry. npm, PyPI, RubyGems, crates.io, NuGet and
+  Maven Central carry nothing under a meddra.org / MSSO / ICH identity; the only npm packages matching "meddra" are
+  third-party tools that merely mention the terminology, and the R helper at github.com/jasonpott/meddra_api_R is
+  an individual''s work, not an MSSO release. The MSSO''s own distribution model is different in kind: it ships the
+  dictionary as downloadable ASCII data files and ships desktop, mobile and web BROWSER applications, and expects
+  subscribers to call the REST API directly from their own systems. An empty list here is the finding, not a gap in
+  the search.'
+package_count: 0
+packages: []
+third_party_observed:
+- name: meddra_api_R
+  registry: github
+  url: https://github.com/jasonpott/meddra_api_R
+  official: false
+  version: null
+  published: null
+  note: Individual-authored R helper for the meddra.org API. Not published to CRAN; no registry metadata endpoint
+    to date it.
+first_party_distribution:
+- kind: data files
+  what: MedDRA ASCII distribution (soc.asc, llt.asc, mdhier.asc and the rest), English plus translations
+  url: https://www.meddra.org/software-packages
+  official: true
+- kind: applications
+  what: MedDRA Desktop Browser (MDB), Mobile Browser (MMB), Web-Based Browser (WBB), MVAT, Self-Service Application
+    (SSA)
+  url: https://www.meddra.org/software-packages
+  official: true

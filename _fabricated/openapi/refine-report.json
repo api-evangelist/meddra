@@ -1,0 +1,26 @@
+{
+  "provider": "meddra",
+  "sources": [
+    "_original/meddra-terminology-openapi.yml"
+  ],
+  "outputs": [
+    "meddra-hierarchy-api-openapi.yml",
+    "meddra-terms-api-openapi.yml",
+    "meddra-validation-api-openapi.yml",
+    "meddra-versions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "meddra-terminology-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "meddra-hierarchy-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meddra-terms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meddra-validation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meddra-versions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}

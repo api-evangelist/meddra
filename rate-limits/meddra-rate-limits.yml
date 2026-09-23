@@ -1,85 +1,32 @@
-specification: API Commons Rate Limits
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
-provider: meddra
-providerId: meddra
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-tags:
-  - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the meddra API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
+generated: '2026-09-17'
+method: derived
+source: openapi/meddra-api-openapi.yml
+docs: https://www.meddra.org/meddra-apis
+note: 'The MedDRA API DOES throttle and says so in its own contract: 16 of the 16 operations declare a 429 response
+  whose description reads "The throttling limit on this API has been exceeded. Please review the MedDRA API documentation
+  on throttling limits." The numbers, windows and scope of those limits are in the programmer guides behind the subscriber
+  login at https://www.meddra.org/private/api-info and are not published, so no limit is recorded here. No RateLimit-*
+  / X-RateLimit-* / Retry-After header is declared in the contract or returned on the anonymous probes we could make.
+  This is an honest zero: the mechanism is documented, the values are gated.'
+limit_count: 0
+limits: []
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  limit: null
+  remaining: null
+  reset: null
+  retryAfter: null
+  policy: null
+  observed: []
+  note: No rate-limit headers declared in the OpenAPI; none observed on GET /api/status (HTTP 200) or on the 401 responses.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - MedDRA / WHO Drug Dictionary API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - MedDRA / WHO Drug Dictionary API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - MedDRA / WHO Drug Dictionary API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - MedDRA / WHO Drug Dictionary API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - MedDRA / WHO Drug Dictionary API
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
-maintainers: []
+evidence:
+- url: https://mapisbx.meddra.org/swagger/v1/swagger.json
+  status: 200
+  note: 429 declared on all 16 operations with the throttling-limit description.
+- url: https://mapisbx.meddra.org/api/status
+  status: 200
+  note: No rate-limit headers in the response.
+- url: https://www.meddra.org/private/api-info
+  status: 200
+  note: Subscriber-only page ("Login for detailed API information"); the throttling numbers live behind it.

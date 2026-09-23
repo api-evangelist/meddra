@@ -1,0 +1,76 @@
+generated: '2026-09-17'
+method: derived
+source: openapi/meddra-api-openapi.yml
+docs: https://www.meddra.org/meddra-apis
+note: Derived from the harvested OpenAPI and cross-checked against the MSSO API Function Summary.
+auth:
+  style: OAuth 2.0 bearer token (implicit flow) issued by https://mid.meddra.org/
+  scope: meddraapi
+  anonymous_operations:
+  - GET /api/status
+  see: authentication/meddra-authentication.yml
+request_style:
+  note: Unusually, most read operations are POST. Search, detail, hierarchy, SMQ analysis, type lookup, export, data-impact
+    and version-report all POST a JSON query body and return data; only status, release, language, history and download
+    are GET. An agent must not treat POST here as a mutation - there is no write surface.
+  get_operations:
+  - /api/status
+  - /api/rel
+  - /api/lang/{langt}
+  - /api/hist/{code}/{htype}/{lang}/{rsview}
+  - /api/hist/{term}/{lang}/{rsview}
+  - /api/downld/{lang}/{ver}/{file}/{format}
+  post_operations:
+  - /api/search
+  - /api/detail
+  - /api/type
+  - /api/hier
+  - /api/smqa
+  - /api/export
+  - /api/di
+  - /api/vr
+  - /api/gt
+  - /api/sv
+  content_type: application/json
+pagination:
+  style: none
+  note: No page/offset/cursor parameter appears anywhere in the contract. Result-size control is done through the
+    query itself (term lists, language, version, view type), and /api/export exists precisely because search results
+    can be large.
+versioning:
+  note: Dictionary version and language are request parameters, not URL versions. See lifecycle/meddra-lifecycle.yml.
+request_id:
+  published: false
+  note: No correlation/request-id header is documented or declared.
+error_envelope:
+  rfc9457: false
+  see: errors/meddra-problem-types.yml
+  note: No error body schema is declared for any 4xx/5xx response.
+rate_limit_signal:
+  status_on_exhaustion: 429
+  headers_published: false
+  see: rate-limits/meddra-rate-limits.yml
+idempotency:
+  coverage: na
+  mechanism: null
+  header: null
+  scope: []
+  note: The MedDRA API has NO mutating surface. All sixteen operations read the dictionary; the ten POST operations
+    post a query body and return results. There is nothing to replay-protect, so idempotency is not applicable rather
+    than absent - no Idempotency-Key header is documented and none is needed. Repeating any request returns the same
+    data for the same dictionary version, which is the natural consequence of the surface being read-only.
+dry_run_mode:
+  supported: na
+  note: No write surface; nothing to rehearse.
+reversibility:
+  grade: na
+  write_surface: false
+  reversal_operations: []
+  note: 'Read-only API: no operation creates, updates or deletes anything on the MSSO side, so there is no action
+    for an agent to take back and no window to state. Recorded as na rather than zero. The one consequential thing
+    a caller can do - GET /api/downld/... - retrieves MedDRA data files under the MedDRA licence; the constraint there
+    is licensing, not reversibility.'
+expansion:
+  supported: false
+metadata:
+  supported: false

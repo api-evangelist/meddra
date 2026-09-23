@@ -1,0 +1,41 @@
+generated: '2026-09-17'
+method: searched
+source: https://www.meddra.org/meddra-apis
+note: MedDRA publishes a strong DATA lifecycle and a weak API lifecycle. The dictionary is released on a fixed twice-yearly
+  cadence with a published change-request freeze date and a public comment period on complex change proposals for
+  the next major version, and every API operation takes the version as a parameter so historical versions stay addressable
+  rather than being retired under the caller. The API CONTRACT has no published versioning policy, no deprecation
+  policy, no Sunset/Deprecation header commitment, and no SLA on the public surface - the programmer guides that might
+  carry one are behind the subscriber login at https://www.meddra.org/private/api-info.
+versioning:
+  api:
+    scheme: none published
+    in_path: false
+    in_header: false
+    evidence: info.version "1"; paths are /api/<function> with no version segment
+  data:
+    scheme: MedDRA dictionary version (e.g. 29.1)
+    cadence: twice yearly, March and September
+    addressable_history: true
+    evidence: lang/ver parameters on nearly every operation; GET /api/rel returns the supported release list
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  deprecated_operations: []
+  note: 'No operation in the harvested OpenAPI carries deprecated: true.'
+status_page:
+  published: false
+  note: There is no status page. The API does expose an unauthenticated health operation, GET /api/status, which the
+    MSSO documents as "Determines MedDRA APIs availability. Does not require authentication." That is a health check,
+    not a status page, and it is recorded here rather than as a StatusPage pointer.
+  health_endpoint: https://mapisbx.meddra.org/api/status
+  health_probe_status: 200
+sla:
+  published: false
+  note: No public SLA. The MSSO operates a GxP-assessed environment for validated systems, which is a quality commitment
+    rather than an availability one.
+support:
+  channel: MedDRA Help Desk
+  url: https://www.meddra.org/contact
+  note: The MSSO asks that API questions carry "APIs" in the subject line.

@@ -1,0 +1,91 @@
+generated: '2026-09-17'
+method: derived
+status: candidate
+source: openapi/meddra-api-openapi.yml
+note: 'No MCP server is published by the MSSO. Searched the MedDRA site, the npm registry and the wider web on 2026-09-17:
+  the only MCP packages that mention MedDRA are third-party (medterms-mcp, @pipeworx/mcp-vaers) and are not MSSO software.
+  The tool list below is a CANDIDATE derived one-to-one from the 16 published operations so the shape of an MCP surface
+  is on record - nobody ships it, and no endpoint is asserted.'
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: oauth
+  verified: derived
+  note: Derived candidate only. The MSSO publishes no remote MCP endpoint and no stdio package.
+server:
+  name: meddra
+  title: MedDRA (candidate)
+  vendor: MedDRA MSSO
+  published: false
+tool_count: 16
+tools:
+- name: meddra_data_impact_report
+  description: Returns Data Impacted between Versions.
+  rest: POST /api/di
+  auth: oauth2 bearer (scope meddraapi)
+- name: meddra_term_details
+  description: Returns Details object for Term Code.
+  rest: POST /api/detail
+  auth: oauth2 bearer (scope meddraapi)
+- name: meddra_download_data_file
+  description: Returns Term objects for Downloads and Files.
+  rest: GET /api/downld/{lang}/{ver}/{file}/{format}
+  auth: oauth2 bearer (scope meddraapi)
+- name: meddra_search_export
+  description: Returns Term objects for Search Export.
+  rest: POST /api/export
+  auth: oauth2 bearer (scope meddraapi)
+- name: meddra_get_top_level_terms
+  description: Returns Lists of Top Level Terms i.e. SOC/SMQ
+  rest: POST /api/gt
+  auth: oauth2 bearer (scope meddraapi)
+- name: meddra_hierarchy_analysis
+  description: Returns A Hierarchy Anaylsis of inputted terms.
+  rest: POST /api/hier
+  auth: oauth2 bearer (scope meddraapi)
+- name: meddra_term_history_by_code
+  description: Returns History object for Term Code.
+  rest: GET /api/hist/{code}/{htype}/{lang}/{rsview}
+  auth: oauth2 bearer (scope meddraapi)
+- name: meddra_term_history_search
+  description: Returns Term objects for History look up.
+  rest: GET /api/hist/{term}/{lang}/{rsview}
+  auth: oauth2 bearer (scope meddraapi)
+- name: meddra_list_languages
+  description: Returns list of Available Languages.
+  rest: GET /api/lang/{langt}
+  auth: oauth2 bearer (scope meddraapi)
+- name: meddra_list_releases
+  description: Returns list of Available Releases.
+  rest: GET /api/rel
+  auth: oauth2 bearer (scope meddraapi)
+- name: meddra_search_terms
+  description: Returns Search Results for a specific input.
+  rest: POST /api/search
+  auth: oauth2 bearer (scope meddraapi)
+- name: meddra_smq_analysis
+  description: Returns SMQ Analysis specific input.
+  rest: POST /api/smqa
+  auth: oauth2 bearer (scope meddraapi)
+- name: meddra_api_status
+  description: Returns Status of API.
+  rest: GET /api/status
+  auth: none
+- name: meddra_validate_subscription
+  description: Returns Validation of input list.
+  rest: POST /api/sv
+  auth: oauth2 bearer (scope meddraapi)
+- name: meddra_term_type_lookup
+  description: Returns Parents/Children/MedDRA hiearchy for term requested.
+  rest: POST /api/type
+  auth: oauth2 bearer (scope meddraapi)
+- name: meddra_version_report
+  description: Returns Data Impacted between Versions.
+  rest: POST /api/vr
+  auth: oauth2 bearer (scope meddraapi)
+backing_api:
+  spec: openapi/meddra-api-openapi.yml
+  base: https://mapisbx.meddra.org
+  auth: OAuth 2.0 bearer from https://mid.meddra.org/, scope meddraapi; an active MSSO subscription is required

@@ -1,0 +1,41 @@
+generated: '2026-09-17'
+method: generated
+source: openapi/meddra-api-openapi.yml
+note: Packaged Agent Skills for the four marquee MedDRA flows. Every step is grounded in an operation that exists
+  in the harvested contract. The published OpenAPI declares NO operationId on any operation, so the skills address
+  operations by method and path; overlays/meddra-api-overlay.yaml proposes stable operationIds for the same sixteen.
+api: meddra:meddra-api
+skills:
+- name: meddra-code-an-adverse-event
+  file: meddra-code-an-adverse-event.md
+  description: Code verbatim adverse-event text to a MedDRA term and read its hierarchy.
+  operations:
+  - GET /api/rel
+  - POST /api/search
+  - POST /api/detail
+  - POST /api/type
+- name: meddra-smq-analysis
+  file: meddra-smq-analysis.md
+  description: Run a Standardised MedDRA Query analysis over a list of terms or codes.
+  operations:
+  - GET /api/rel
+  - POST /api/gt
+  - POST /api/smqa
+  - POST /api/detail
+- name: meddra-version-impact
+  file: meddra-version-impact.md
+  description: Assess what a MedDRA release changes for an existing set of coded terms.
+  operations:
+  - GET /api/rel
+  - POST /api/di
+  - POST /api/vr
+  - GET /api/hist/{code}/{htype}/{lang}/{rsview}
+  - POST /api/hier
+- name: meddra-check-access-and-subscription
+  file: meddra-check-access-and-subscription.md
+  description: Check API availability, token validity and MedDRA subscription status.
+  operations:
+  - GET /api/status
+  - GET /api/rel
+  - GET /api/lang/{langt}
+  - POST /api/sv

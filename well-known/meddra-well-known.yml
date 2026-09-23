@@ -1,0 +1,265 @@
+generated: '2026-09-17'
+method: probed
+source: live HTTPS probes of every MedDRA host known to this record (registrable domain + www, the API host, the
+  identity host, the docs/tools hosts)
+note: 'Only ONE real document was served: the OpenID Connect discovery document on the MedDRA identity host mid.meddra.org
+  (IdentityServer), which is the authorization server the MedDRA API OpenAPI names in its oauth2 securityScheme.
+  www.meddra.org is an Angular single-page app that answers 200 with the same 1,556-byte HTML shell for several
+  /.well-known/ paths - those are soft-404s, not documents. ssa.meddra.org and subscribe.meddra.org FAILED the path-echo
+  negative control (they answer 200 with an HTML page for a path that cannot exist), so every 200 on those two hosts
+  is discarded.'
+hosts:
+- host: https://www.meddra.org
+  path_echo_control: passed
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: 200 returned the Angular SPA shell, not a document - soft-404
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: 200 returned the Angular SPA shell, not a document - soft-404
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    note: 200 returned the Angular SPA shell, not a document - soft-404
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    note: 200 returned the Angular SPA shell, not a document - soft-404
+  - path: /.well-known/api-catalog
+    status: 200
+    note: 200 returned the Angular SPA shell, not a document - soft-404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 200
+    note: 200 returned the Angular SPA shell, not a document - soft-404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://mapisbx.meddra.org
+  path_echo_control: passed
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://mid.meddra.org
+  path_echo_control: passed
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: meddra-openid-configuration.json
+    note: RFC 8414 / OIDC discovery for the MedDRA identity provider (IdentityServer). Advertises the meddraapi,
+      msmeddraapi and meddrawapi scopes the MedDRA API uses.
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://api.meddra.org
+  path_echo_control: passed
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://tools.meddra.org
+  path_echo_control: passed
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://ssa.meddra.org
+  path_echo_control: failed
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/api-catalog
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/ucp.json
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/acp.json
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/aauth-resource.json
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/apis.json
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /apis.json
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /apis.yml
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/agent-card.json
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/agent.json
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+- host: https://subscribe.meddra.org
+  path_echo_control: failed
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/api-catalog
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/ucp.json
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/acp.json
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/aauth-resource.json
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/apis.json
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /apis.json
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /apis.yml
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/agent-card.json
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control
+  - path: /.well-known/agent.json
+    status: 200
+    note: 200 returned an HTML page, not a document - discarded by the path-echo control

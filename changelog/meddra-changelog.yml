@@ -1,0 +1,48 @@
+generated: '2026-09-17'
+method: searched
+source: https://www.meddra.org/news-and-events/news
+note: MedDRA does not publish an API changelog. What it publishes is a DICTIONARY release cadence - a new MedDRA version
+  every March and September, English first and the translations a fortnight later - announced as dated news items
+  and accompanied by a "What's New with MedDRA Version X" document. Because every API operation is parameterised by
+  MedDRA version and language, the dictionary release IS the thing a consumer has to track; the API contract itself
+  carries info.version "1" and has not been versioned in the published spec. Entries below are read verbatim from
+  the MSSO news feed.
+scheme:
+  api_contract: info.version "1" - unversioned in the published OpenAPI; no /v1 path prefix
+  data: MedDRA dictionary version, currently 29.1, released twice a year (March and September)
+  selected_by: lang / ver path and body parameters on nearly every operation
+current_version:
+  dictionary: '29.1'
+  released: '2026-09-01'
+  api_contract: '1'
+entries:
+- version: 29.1 (all languages)
+  date: '2026-09-14'
+  type: data
+  highlights: All translations of MedDRA 29.1 available for download; MedDRA Points to Consider Companion Document
+    release 4.0.
+- version: 29.1 (English)
+  date: '2026-09-01'
+  type: data
+  highlights: English MedDRA Version 29.1 available for download.
+- version: 30.0 (proposed)
+  date: '2026-08-07'
+  type: process
+  highlights: Request for comments on MedDRA 30.0 Complex Change Proposals; reminder issued 2026-09-14.
+- version: 29.0 (all languages)
+  date: '2026-03-16'
+  type: data
+  highlights: All translations of MedDRA 29.0 available for download.
+- version: 29.0 (English)
+  date: '2026-03-04'
+  type: data
+  highlights: English MedDRA Version 29.0 available for download.
+- version: API programme
+  date: '2026-04-14'
+  type: api
+  highlights: MedDRA API Survey issued to subscribers by the MSSO.
+evidence:
+- url: https://www.meddra.org/news-and-events/news
+  status: 200
+  note: The site is an Angular SPA; the dated items above were read from its own content API at https://admin.meddra.org/api/nodes?bundle=article
+    (HTTP 200, 172 articles).

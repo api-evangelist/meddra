@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: MedDRA Medical Dictionary for Regulatory Activities Hierarchy Versions API
+  title: MedDRA Medical Dictionary for Regulatory Activities…
   description: MedDRA (Medical Dictionary for Regulatory Activities) and the WHO Drug Dictionary provide standardized medical terminology APIs for adverse event coding, drug safety reporting, and pharmacovigilance. APIs enable term lookup, hierarchy navigation, and coding validation for regulatory submissions to ICH, FDA, EMA, and other health authorities.
   version: 27.0.0
   contact:

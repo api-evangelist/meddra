@@ -1,21 +1,50 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/meddra-terminology-openapi.yml
+generated: '2026-09-17'
+method: searched
+source: https://mid.meddra.org/.well-known/openid-configuration
+docs: https://www.meddra.org/meddra-apis
+note: Derived from the harvested OpenAPI securityScheme and then upgraded from the provider's own OpenID Connect discovery
+  document at mid.meddra.org, which is the authorization server the spec names. Every operation except GET /api/status
+  requires a bearer token; /api/status is explicitly documented by the MSSO as not requiring authentication. A MedDRA
+  user ID and an active MSSO subscription are prerequisites for obtaining credentials - the detailed programmer guides
+  sit behind the subscriber login at https://www.meddra.org/private/api-info.
 summary:
   types:
-  - apiKey
-  - http
-  api_key_in:
-  - header
+  - oauth2
+  - openIdConnect
+  oauth2_flows:
+  - implicit
+  anonymous_operations:
+  - GET /api/status
 schemes:
-- name: APIKey
-  type: apiKey
-  in: header
-  parameter: X-API-Key
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: implicit
+    authorizationUrl: https://mid.meddra.org/connect/authorize
+    tokenUrl: https://mid.meddra.org/connect/token
+    scopes: 1
   sources:
-  - openapi/meddra-terminology-openapi.yml
-- name: BearerAuth
-  type: http
-  scheme: bearer
-  sources:
-  - openapi/meddra-terminology-openapi.yml
+  - openapi/meddra-api-openapi.yml
+identity_provider:
+  issuer: https://mid.meddra.org/
+  product: Duende/IdentityServer (ASP.NET)
+  discovery: https://mid.meddra.org/.well-known/openid-configuration
+  discovery_status: 200
+  jwks_uri: https://mid.meddra.org/.well-known/openid-configuration/jwks
+  authorization_endpoint: https://mid.meddra.org/connect/authorize
+  token_endpoint: https://mid.meddra.org/connect/token
+  introspection_endpoint: https://mid.meddra.org/connect/introspect
+  revocation_endpoint: https://mid.meddra.org/connect/revocation
+  device_authorization_endpoint: https://mid.meddra.org/connect/deviceauthorization
+  userinfo_endpoint: https://mid.meddra.org/connect/userinfo
+  offline_access: true
+runtime_evidence:
+- url: https://mapisbx.meddra.org/api/status
+  status: 200
+  note: anonymous; body "API is Running"
+- url: https://mapisbx.meddra.org/api/rel
+  status: 401
+  note: 'WWW-Authenticate: Bearer'
+- url: https://mapisbx.meddra.org/api/lang/E
+  status: 401
+  note: 'WWW-Authenticate: Bearer'

@@ -1,0 +1,103 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the MedDRA API
+  version: 1.0.0
+extends: ../openapi/meddra-api-openapi.yml
+x-provenance:
+  generated: '2026-09-17'
+  method: generated
+  source: openapi/meddra-api-openapi.yml
+  note: >-
+    Captures the gaps this pipeline found in the harvested MedDRA API contract without mutating it. The
+    published spec declares no servers[] block, no operationId on any of its sixteen operations, and no
+    top-level tags[] descriptions - so every generated client names its methods arbitrarily and no agent can
+    address an operation by a stable identifier. The server added here is the host the spec is actually served
+    from and the host whose GET /api/status answered 200 on 2026-09-17; it is our observation, not a provider
+    declaration, which is exactly why it lives in an overlay.
+actions:
+  - target: $
+    update:
+      servers:
+        - url: https://mapisbx.meddra.org
+          description: >-
+            MedDRA "Production" environment (formerly Sandbox), non-GxP. Observed by API Evangelist 2026-09-17;
+            not declared by the provider in the published contract.
+      tags:
+        - name: Search
+          description: Term and SMQ search by string input.
+        - name: Details
+          description: Term and SMQ detail, including primary and secondary SOC and LLT currency.
+        - name: Type
+          description: Parents, children and full hierarchy for a term or SMQ.
+        - name: Hierarchy
+          description: Hierarchy analysis over a supplied list of terms or codes.
+        - name: SMQ
+          description: SMQ analysis over a supplied list of terms or codes.
+        - name: History
+          description: Change history for a term, and the term list that feeds it.
+        - name: Language
+          description: Supported MedDRA translations.
+        - name: Release
+          description: Supported MedDRA versions and languages.
+        - name: Download
+          description: MedDRA distribution data files in JSON or delimited format.
+        - name: Export
+          description: Export of term and hierarchy information from search results.
+        - name: DataImpact
+          description: Changes between two MedDRA versions for supplied terms or codes.
+        - name: VersionR
+          description: Version report across MedDRA releases.
+        - name: GetTop
+          description: Top-level SOCs and SMQs for a language and version.
+        - name: SValidation
+          description: Subscription status confirmation for your organisation or a business partner.
+        - name: Status
+          description: Unauthenticated availability check.
+  - target: $.paths['/api/status'].get
+    update:
+      operationId: getApiStatus
+  - target: $.paths['/api/search'].post
+    update:
+      operationId: searchTerms
+  - target: $.paths['/api/detail'].post
+    update:
+      operationId: getTermDetails
+  - target: $.paths['/api/type'].post
+    update:
+      operationId: getTermType
+  - target: $.paths['/api/hier'].post
+    update:
+      operationId: analyzeHierarchy
+  - target: $.paths['/api/smqa'].post
+    update:
+      operationId: analyzeSmq
+  - target: $.paths['/api/export'].post
+    update:
+      operationId: exportSearchResults
+  - target: $.paths['/api/gt'].post
+    update:
+      operationId: getTopLevelTerms
+  - target: $.paths['/api/di'].post
+    update:
+      operationId: getDataImpactReport
+  - target: $.paths['/api/vr'].post
+    update:
+      operationId: getVersionReport
+  - target: $.paths['/api/sv'].post
+    update:
+      operationId: validateSubscription
+  - target: $.paths['/api/rel'].get
+    update:
+      operationId: listReleases
+  - target: $.paths['/api/lang/{langt}'].get
+    update:
+      operationId: listLanguages
+  - target: $.paths['/api/hist/{code}/{htype}/{lang}/{rsview}'].get
+    update:
+      operationId: getTermHistoryByCode
+  - target: $.paths['/api/hist/{term}/{lang}/{rsview}'].get
+    update:
+      operationId: searchTermHistory
+  - target: $.paths['/api/downld/{lang}/{ver}/{file}/{format}'].get
+    update:
+      operationId: downloadDataFile

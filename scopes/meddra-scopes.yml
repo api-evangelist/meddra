@@ -1,0 +1,62 @@
+generated: '2026-09-17'
+method: searched
+source: https://mid.meddra.org/.well-known/openid-configuration
+docs: https://www.meddra.org/meddra-apis
+note: The OpenAPI declares one scope, meddraapi. The provider's own OIDC discovery document advertises three API-bearing
+  scopes on the same issuer; the other two are named there but are not referenced by the harvested MedDRA API contract,
+  so their exact grant is not documented publicly. The full scope list below is verbatim from scopes_supported.
+schemes:
+- name: oauth2
+  source: openapi/meddra-api-openapi.yml
+  flows:
+  - flow: implicit
+    authorizationUrl: https://mid.meddra.org/connect/authorize
+scopes:
+- scope: meddraapi
+  description: Meddra API - full access
+  flows:
+  - implicit
+  sources:
+  - openapi/meddra-api-openapi.yml
+  - https://mid.meddra.org/.well-known/openid-configuration
+  note: The scope the MedDRA API OpenAPI requires on every authenticated operation.
+- scope: msmeddraapi
+  description: null
+  flows:
+  - implicit
+  sources:
+  - https://mid.meddra.org/.well-known/openid-configuration
+  note: Advertised by the identity provider; not referenced by the published MedDRA API contract.
+- scope: meddrawapi
+  description: null
+  flows:
+  - implicit
+  sources:
+  - https://mid.meddra.org/.well-known/openid-configuration
+  note: Advertised by the identity provider; appears to serve the Web-Based Browser (WBB). Not referenced by the published
+    MedDRA API contract.
+issuer_scopes_supported:
+- openid
+- profile
+- role
+- Permission
+- username
+- st
+- wr
+- meddra
+- meddracrid
+- meddraint
+- meddraw
+- rc
+- email
+- userid
+- meddrawint
+- meddrawcrid
+- meddraapi
+- msmeddraapi
+- meddrawapi
+- offline_access
+api_scopes_detected:
+- meddraapi
+- msmeddraapi
+- meddrawapi

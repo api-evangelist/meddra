@@ -1,0 +1,53 @@
+generated: '2026-09-17'
+method: searched
+source: https://files.meddra.org/www/Website%20Files/APIs/Summary%20of%20API%20Functions%20v2.pdf
+note: Compliance claims read from the MSSO's own API Function Summary and from the published contract, not from marketing
+  prose. The GxP claim is the significant one and it is made by the provider in the document linked from its API page.
+conformance:
+- id: oauth2
+  conforms: true
+  evidence: components.securitySchemes.oauth2 (implicit flow, authorizationUrl https://mid.meddra.org/connect/authorize)
+    in openapi/meddra-api-openapi.yml
+- id: oidc
+  conforms: true
+  evidence: A valid OpenID Connect discovery document is served at https://mid.meddra.org/.well-known/openid-configuration
+    (HTTP 200), issuer https://mid.meddra.org/, with jwks_uri, token, introspection, revocation and device-authorization
+    endpoints.
+- id: openapi
+  conforms: true
+  evidence: OpenAPI 3.0.1 published at https://mapisbx.meddra.org/swagger/v1/swagger.json (HTTP 200, 16 paths).
+- id: rfc9457
+  conforms: false
+  evidence: No application/problem+json response is declared anywhere in the contract.
+- id: pagination
+  conforms: false
+  evidence: No pagination parameters in any of the 16 operations.
+- id: idempotency
+  conforms: false
+  evidence: Not applicable - the API has no mutating surface. See conventions/meddra-conventions.yml.
+- id: fhir
+  conforms: false
+  evidence: MedDRA is referenced BY FHIR implementations as a code system, but the MSSO API is not a FHIR terminology
+    service - it exposes no CodeSystem/ValueSet/$lookup/$validate-code endpoints.
+domain_standard:
+- id: ich-meddra
+  name: ICH MedDRA
+  conforms: true
+  role: authoritative publisher
+  evidence: 'MedDRA is itself the ICH domain standard for adverse-event terminology, developed under the auspices
+    of the International Council for Harmonisation and maintained by the MSSO under an ICH MedDRA Management Committee.
+    This API is the standard body publishing its own terminology, not a third party conforming to it: info.contact
+    wadmin@meddra.org, contract served from meddra.org.'
+  source: https://www.meddra.org/about-meddra/organisation/msso
+- id: gxp
+  name: GxP (Good x Practice)
+  conforms: true
+  scope: partial
+  evidence: The MSSO states it "has developed four APIs to GxP (Good x Practice) standards" and operates them in a
+    GxP-assessed environment for use inside validated systems (Details, Search, Status, Type). The wider 16-operation
+    environment harvested here is explicitly NOT maintained in a controlled GxP environment and is for non-GxP applications
+    and testing.
+  source: https://files.meddra.org/www/Website%20Files/APIs/Summary%20of%20API%20Functions%20v2.pdf
+certifications: []
+note_certifications: No SOC 2 / ISO 27001 / HIPAA / FedRAMP certification is published on the MedDRA public surface;
+  the GxP assessment above is the compliance programme the MSSO does publish.

@@ -1,0 +1,227 @@
+generated: '2026-09-17'
+method: derived
+source: openapi/meddra-api-openapi.yml
+docs: https://www.meddra.org/meddra-apis
+format: vendor
+note: 'Derived from every 4xx/5xx response declared in the harvested MedDRA API OpenAPI. The contract does NOT use
+  RFC 9457 application/problem+json - the error responses carry a description and no response body schema at all,
+  so an agent gets a status code and a human-readable string and nothing machine-readable to branch on. The spec distinguishes
+  several failure MEANINGS inside a single 400 by declaring them as separate response keys ("400 v1" ... "400 v6"),
+  which is a Swashbuckle/ASP.NET convention rather than an OpenAPI one: a client cannot tell them apart from the wire
+  response. The 429 description is the only one that tells a caller what to do, and it points at throttling documentation
+  that lives behind the subscriber login.'
+envelope:
+  media_type: null
+  schema: null
+  rfc9457: false
+  machine_readable_code: false
+  gap: No error schema is declared for any 4xx/5xx response in the published contract.
+problem_types:
+- status: 400
+  title: API Failed Database Connection Error
+  operations:
+  - GET /api/status
+  occurrences: 1
+- status: 400
+  title: Failed Model Validation
+  operations:
+  - GET /api/downld/{lang}/{ver}/{file}/{format}
+  - GET /api/hist/{code}/{htype}/{lang}/{rsview}
+  - GET /api/hist/{term}/{lang}/{rsview}
+  - GET /api/lang/{langt}
+  - GET /api/rel
+  - POST /api/detail
+  - POST /api/di
+  - POST /api/export
+  - POST /api/gt
+  - POST /api/hier
+  - POST /api/search
+  - POST /api/smqa
+  - POST /api/sv
+  - POST /api/type
+  - POST /api/vr
+  occurrences: 15
+- status: 400
+  title: Failed Validation
+  operations:
+  - POST /api/detail
+  - POST /api/type
+  occurrences: 2
+- status: 400
+  title: Failed to Get History
+  operations:
+  - GET /api/hist/{code}/{htype}/{lang}/{rsview}
+  - GET /api/hist/{term}/{lang}/{rsview}
+  occurrences: 2
+- status: 400
+  title: Insufficient Authorization
+  operations:
+  - GET /api/downld/{lang}/{ver}/{file}/{format}
+  - GET /api/hist/{code}/{htype}/{lang}/{rsview}
+  - GET /api/hist/{term}/{lang}/{rsview}
+  - GET /api/lang/{langt}
+  - GET /api/rel
+  - POST /api/detail
+  - POST /api/di
+  - POST /api/export
+  - POST /api/gt
+  - POST /api/hier
+  - POST /api/search
+  - POST /api/smqa
+  - POST /api/sv
+  - POST /api/type
+  - POST /api/vr
+  occurrences: 15
+- status: 400
+  title: Internal Server Exception
+  operations:
+  - GET /api/hist/{code}/{htype}/{lang}/{rsview}
+  - GET /api/hist/{term}/{lang}/{rsview}
+  - GET /api/lang/{langt}
+  - GET /api/rel
+  - POST /api/detail
+  - POST /api/di
+  - POST /api/gt
+  - POST /api/hier
+  - POST /api/search
+  - POST /api/smqa
+  - POST /api/sv
+  - POST /api/type
+  - POST /api/vr
+  occurrences: 13
+- status: 400
+  title: Invalid Input
+  operations:
+  - GET /api/downld/{lang}/{ver}/{file}/{format}
+  - GET /api/hist/{code}/{htype}/{lang}/{rsview}
+  - GET /api/hist/{term}/{lang}/{rsview}
+  - GET /api/lang/{langt}
+  - POST /api/detail
+  - POST /api/di
+  - POST /api/export
+  - POST /api/gt
+  - POST /api/hier
+  - POST /api/search
+  - POST /api/smqa
+  - POST /api/sv
+  - POST /api/type
+  - POST /api/vr
+  occurrences: 14
+- status: 400
+  title: Language/Version Does Not exist
+  operations:
+  - GET /api/downld/{lang}/{ver}/{file}/{format}
+  - GET /api/hist/{code}/{htype}/{lang}/{rsview}
+  - GET /api/hist/{term}/{lang}/{rsview}
+  - GET /api/lang/{langt}
+  - POST /api/detail
+  - POST /api/di
+  - POST /api/export
+  - POST /api/gt
+  - POST /api/hier
+  - POST /api/search
+  - POST /api/smqa
+  - POST /api/type
+  - POST /api/vr
+  occurrences: 13
+- status: 401
+  title: The unauthorized access
+  operations:
+  - POST /api/hier
+  occurrences: 1
+- status: 401
+  title: Unauthorized Access
+  operations:
+  - GET /api/downld/{lang}/{ver}/{file}/{format}
+  - GET /api/hist/{code}/{htype}/{lang}/{rsview}
+  - GET /api/hist/{term}/{lang}/{rsview}
+  - GET /api/lang/{langt}
+  - GET /api/rel
+  - POST /api/detail
+  - POST /api/di
+  - POST /api/export
+  - POST /api/gt
+  - POST /api/search
+  - POST /api/smqa
+  - POST /api/sv
+  - POST /api/type
+  - POST /api/vr
+  occurrences: 14
+- status: 404
+  title: Not Found
+  operations:
+  - GET /api/lang/{langt}
+  - GET /api/rel
+  occurrences: 2
+- status: 409
+  title: Data not available
+  operations:
+  - GET /api/downld/{lang}/{ver}/{file}/{format}
+  occurrences: 1
+- status: 415
+  title: Unsupported Media Type
+  operations:
+  - POST /api/detail
+  - POST /api/di
+  - POST /api/gt
+  - POST /api/hier
+  - POST /api/search
+  - POST /api/smqa
+  - POST /api/type
+  occurrences: 7
+- status: 429
+  title: The throttling limit on this API has been exceeded.  Please review the MedDRA API documentation on throttling
+    limits.
+  operations:
+  - GET /api/downld/{lang}/{ver}/{file}/{format}
+  - GET /api/hist/{code}/{htype}/{lang}/{rsview}
+  - GET /api/hist/{term}/{lang}/{rsview}
+  - GET /api/lang/{langt}
+  - GET /api/rel
+  - GET /api/status
+  - POST /api/detail
+  - POST /api/di
+  - POST /api/export
+  - POST /api/gt
+  - POST /api/hier
+  - POST /api/search
+  - POST /api/smqa
+  - POST /api/sv
+  - POST /api/type
+  - POST /api/vr
+  occurrences: 16
+- status: 500
+  title: Internal Server Error
+  operations:
+  - GET /api/downld/{lang}/{ver}/{file}/{format}
+  - GET /api/hist/{code}/{htype}/{lang}/{rsview}
+  - GET /api/hist/{term}/{lang}/{rsview}
+  - GET /api/lang/{langt}
+  - GET /api/rel
+  - GET /api/status
+  - POST /api/detail
+  - POST /api/di
+  - POST /api/export
+  - POST /api/gt
+  - POST /api/hier
+  - POST /api/search
+  - POST /api/smqa
+  - POST /api/sv
+  - POST /api/type
+  - POST /api/vr
+  occurrences: 16
+summary:
+  distinct_statuses:
+  - 400
+  - 401
+  - 404
+  - 409
+  - 415
+  - 429
+  - 500
+  distinct_meanings: 15
+  retryable:
+  - 429
+  - 500
+  auth:
+  - 401
