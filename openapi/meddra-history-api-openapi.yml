@@ -1,0 +1,460 @@
+openapi: 3.2.0
+info:
+  title: MedDRA API EUS SBX History API
+  description: Web API to access MedDRA Data
+  contact:
+    name: Web Admin
+    url: http://www.meddra.org/
+    email: wadmin@meddra.org
+  version: '1'
+security:
+- oauth2:
+  - meddraapi
+tags:
+- name: History
+paths:
+  /api/hist/{code}/{htype}/{lang}/{rsview}:
+    get:
+      tags:
+      - History
+      summary: Returns History object for Term Code
+      parameters:
+      - name: code
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: htype
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: lang
+        in: path
+        required: true
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: rsview
+        in: path
+        required: true
+        schema:
+          type:
+          - string
+          - 'null'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/historyDTO'
+        200 type=1:
+          description: List of historyRDTO
+        200 type=10:
+          description: historyDTO
+        400 v1:
+          description: Failed Model Validation
+        400 v2:
+          description: Language/Version Does Not exist
+        400 v3:
+          description: Insufficient Authorization
+        400 v4:
+          description: Invalid Input
+        400 v5:
+          description: Failed to Get History
+        400 v6:
+          description: Internal Server Exception
+        '401':
+          description: Unauthorized Access
+        '429':
+          description: The throttling limit on this API has been exceeded.  Please review the MedDRA API documentation on throttling limits.
+        '500':
+          description: Internal Server Error
+      operationId: getApiHistByCodeByHtypeByLangByRsview
+      x-operation-id-source: derived
+  /api/hist/{term}/{lang}/{rsview}:
+    get:
+      tags:
+      - History
+      summary: Returns Term objects for History look up
+      parameters:
+      - name: term
+        in: path
+        required: true
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: lang
+        in: path
+        required: true
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: rsview
+        in: path
+        required: true
+        schema:
+          type:
+          - string
+          - 'null'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/historyDTO'
+        200 type=1:
+          description: List of historyRDTO
+        200 type=10:
+          description: historyDTO
+        400 v1:
+          description: Failed Model Validation
+        400 v2:
+          description: Language/Version Does Not exist
+        400 v3:
+          description: Insufficient Authorization
+        400 v4:
+          description: Invalid Input
+        400 v5:
+          description: Failed to Get History
+        400 v6:
+          description: Internal Server Exception
+        '401':
+          description: Unauthorized Access
+        '429':
+          description: The throttling limit on this API has been exceeded.  Please review the MedDRA API documentation on throttling limits.
+        '500':
+          description: Internal Server Error
+      operationId: getApiHistByTermByLangByRsview
+      x-operation-id-source: derived
+components:
+  schemas:
+    historyCDTO:
+      type: object
+      properties:
+        vername:
+          type:
+          - string
+          - 'null'
+          description: 'Language/Version
+
+            //English Version 4'
+        changes:
+          type:
+          - string
+          - 'null'
+          description: Discription of changes for this version.
+        tlvl:
+          type:
+          - string
+          - 'null'
+          description: Term Level ie SOC/HLGT/HLT/PT/LLT.
+        rdate:
+          type: string
+          description: Release Date
+          format: date-time
+        cp:
+          type: boolean
+          description: Current Placement
+        vers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/historyTDTO'
+          description: Tree View of history
+      additionalProperties: false
+      description: View Model for returning TreeNode History of MedDRA terms.
+    historyDTO:
+      type: object
+      properties:
+        Id:
+          type:
+          - string
+          - 'null'
+        code:
+          type: integer
+          description: term code
+          format: int32
+        type:
+          type:
+          - string
+          - 'null'
+          description: type of code
+        fhists:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/historyFDTO'
+          description: List of history view models by language
+      additionalProperties: false
+      description: View Model for returning Raw History of MedDRA terms.
+    historyRCDTO:
+      type: object
+      properties:
+        vername:
+          type:
+          - string
+          - 'null'
+          description: 'Language/Version
+
+            //English Version 4'
+        changes:
+          type:
+          - string
+          - 'null'
+          description: Discription of changes for this version.
+        tlvl:
+          type:
+          - string
+          - 'null'
+          description: Term Level ie SOC/HLGT/HLT/PT/LLT.
+        rdate:
+          type: string
+          description: Release Date
+          format: date-time
+        cp:
+          type: boolean
+          description: Current Placement
+        vers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/historyRNDTO'
+          description: List of History Hierachies for this version.
+      additionalProperties: false
+      description: View Model for returning List of History Hierachies of MedDRA terms.
+    historyTDTO:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Term Code
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+          description: Term Name
+        col:
+          type:
+          - string
+          - 'null'
+          description: Identifier for hierarchy
+        changeNote:
+          type:
+          - string
+          - 'null'
+          description: Changes for hierarchy
+        icon:
+          type:
+          - string
+          - 'null'
+          description: icon name for node
+        currency:
+          type:
+          - string
+          - 'null'
+          description: Term Currency
+        jcurrency:
+          type:
+          - string
+          - 'null'
+          description: Japanese Term Currency
+        leaf:
+          type: boolean
+          description: indicates last child
+        expanded:
+          type: boolean
+          description: indicates if node is expanded by default
+        thl:
+          type: boolean
+          description: indicates if the nodes term is highlighted because of change
+        hl:
+          type: boolean
+          description: indicates if the nodes code is highlighted because of change
+        child:
+          $ref: '#/components/schemas/historyTDTO'
+      additionalProperties: false
+      description: View Model for returning TreeNode History of MedDRA terms.
+    historyRNDTO:
+      type: object
+      properties:
+        termCode:
+          type: integer
+          description: Term Code
+          format: int32
+        termName:
+          type:
+          - string
+          - 'null'
+          description: Term Name
+        col:
+          type:
+          - string
+          - 'null'
+          description: Identifier for hierarchy
+        termAbbrev:
+          type:
+          - string
+          - 'null'
+          description: Term Abbreviation
+        termCurrency:
+          type:
+          - string
+          - 'null'
+          description: Term Currency
+        jCurrency:
+          type:
+          - string
+          - 'null'
+          description: Japanese Term Currency
+        isPrimarySOC:
+          type:
+          - string
+          - 'null'
+          description: Is Primary SOC Y/N
+        pSOC:
+          type: integer
+          description: SOC code for this term
+          format: int32
+        pSOCN:
+          type:
+          - string
+          - 'null'
+          description: SOC name for this term
+        pHLGT:
+          type: integer
+          description: HLGT code for this term
+          format: int32
+        pHLGTN:
+          type:
+          - string
+          - 'null'
+          description: HLGT name for this term
+        pHLT:
+          type: integer
+          description: HLT code for this term
+          format: int32
+        pHLTN:
+          type:
+          - string
+          - 'null'
+          description: HLT name for this term
+        pPT:
+          type: integer
+          description: PT code for this term
+          format: int32
+        pPTN:
+          type:
+          - string
+          - 'null'
+          description: PT name for this term
+        medDraVer:
+          type: number
+          description: Meddra version
+          format: double
+        termLevel:
+          type:
+          - string
+          - 'null'
+          description: Term Level
+        changeNote:
+          type:
+          - string
+          - 'null'
+          description: Description of Change
+        diffTerm:
+          type:
+          - string
+          - 'null'
+          description: 'Term difference. Refers to a change to the term being queried for history.
+
+            Cd – the term changed.
+
+            Cr – the currency changed
+
+            Tx – the Term text changed.
+
+            Lv – the term demoted or promoted.
+
+            Pr – the primary SOC changed.'
+        diffSOC:
+          type:
+          - string
+          - 'null'
+          description: Indicates a link change above the term queried for history at the SOC level
+        diffHLGT:
+          type:
+          - string
+          - 'null'
+          description: Indicates a link change above the term queried for history at the HLGT level
+        diffHLT:
+          type:
+          - string
+          - 'null'
+          description: Indicates a link change above the term queried for history at the HLT level
+        diffPT:
+          type:
+          - string
+          - 'null'
+          description: Indicates a link change above the term queried for history at the PT level
+        searchCode:
+          type:
+          - string
+          - 'null'
+          description: "Search Code. In most cases, the search code is the same as the termcode parameter. \nThere are a few situations in English MedDRA where two different codes where assigned to the same term name.When asking for the history of such a term, the codes will be listed in this parameter separated by a ‘$”."
+        searchTerm:
+          type:
+          - string
+          - 'null'
+          description: 'Search Term. In most cases, the search term is the same as the termname parameter.
+
+            There are a few situations in English MedDRA where two different term names where assigned to the same term code.When asking for the history of such a term, the term names is listed in this parameter separated by a ‘$”.'
+      additionalProperties: false
+      description: View Model for returning Raw History of MedDRA terms.
+    historyFDTO:
+      type: object
+      properties:
+        lang:
+          type:
+          - string
+          - 'null'
+          description: history objects
+        lcv:
+          type: number
+          description: Last Change Version
+          format: double
+        hists:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/historyRCDTO'
+          description: List of history view models
+        thists:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/historyCDTO'
+          description: List of history tree models
+      additionalProperties: false
+      description: View Model for returning Raw History of MedDRA terms.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://mid.meddra.org/connect/authorize
+          scopes:
+            meddraapi: Meddra API - full access

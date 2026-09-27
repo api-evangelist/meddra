@@ -1,0 +1,293 @@
+openapi: 3.2.0
+info:
+  title: MedDRA API EUS SBX Hierarchy API
+  description: Web API to access MedDRA Data
+  contact:
+    name: Web Admin
+    url: http://www.meddra.org/
+    email: wadmin@meddra.org
+  version: '1'
+security:
+- oauth2:
+  - meddraapi
+tags:
+- name: Hierarchy
+paths:
+  /api/hier:
+    post:
+      tags:
+      - Hierarchy
+      summary: Returns A Hierarchy Anaylsis of inputted terms
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/hierarchyDTO'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/hierarchyDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/hierarchyDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/hierarchyDTO'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/hierarchyRDTO'
+        200 type=1:
+          description: hierarchyRDTO
+        200 type=10:
+          description: hierarchyRDTO
+        400 v1:
+          description: Failed Model Validation
+        400 v2:
+          description: Language/Version Does Not exist
+        400 v3:
+          description: Insufficient Authorization
+        400 v4:
+          description: Invalid Input
+        400 v5:
+          description: Internal Server Exception
+        '401':
+          description: The unauthorized access
+        '415':
+          description: Unsupported Media Type
+        '429':
+          description: The throttling limit on this API has been exceeded.  Please review the MedDRA API documentation on throttling limits.
+        '500':
+          description: Internal Server Error
+      operationId: postApiHier
+      x-operation-id-source: derived
+components:
+  schemas:
+    hirowDTO:
+      required:
+      - c
+      - r
+      - t
+      type: object
+      properties:
+        r:
+          maxLength: 400
+          minLength: 0
+          type: string
+          description: Row ID.
+        t:
+          maxLength: 400
+          minLength: 0
+          type: string
+          description: LLT/PT Term.
+        c:
+          type: integer
+          description: LLT/PT Code.
+          format: int32
+      additionalProperties: false
+      description: Row from import for Hierarchy Analysis.
+    hrowDTO:
+      type: object
+      properties:
+        r:
+          type:
+          - string
+          - 'null'
+          description: Row ID.
+        t:
+          type:
+          - string
+          - 'null'
+          description: Term Name.
+        c:
+          type: integer
+          description: Term Code.
+          format: int32
+        l:
+          type:
+          - string
+          - 'null'
+          description: Level.
+        p:
+          type:
+          - string
+          - 'null'
+          description: PT Name.
+        pc:
+          type: integer
+          description: PT Code.
+          format: int32
+        h:
+          type:
+          - string
+          - 'null'
+          description: HLT Name.
+        hc:
+          type: integer
+          description: HLT Code.
+          format: int32
+        hg:
+          type:
+          - string
+          - 'null'
+          description: HLGT Name.
+        hgc:
+          type: integer
+          description: HLGT Code.
+          format: int32
+        s:
+          type:
+          - string
+          - 'null'
+          description: SOC Name.
+        sc:
+          type: integer
+          description: SOC Code.
+          format: int32
+        ps:
+          type:
+          - string
+          - 'null'
+          description: Primary SOC Y/N.
+      additionalProperties: false
+      description: Hierarchy Row.
+    hieDTO:
+      type: object
+      properties:
+        rowid:
+          type:
+          - string
+          - 'null'
+          description: Row ID.
+        name:
+          type:
+          - string
+          - 'null'
+          description: Term Name.
+        code:
+          type:
+          - string
+          - 'null'
+          description: Term Code.
+        com:
+          type:
+          - string
+          - 'null'
+          description: Comment.
+      additionalProperties: false
+      description: 'Input Errors.
+
+        Total Changes between selected versions.'
+    hierarchyDTO:
+      required:
+      - acodes
+      - force
+      - hlgt
+      - hlt
+      - htype
+      - lang
+      - rows
+      - ssoc
+      - ver
+      type: object
+      properties:
+        lang:
+          type: string
+          description: Language
+        ver:
+          type: number
+          description: 'Version to use.
+
+            Refer to Release API for valid Language/Version Combinations.'
+          format: double
+        htype:
+          type: integer
+          description: "Type of Heirarchy to Return.\nOption 1. \nFuture Use."
+          format: int32
+        force:
+          type: boolean
+          description: "[Required]\nfalse - the data validation will be run \n        if no errors the data impact report will run\n        if validation errors exist just the errors will return.\ntrue - the data impact will run wiether \n       or not there is validation error."
+        hlt:
+          type: boolean
+          description: '[Required]
+
+            false - does not return HLT Name.
+
+            true - returns HLT Name.'
+        hlgt:
+          type: boolean
+          description: '[Required]
+
+            false - does not return HLGT Name.
+
+            true - returns HLGT Name.'
+        acodes:
+          type: boolean
+          description: '[Required]
+
+            false - does not return codes.
+
+            true - returns all the codes.'
+        ssoc:
+          type: boolean
+          description: '[Required]
+
+            Include Secondary SOC Information True/False
+
+            for LLTs and PTs'
+        filters:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+          description: Filter results to Specific SOC codes
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/hirowDTO'
+          description: Hierachy Rows.
+      additionalProperties: false
+      description: Hierarchy Request.
+    hierarchyRDTO:
+      type: object
+      properties:
+        lang:
+          type:
+          - string
+          - 'null'
+          description: Language
+        ver:
+          type:
+          - string
+          - 'null'
+          description: 'Version to use.
+
+            Refer to Release API for valid Language/Version Combinations.'
+        rows:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/hrowDTO'
+          description: Hierachy Rows.
+        hies:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/hieDTO'
+          description: Input Errors.
+      additionalProperties: false
+      description: Hierarchy Response.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://mid.meddra.org/connect/authorize
+          scopes:
+            meddraapi: Meddra API - full access

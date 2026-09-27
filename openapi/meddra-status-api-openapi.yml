@@ -1,0 +1,40 @@
+openapi: 3.2.0
+info:
+  title: MedDRA API EUS SBX Status API
+  description: Web API to access MedDRA Data
+  contact:
+    name: Web Admin
+    url: http://www.meddra.org/
+    email: wadmin@meddra.org
+  version: '1'
+security:
+- oauth2:
+  - meddraapi
+tags:
+- name: Status
+paths:
+  /api/status:
+    get:
+      tags:
+      - Status
+      summary: Returns Status of API
+      responses:
+        '200':
+          description: Ok
+        '400':
+          description: API Failed Database Connection Error
+        '429':
+          description: The throttling limit on this API has been exceeded.  Please review the MedDRA API documentation on throttling limits.
+        '500':
+          description: Internal Server Error
+      operationId: getApiStatus
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://mid.meddra.org/connect/authorize
+          scopes:
+            meddraapi: Meddra API - full access

@@ -1,0 +1,236 @@
+openapi: 3.2.0
+info:
+  title: MedDRA API EUS SBX Type API
+  description: Web API to access MedDRA Data
+  contact:
+    name: Web Admin
+    url: http://www.meddra.org/
+    email: wadmin@meddra.org
+  version: '1'
+security:
+- oauth2:
+  - meddraapi
+tags:
+- name: Type
+paths:
+  /api/type:
+    post:
+      tags:
+      - Type
+      summary: Returns Parents/Children/MedDRA hiearchy for term requested
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/MedTypeDTO'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MedTypeDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MedTypeDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MedTypeDTO'
+      responses:
+        '200':
+          description: Success
+        200 rtype=M bview=SOC:
+          description: List of mdhierDTO
+        200 rtype=M bview=SMQ:
+          description: List of smqtDTO
+        200 rtype=C type=SOC:
+          description: List of hlgtDTO
+        200 rtype=C type=HLGT:
+          description: List of hltDTO
+        200 rtype=C type=HLT:
+          description: List of ptDTO
+        200 rtype=C type=PT:
+          description: List of lltDTO
+        200 rtype=C type=LLT lang=Japanese:
+          description: List of synDTO
+        200 rtype=C type=SMQ:
+          description: smqDTO
+        200 rtype=CF type=SOC:
+          description: List of hlgtDTO
+        200 rtype=CF type=HLGT:
+          description: List of hltDTO
+        200 rtype=CF type=HLT:
+          description: List of ptDTO
+        200 rtype=CF type=PT:
+          description: List of lltDTO
+        200 rtype=CF type=SMQ:
+          description: List of smqftDTO
+        200 rtype=P type=SYN lang=Japanese:
+          description: List of lltDTO
+        200 rtype=P type=LLT bview=SOC:
+          description: List of ptDTO
+        200 rtype=P type=PT bview=SOC:
+          description: List of hltDTO
+        200 rtype=P type=HLT:
+          description: List of hlgtDTO
+        200 rtype=P type=HLGT:
+          description: List of socDTO
+        200 rtype=P type=LLT bview=SMQ:
+          description: List of ptDTO
+        200 rtype=P type=PT bview=SMQ:
+          description: List of smqDTO
+        200 rtype=P type=SMQ:
+          description: List of smqDTO
+        400 v1:
+          description: Failed Model Validation
+        400 v2:
+          description: Failed Validation
+        400 v3:
+          description: Insufficient Authorization
+        400 v4:
+          description: Internal Server Exception
+        400 v5:
+          description: Language/Version Does Not exist
+        400 v6:
+          description: Invalid Input
+        '401':
+          description: Unauthorized Access
+        '415':
+          description: Unsupported Media Type
+        '429':
+          description: The throttling limit on this API has been exceeded.  Please review the MedDRA API documentation on throttling limits.
+        '500':
+          description: Internal Server Error
+      operationId: postApiType
+      x-operation-id-source: derived
+components:
+  schemas:
+    MedTypeDTO:
+      required:
+      - addlangs
+      - bview
+      - code
+      - hlgtcode
+      - hltcode
+      - kana
+      - lang
+      - lltcode
+      - pcode
+      - ptcode
+      - rsview
+      - rtype
+      - separator
+      - smqcode
+      - soccode
+      - syncode
+      - type
+      - ver
+      type: object
+      properties:
+        bview:
+          type: string
+          description: '[Required]
+
+            Acceptible Browser Views
+
+            SOC/SMQ'
+        rsview:
+          type: string
+          description: '[Required]
+
+            Acceptible Release views
+
+            release'
+        code:
+          type: integer
+          description: '[Required] for MedDRA Term or SMQ Code'
+          format: int32
+        pcode:
+          type: integer
+          description: Parent Term Code
+          format: int32
+        syncode:
+          type: integer
+          description: 'Used in Type API where return type = M.
+
+            Synonym Code.
+
+            Japanese only.'
+          format: int32
+        lltcode:
+          type: integer
+          description: 'Used in Type API where return type = M.
+
+            LLT Code.'
+          format: int32
+        ptcode:
+          type: integer
+          description: 'Used in Type API where return type = M.
+
+            PT Code.'
+          format: int32
+        hltcode:
+          type: integer
+          description: 'Used in Type API where return type = M.
+
+            HLT Code.'
+          format: int32
+        hlgtcode:
+          type: integer
+          description: 'Used in Type API where return type = M.
+
+            HLGT Code.'
+          format: int32
+        soccode:
+          type: integer
+          description: 'Used in Type API where return type = M.
+
+            SOC Code.'
+          format: int32
+        smqcode:
+          type: integer
+          description: 'Used in Type API where return type = M or SE.
+
+            SMQ Code.'
+          format: int32
+        type:
+          type: string
+          description: '[Required] MedDRA type. See programmers guide for acceptible values.
+
+            SOC/SMQ/HLGT/HLT/PT/LLT/SYN/MDHEIR'
+        addlangs:
+          type: array
+          items:
+            type: string
+          description: 'Array for Additional  translations to return.
+
+            Refer to the Language API for valid inputs'
+        rtype:
+          type: string
+          description: '[Required] MedDRA type. See programmers guide for acceptible values.'
+        lang:
+          type: string
+          description: '[Required]
+
+            Primary Language to Return.'
+        ver:
+          type: number
+          description: '[Required]
+
+            Release Version to use.
+
+            Refer to Release API for valid Language/Version Combinations.'
+          format: double
+        kana:
+          type: boolean
+          description: Return of Japanese Kana Translation.
+        separator:
+          type: integer
+          description: "Separator to use if selecting Additional Languages.\n0 = \" \" \n1 = \"\\n\"\n2 = \" | \""
+          format: int32
+      additionalProperties: false
+      description: Model for Requesting Parents/Children/mdheir for Terms.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://mid.meddra.org/connect/authorize
+          scopes:
+            meddraapi: Meddra API - full access

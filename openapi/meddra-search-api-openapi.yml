@@ -1,0 +1,283 @@
+openapi: 3.2.0
+info:
+  title: MedDRA API EUS SBX Search API
+  description: Web API to access MedDRA Data
+  contact:
+    name: Web Admin
+    url: http://www.meddra.org/
+    email: wadmin@meddra.org
+  version: '1'
+security:
+- oauth2:
+  - meddraapi
+tags:
+- name: Search
+paths:
+  /api/search:
+    post:
+      tags:
+      - Search
+      summary: Returns Search Results for a specific input
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SearchDTO'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SearchDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SearchDTO'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchRDTO'
+        200 type=1:
+          description: smqaRDTO
+        200 type=10:
+          description: smqaRDTO
+        400 v1:
+          description: Failed Model Validation
+        400 v2:
+          description: Language/Version Does Not exist
+        400 v3:
+          description: Insufficient Authorization
+        400 v4:
+          description: Invalid Input
+        400 v5:
+          description: Internal Server Exception
+        '401':
+          description: Unauthorized Access
+        '415':
+          description: Unsupported Media Type
+        '429':
+          description: The throttling limit on this API has been exceeded.  Please review the MedDRA API documentation on throttling limits.
+        '500':
+          description: Internal Server Error
+      operationId: postApiSearch
+      x-operation-id-source: derived
+components:
+  schemas:
+    SearchRDTO:
+      type: object
+      properties:
+        pcode:
+          type: integer
+          description: Parent Code if Available.
+          format: int32
+        category:
+          type:
+          - string
+          - 'null'
+          description: Categories indicate the searched terms that are Exact Match, Lexical Variants, Synonyms, and Contains.
+        code:
+          type: integer
+          description: Term Code.
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+          description: Term Name.
+        abbrev:
+          type:
+          - string
+          - 'null'
+          description: Term Abbreviation
+        level:
+          type:
+          - string
+          - 'null'
+          description: Type of Term SOC/SMQ/HLGT/HLT/PT/LLT/SYN
+        cur:
+          type:
+          - string
+          - 'null'
+          description: Term Currency.
+        jcurrency:
+          type:
+          - string
+          - 'null'
+          description: Term Currency for Japanese Language.
+        pt:
+          type: boolean
+          description: Preferred Term
+        rating:
+          type: integer
+          description: Future Use
+          format: int32
+      additionalProperties: false
+      description: Response Type for Searches.
+    AVSearchDTO:
+      required:
+      - searchlogic
+      - searchterm
+      - searchtype
+      type: object
+      properties:
+        searchtype:
+          type: integer
+          description: "acceptable searchtypes\n 0 - basic -- for basic search all logic is AND\n 1 - contains\n 2 - begins with\n 3 - exact match\n 4 - ends with"
+          format: int32
+        searchterm:
+          maxLength: 400
+          minLength: 0
+          type: string
+          description: 'Single or multiple terms
+
+            if first term is 8 digit numerical code the rest are ignored'
+        searchlogic:
+          type: integer
+          description: '0 - no logic defaults to AND
+
+            1 - AND
+
+            2 - OR
+
+            3 - NOT'
+          format: int32
+      additionalProperties: false
+      description: Model for advanced search terms and types
+    SearchDTO:
+      required:
+      - bview
+      - contains
+      - hlgt
+      - hlt
+      - idiacritical
+      - kana
+      - language
+      - llt
+      - pt
+      - rsview
+      - searchterms
+      - separator
+      - skip
+      - smq
+      - soc
+      - stype
+      - synonym
+      - take
+      - version
+      type: object
+      properties:
+        bview:
+          type: string
+          description: '[Required]
+
+            Acceptible Browser Views
+
+            SOC/SMQ'
+        rsview:
+          type: string
+          description: '[Required]
+
+            Acceptible Release views
+
+            release'
+        language:
+          type: string
+          description: '[Required]
+
+            Release Version to use.
+
+            Refer to Release API for valid Language/Version Combinations.'
+        stype:
+          type: integer
+          description: 'Future use.
+
+            [Required]
+
+            Determine type of search
+
+            1 - regular search.'
+          format: int32
+        addlangs:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: 'Array for Additional  translations to return.
+
+            Refer to to the Language API for valid inputs'
+        filters:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+          description: Filter results to Specific SOCs or SMQs codes
+        version:
+          type: number
+          description: '[Required]
+
+            Release Version to use.
+
+            Refer to Release API for valid Language/Version Combinations.'
+          format: double
+        searchterms:
+          type: array
+          items:
+            $ref: '#/components/schemas/AVSearchDTO'
+          description: Array of Search term Criteria see AVSearchDTO
+        kana:
+          type: boolean
+          description: Japanese only whether to return Kana Translation.
+        idiacritical:
+          type: boolean
+          description: Select True to Ignore Diacritical Marks.
+        synonym:
+          type: boolean
+          description: Select True to include Synonyms in the Search Results.
+        contains:
+          type: boolean
+          description: Select True to include Contains in the Search Results.
+        soc:
+          type: boolean
+          description: Select True to include SOCs in the Search Results.
+        hlgt:
+          type: boolean
+          description: Select True to include HLGTs in the Search Results.
+        hlt:
+          type: boolean
+          description: Select True to include HLTs in the Search Results.
+        pt:
+          type: boolean
+          description: Select True to include PTs in the Search Results.
+        llt:
+          type: boolean
+          description: Select True to include LLTs in the Search Results.
+        smq:
+          type: boolean
+          description: Select True to include SMQs in the Search Results.
+        skip:
+          type: integer
+          description: "Use for Lazy Loading \nThe parameter “Skip” indicates the specific number of rows or results\nin a database skipped identifying where you start to search.\nFor example, if you want the first 100 results of a search, \nthe “Skip” would be 0 and “Take” would be 100."
+          format: int32
+        take:
+          type: integer
+          description: "How many records to Return. \nthe “Skip” would be 0 and “Take” would be 0 for all records."
+          format: int32
+        separator:
+          type: integer
+          description: "Separator to use if selecting Additional Languages.\n0 = \" \" \n1 = \"\\n\"\n2 = \" | \""
+          format: int32
+      additionalProperties: false
+      description: Model for advanced search terms and types
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://mid.meddra.org/connect/authorize
+          scopes:
+            meddraapi: Meddra API - full access

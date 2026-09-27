@@ -57,51 +57,426 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 apis:
-  - aid: meddra:meddra-api
-    name: MedDRA API
-    description: >-
-      The MedDRA API published by the MSSO — term and SMQ search, term/SMQ detail, hierarchy navigation and
-      analysis, parent/child type lookup, term history, SMQ analysis, data-file download, search export,
-      language and release listings, version and data-impact reports, subscription validation, and an
-      unauthenticated status check. Sixteen operations in the non-GxP "Production" (formerly Sandbox)
-      environment; four of them (Details, Search, Status, Type) are also offered in the GxP-assessed
-      environment. Every operation but Status requires an OAuth 2.0 bearer token issued by the MedDRA
-      identity provider against a MedDRA subscription.
-    humanURL: https://www.meddra.org/meddra-apis
-    baseURL: https://mapisbx.meddra.org
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/meddra.png
-    tags:
-      - Medical Terminology
-      - Pharmacovigilance
-      - Adverse Events
-      - Search
-      - Hierarchy
-    properties:
-      - type: OpenAPI
-        url: openapi/meddra-api-openapi.yml
-      - type: OpenAPI
-        name: OpenAPI (provider-hosted)
-        url: https://mapisbx.meddra.org/swagger/v1/swagger.json
-      - type: Documentation
-        url: https://www.meddra.org/meddra-apis
-      - type: APIReference
-        url: https://mapisbx.meddra.org/index.html
-      - type: Authentication
-        url: authentication/meddra-authentication.yml
-      - type: OAuthScopes
-        url: scopes/meddra-scopes.yml
-      - type: ErrorCatalog
-        url: errors/meddra-problem-types.yml
-      - type: Overlay
-        url: overlays/meddra-api-overlay.yaml
-      - type: DataModel
-        url: data-model/meddra-data-model.yml
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
-      - type: JSONLDContext
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+- aid: meddra:meddra-dataimpact-api
+  name: Meddra Data Impact API
+  description: The DataImpact API from Meddra — 1 operation(s) for dataimpact.
+  humanURL: https://www.meddra.org/meddra-apis
+  baseURL: https://mapisbx.meddra.org
+  tags:
+  - DataImpact
+  properties:
+  - type: OpenAPI
+    url: openapi/meddra-dataimpact-api-openapi.yml
+  - type: Documentation
+    url: https://www.meddra.org/meddra-apis
+  - type: APIReference
+    url: https://mapisbx.meddra.org/index.html
+  - type: Authentication
+    url: authentication/meddra-authentication.yml
+  - type: OAuthScopes
+    url: scopes/meddra-scopes.yml
+  - type: ErrorCatalog
+    url: errors/meddra-problem-types.yml
+  - type: DataModel
+    url: data-model/meddra-data-model.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+- aid: meddra:meddra-details-api
+  name: Meddra Details API
+  description: The Details API from Meddra — 1 operation(s) for details.
+  humanURL: https://www.meddra.org/meddra-apis
+  baseURL: https://mapisbx.meddra.org
+  tags:
+  - Details
+  properties:
+  - type: OpenAPI
+    url: openapi/meddra-details-api-openapi.yml
+  - type: Documentation
+    url: https://www.meddra.org/meddra-apis
+  - type: APIReference
+    url: https://mapisbx.meddra.org/index.html
+  - type: Authentication
+    url: authentication/meddra-authentication.yml
+  - type: OAuthScopes
+    url: scopes/meddra-scopes.yml
+  - type: ErrorCatalog
+    url: errors/meddra-problem-types.yml
+  - type: DataModel
+    url: data-model/meddra-data-model.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+- aid: meddra:meddra-download-api
+  name: Meddra Download API
+  description: The Download API from Meddra — 1 operation(s) for download.
+  humanURL: https://www.meddra.org/meddra-apis
+  baseURL: https://mapisbx.meddra.org
+  tags:
+  - Download
+  properties:
+  - type: OpenAPI
+    url: openapi/meddra-download-api-openapi.yml
+  - type: Documentation
+    url: https://www.meddra.org/meddra-apis
+  - type: APIReference
+    url: https://mapisbx.meddra.org/index.html
+  - type: Authentication
+    url: authentication/meddra-authentication.yml
+  - type: OAuthScopes
+    url: scopes/meddra-scopes.yml
+  - type: ErrorCatalog
+    url: errors/meddra-problem-types.yml
+  - type: DataModel
+    url: data-model/meddra-data-model.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+- aid: meddra:meddra-export-api
+  name: Meddra Export API
+  description: The Export API from Meddra — 1 operation(s) for export.
+  humanURL: https://www.meddra.org/meddra-apis
+  baseURL: https://mapisbx.meddra.org
+  tags:
+  - Export
+  properties:
+  - type: OpenAPI
+    url: openapi/meddra-export-api-openapi.yml
+  - type: Documentation
+    url: https://www.meddra.org/meddra-apis
+  - type: APIReference
+    url: https://mapisbx.meddra.org/index.html
+  - type: Authentication
+    url: authentication/meddra-authentication.yml
+  - type: OAuthScopes
+    url: scopes/meddra-scopes.yml
+  - type: ErrorCatalog
+    url: errors/meddra-problem-types.yml
+  - type: DataModel
+    url: data-model/meddra-data-model.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+- aid: meddra:meddra-gettop-api
+  name: Meddra Get Top API
+  description: The GetTop API from Meddra — 1 operation(s) for gettop.
+  humanURL: https://www.meddra.org/meddra-apis
+  baseURL: https://mapisbx.meddra.org
+  tags:
+  - GetTop
+  properties:
+  - type: OpenAPI
+    url: openapi/meddra-gettop-api-openapi.yml
+  - type: Documentation
+    url: https://www.meddra.org/meddra-apis
+  - type: APIReference
+    url: https://mapisbx.meddra.org/index.html
+  - type: Authentication
+    url: authentication/meddra-authentication.yml
+  - type: OAuthScopes
+    url: scopes/meddra-scopes.yml
+  - type: ErrorCatalog
+    url: errors/meddra-problem-types.yml
+  - type: DataModel
+    url: data-model/meddra-data-model.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+- aid: meddra:meddra-hierarchy-api
+  name: Meddra Hierarchy API
+  description: The Hierarchy API from Meddra — 1 operation(s) for hierarchy.
+  humanURL: https://www.meddra.org/meddra-apis
+  baseURL: https://mapisbx.meddra.org
+  tags:
+  - Hierarchy
+  properties:
+  - type: OpenAPI
+    url: openapi/meddra-hierarchy-api-openapi.yml
+  - type: Documentation
+    url: https://www.meddra.org/meddra-apis
+  - type: APIReference
+    url: https://mapisbx.meddra.org/index.html
+  - type: Authentication
+    url: authentication/meddra-authentication.yml
+  - type: OAuthScopes
+    url: scopes/meddra-scopes.yml
+  - type: ErrorCatalog
+    url: errors/meddra-problem-types.yml
+  - type: DataModel
+    url: data-model/meddra-data-model.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+- aid: meddra:meddra-history-api
+  name: Meddra History API
+  description: The History API from Meddra — 2 operation(s) for history.
+  humanURL: https://www.meddra.org/meddra-apis
+  baseURL: https://mapisbx.meddra.org
+  tags:
+  - History
+  properties:
+  - type: OpenAPI
+    url: openapi/meddra-history-api-openapi.yml
+  - type: Documentation
+    url: https://www.meddra.org/meddra-apis
+  - type: APIReference
+    url: https://mapisbx.meddra.org/index.html
+  - type: Authentication
+    url: authentication/meddra-authentication.yml
+  - type: OAuthScopes
+    url: scopes/meddra-scopes.yml
+  - type: ErrorCatalog
+    url: errors/meddra-problem-types.yml
+  - type: DataModel
+    url: data-model/meddra-data-model.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+- aid: meddra:meddra-language-api
+  name: Meddra Language API
+  description: The Language API from Meddra — 1 operation(s) for language.
+  humanURL: https://www.meddra.org/meddra-apis
+  baseURL: https://mapisbx.meddra.org
+  tags:
+  - Language
+  properties:
+  - type: OpenAPI
+    url: openapi/meddra-language-api-openapi.yml
+  - type: Documentation
+    url: https://www.meddra.org/meddra-apis
+  - type: APIReference
+    url: https://mapisbx.meddra.org/index.html
+  - type: Authentication
+    url: authentication/meddra-authentication.yml
+  - type: OAuthScopes
+    url: scopes/meddra-scopes.yml
+  - type: ErrorCatalog
+    url: errors/meddra-problem-types.yml
+  - type: DataModel
+    url: data-model/meddra-data-model.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+- aid: meddra:meddra-release-api
+  name: Meddra Release API
+  description: The Release API from Meddra — 1 operation(s) for release.
+  humanURL: https://www.meddra.org/meddra-apis
+  baseURL: https://mapisbx.meddra.org
+  tags:
+  - Release
+  properties:
+  - type: OpenAPI
+    url: openapi/meddra-release-api-openapi.yml
+  - type: Documentation
+    url: https://www.meddra.org/meddra-apis
+  - type: APIReference
+    url: https://mapisbx.meddra.org/index.html
+  - type: Authentication
+    url: authentication/meddra-authentication.yml
+  - type: OAuthScopes
+    url: scopes/meddra-scopes.yml
+  - type: ErrorCatalog
+    url: errors/meddra-problem-types.yml
+  - type: DataModel
+    url: data-model/meddra-data-model.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+- aid: meddra:meddra-search-api
+  name: Meddra Search API
+  description: The Search API from Meddra — 1 operation(s) for search.
+  humanURL: https://www.meddra.org/meddra-apis
+  baseURL: https://mapisbx.meddra.org
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/meddra-search-api-openapi.yml
+  - type: Documentation
+    url: https://www.meddra.org/meddra-apis
+  - type: APIReference
+    url: https://mapisbx.meddra.org/index.html
+  - type: Authentication
+    url: authentication/meddra-authentication.yml
+  - type: OAuthScopes
+    url: scopes/meddra-scopes.yml
+  - type: ErrorCatalog
+    url: errors/meddra-problem-types.yml
+  - type: DataModel
+    url: data-model/meddra-data-model.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+- aid: meddra:meddra-smq-api
+  name: Meddra SMQ API
+  description: The SMQ API from Meddra — 1 operation(s) for smq.
+  humanURL: https://www.meddra.org/meddra-apis
+  baseURL: https://mapisbx.meddra.org
+  tags:
+  - SMQ
+  properties:
+  - type: OpenAPI
+    url: openapi/meddra-smq-api-openapi.yml
+  - type: Documentation
+    url: https://www.meddra.org/meddra-apis
+  - type: APIReference
+    url: https://mapisbx.meddra.org/index.html
+  - type: Authentication
+    url: authentication/meddra-authentication.yml
+  - type: OAuthScopes
+    url: scopes/meddra-scopes.yml
+  - type: ErrorCatalog
+    url: errors/meddra-problem-types.yml
+  - type: DataModel
+    url: data-model/meddra-data-model.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+- aid: meddra:meddra-status-api
+  name: Meddra Status API
+  description: The Status API from Meddra — 1 operation(s) for status.
+  humanURL: https://www.meddra.org/meddra-apis
+  baseURL: https://mapisbx.meddra.org
+  tags:
+  - Status
+  properties:
+  - type: OpenAPI
+    url: openapi/meddra-status-api-openapi.yml
+  - type: Documentation
+    url: https://www.meddra.org/meddra-apis
+  - type: APIReference
+    url: https://mapisbx.meddra.org/index.html
+  - type: Authentication
+    url: authentication/meddra-authentication.yml
+  - type: OAuthScopes
+    url: scopes/meddra-scopes.yml
+  - type: ErrorCatalog
+    url: errors/meddra-problem-types.yml
+  - type: DataModel
+    url: data-model/meddra-data-model.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+- aid: meddra:meddra-svalidation-api
+  name: Meddra S Validation API
+  description: The SValidation API from Meddra — 1 operation(s) for svalidation.
+  humanURL: https://www.meddra.org/meddra-apis
+  baseURL: https://mapisbx.meddra.org
+  tags:
+  - SValidation
+  properties:
+  - type: OpenAPI
+    url: openapi/meddra-svalidation-api-openapi.yml
+  - type: Documentation
+    url: https://www.meddra.org/meddra-apis
+  - type: APIReference
+    url: https://mapisbx.meddra.org/index.html
+  - type: Authentication
+    url: authentication/meddra-authentication.yml
+  - type: OAuthScopes
+    url: scopes/meddra-scopes.yml
+  - type: ErrorCatalog
+    url: errors/meddra-problem-types.yml
+  - type: DataModel
+    url: data-model/meddra-data-model.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+- aid: meddra:meddra-type-api
+  name: Meddra Type API
+  description: The Type API from Meddra — 1 operation(s) for type.
+  humanURL: https://www.meddra.org/meddra-apis
+  baseURL: https://mapisbx.meddra.org
+  tags:
+  - Type
+  properties:
+  - type: OpenAPI
+    url: openapi/meddra-type-api-openapi.yml
+  - type: Documentation
+    url: https://www.meddra.org/meddra-apis
+  - type: APIReference
+    url: https://mapisbx.meddra.org/index.html
+  - type: Authentication
+    url: authentication/meddra-authentication.yml
+  - type: OAuthScopes
+    url: scopes/meddra-scopes.yml
+  - type: ErrorCatalog
+    url: errors/meddra-problem-types.yml
+  - type: DataModel
+    url: data-model/meddra-data-model.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
+- aid: meddra:meddra-versionr-api
+  name: Meddra Version R API
+  description: The VersionR API from Meddra — 1 operation(s) for versionr.
+  humanURL: https://www.meddra.org/meddra-apis
+  baseURL: https://mapisbx.meddra.org
+  tags:
+  - VersionR
+  properties:
+  - type: OpenAPI
+    url: openapi/meddra-versionr-api-openapi.yml
+  - type: Documentation
+    url: https://www.meddra.org/meddra-apis
+  - type: APIReference
+    url: https://mapisbx.meddra.org/index.html
+  - type: Authentication
+    url: authentication/meddra-authentication.yml
+  - type: OAuthScopes
+    url: scopes/meddra-scopes.yml
+  - type: ErrorCatalog
+    url: errors/meddra-problem-types.yml
+  - type: DataModel
+    url: data-model/meddra-data-model.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld
 common:
   - type: Website
     url: https://www.meddra.org/

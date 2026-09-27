@@ -1,0 +1,114 @@
+openapi: 3.2.0
+info:
+  title: MedDRA API EUS SBX S Validation API
+  description: Web API to access MedDRA Data
+  contact:
+    name: Web Admin
+    url: http://www.meddra.org/
+    email: wadmin@meddra.org
+  version: '1'
+security:
+- oauth2:
+  - meddraapi
+tags:
+- name: SValidation
+paths:
+  /api/sv:
+    post:
+      tags:
+      - SValidation
+      summary: Returns Validation of input list
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/validateDTO'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/validateDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/validateDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/validateDTO'
+      responses:
+        '200':
+          description: validateRDTO
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/validateRDTO'
+        400 v1:
+          description: Failed Model Validation
+        400 v2:
+          description: Internal Server Exception
+        400 v3:
+          description: Insufficient Authorization
+        400 v4:
+          description: Invalid Input
+        '401':
+          description: Unauthorized Access
+        '429':
+          description: The throttling limit on this API has been exceeded.  Please review the MedDRA API documentation on throttling limits.
+        '500':
+          description: Internal Server Error
+      operationId: postApiSv
+      x-operation-id-source: derived
+components:
+  schemas:
+    validateRDTO:
+      type: object
+      properties:
+        mids:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/vrowDTO'
+          description: Meddra ID List.
+      additionalProperties: false
+      description: MedDRA Account Response.
+    validateDTO:
+      required:
+      - mids
+      type: object
+      properties:
+        mids:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: Meddra ID List.
+      additionalProperties: false
+      description: MedDRA Account Request.
+    vrowDTO:
+      type: object
+      properties:
+        mid:
+          type: integer
+          description: MedDRA ID.
+          format: int32
+        oname:
+          type:
+          - string
+          - 'null'
+          description: Organization Name.
+        valid:
+          type: boolean
+          description: True for valid / False for not valid.
+        month:
+          type:
+          - string
+          - 'null'
+          description: Month of renewal.
+      additionalProperties: false
+      description: Rows for MedDRA Account Validation.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://mid.meddra.org/connect/authorize
+          scopes:
+            meddraapi: Meddra API - full access
