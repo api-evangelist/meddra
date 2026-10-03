@@ -65,29 +65,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    hirowDTO:
-      required:
-      - c
-      - r
-      - t
-      type: object
-      properties:
-        r:
-          maxLength: 400
-          minLength: 0
-          type: string
-          description: Row ID.
-        t:
-          maxLength: 400
-          minLength: 0
-          type: string
-          description: LLT/PT Term.
-        c:
-          type: integer
-          description: LLT/PT Code.
-          format: int32
-      additionalProperties: false
-      description: Row from import for Hierarchy Analysis.
     hrowDTO:
       type: object
       properties:
@@ -153,33 +130,37 @@ components:
           description: Primary SOC Y/N.
       additionalProperties: false
       description: Hierarchy Row.
-    hieDTO:
+    hierarchyRDTO:
       type: object
       properties:
-        rowid:
+        lang:
           type:
           - string
           - 'null'
-          description: Row ID.
-        name:
+          description: Language
+        ver:
           type:
           - string
           - 'null'
-          description: Term Name.
-        code:
-          type:
-          - string
-          - 'null'
-          description: Term Code.
-        com:
-          type:
-          - string
-          - 'null'
-          description: Comment.
-      additionalProperties: false
-      description: 'Input Errors.
+          description: 'Version to use.
 
-        Total Changes between selected versions.'
+            Refer to Release API for valid Language/Version Combinations.'
+        rows:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/hrowDTO'
+          description: Hierachy Rows.
+        hies:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/hieDTO'
+          description: Input Errors.
+      additionalProperties: false
+      description: Hierarchy Response.
     hierarchyDTO:
       required:
       - acodes
@@ -252,37 +233,56 @@ components:
           description: Hierachy Rows.
       additionalProperties: false
       description: Hierarchy Request.
-    hierarchyRDTO:
+    hieDTO:
       type: object
       properties:
-        lang:
+        rowid:
           type:
           - string
           - 'null'
-          description: Language
-        ver:
+          description: Row ID.
+        name:
           type:
           - string
           - 'null'
-          description: 'Version to use.
-
-            Refer to Release API for valid Language/Version Combinations.'
-        rows:
+          description: Term Name.
+        code:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/hrowDTO'
-          description: Hierachy Rows.
-        hies:
+          description: Term Code.
+        com:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/hieDTO'
-          description: Input Errors.
+          description: Comment.
       additionalProperties: false
-      description: Hierarchy Response.
+      description: 'Input Errors.
+
+        Total Changes between selected versions.'
+    hirowDTO:
+      required:
+      - c
+      - r
+      - t
+      type: object
+      properties:
+        r:
+          maxLength: 400
+          minLength: 0
+          type: string
+          description: Row ID.
+        t:
+          maxLength: 400
+          minLength: 0
+          type: string
+          description: LLT/PT Term.
+        c:
+          type: integer
+          description: LLT/PT Code.
+          format: int32
+      additionalProperties: false
+      description: Row from import for Hierarchy Analysis.
   securitySchemes:
     oauth2:
       type: oauth2

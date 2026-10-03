@@ -65,86 +65,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    SearchRDTO:
-      type: object
-      properties:
-        pcode:
-          type: integer
-          description: Parent Code if Available.
-          format: int32
-        category:
-          type:
-          - string
-          - 'null'
-          description: Categories indicate the searched terms that are Exact Match, Lexical Variants, Synonyms, and Contains.
-        code:
-          type: integer
-          description: Term Code.
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-          description: Term Name.
-        abbrev:
-          type:
-          - string
-          - 'null'
-          description: Term Abbreviation
-        level:
-          type:
-          - string
-          - 'null'
-          description: Type of Term SOC/SMQ/HLGT/HLT/PT/LLT/SYN
-        cur:
-          type:
-          - string
-          - 'null'
-          description: Term Currency.
-        jcurrency:
-          type:
-          - string
-          - 'null'
-          description: Term Currency for Japanese Language.
-        pt:
-          type: boolean
-          description: Preferred Term
-        rating:
-          type: integer
-          description: Future Use
-          format: int32
-      additionalProperties: false
-      description: Response Type for Searches.
-    AVSearchDTO:
-      required:
-      - searchlogic
-      - searchterm
-      - searchtype
-      type: object
-      properties:
-        searchtype:
-          type: integer
-          description: "acceptable searchtypes\n 0 - basic -- for basic search all logic is AND\n 1 - contains\n 2 - begins with\n 3 - exact match\n 4 - ends with"
-          format: int32
-        searchterm:
-          maxLength: 400
-          minLength: 0
-          type: string
-          description: 'Single or multiple terms
-
-            if first term is 8 digit numerical code the rest are ignored'
-        searchlogic:
-          type: integer
-          description: '0 - no logic defaults to AND
-
-            1 - AND
-
-            2 - OR
-
-            3 - NOT'
-          format: int32
-      additionalProperties: false
-      description: Model for advanced search terms and types
     SearchDTO:
       required:
       - bview
@@ -273,6 +193,86 @@ components:
           format: int32
       additionalProperties: false
       description: Model for advanced search terms and types
+    AVSearchDTO:
+      required:
+      - searchlogic
+      - searchterm
+      - searchtype
+      type: object
+      properties:
+        searchtype:
+          type: integer
+          description: "acceptable searchtypes\n 0 - basic -- for basic search all logic is AND\n 1 - contains\n 2 - begins with\n 3 - exact match\n 4 - ends with"
+          format: int32
+        searchterm:
+          maxLength: 400
+          minLength: 0
+          type: string
+          description: 'Single or multiple terms
+
+            if first term is 8 digit numerical code the rest are ignored'
+        searchlogic:
+          type: integer
+          description: '0 - no logic defaults to AND
+
+            1 - AND
+
+            2 - OR
+
+            3 - NOT'
+          format: int32
+      additionalProperties: false
+      description: Model for advanced search terms and types
+    SearchRDTO:
+      type: object
+      properties:
+        pcode:
+          type: integer
+          description: Parent Code if Available.
+          format: int32
+        category:
+          type:
+          - string
+          - 'null'
+          description: Categories indicate the searched terms that are Exact Match, Lexical Variants, Synonyms, and Contains.
+        code:
+          type: integer
+          description: Term Code.
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+          description: Term Name.
+        abbrev:
+          type:
+          - string
+          - 'null'
+          description: Term Abbreviation
+        level:
+          type:
+          - string
+          - 'null'
+          description: Type of Term SOC/SMQ/HLGT/HLT/PT/LLT/SYN
+        cur:
+          type:
+          - string
+          - 'null'
+          description: Term Currency.
+        jcurrency:
+          type:
+          - string
+          - 'null'
+          description: Term Currency for Japanese Language.
+        pt:
+          type: boolean
+          description: Preferred Term
+        rating:
+          type: integer
+          description: Future Use
+          format: int32
+      additionalProperties: false
+      description: Response Type for Searches.
   securitySchemes:
     oauth2:
       type: oauth2

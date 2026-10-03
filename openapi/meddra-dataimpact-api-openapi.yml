@@ -69,118 +69,43 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    dihcDTO:
+    dirrowDTO:
       type: object
       properties:
-        ver:
+        title:
           type:
           - string
           - 'null'
-          description: Version.
-        ct:
+          description: Report Title.
+        tut:
           type:
           - string
           - 'null'
-          description: Change Type.
-        level:
+          description: Total Unique Terms between selected versions.
+        impactc:
           type:
           - string
           - 'null'
-          description: Level.
-        code:
+          description: Impact on uploaded data count.
+        rs:
+          type: boolean
+          description: Report Selected?.
+        note:
           type:
           - string
           - 'null'
-          description: Term Code.
-        name:
-          type:
-          - string
-          - 'null'
-          description: Term Name.
-        phlt:
-          type:
-          - string
-          - 'null'
-          description: Primary HLT Name.
-        phlgt:
-          type:
-          - string
-          - 'null'
-          description: Primary HLGT Name.
-        psoc:
-          type:
-          - string
-          - 'null'
-          description: Primary SOC Name.
-        ispsoc:
-          type:
-          - string
-          - 'null'
-          description: Is Primary SOC.
-        rowid:
-          type:
-          - string
-          - 'null'
-          description: Row ID from Import.
-      additionalProperties: false
-      description: 'LLT and PT Hierarchy Changes.
-
-        Total Changes between selected versions.'
-    didemoDTO:
-      type: object
-      properties:
-        code:
-          type:
-          - string
-          - 'null'
-          description: Demoted PT Code.
-        pt:
-          type:
-          - string
-          - 'null'
-          description: Demoted PT Name Translation.
-        eptc:
-          type:
-          - string
-          - 'null'
-          description: End Version PT Code.
-        ept:
-          type:
-          - string
-          - 'null'
-          description: End Version PT Name.
-        rowid:
-          type:
-          - string
-          - 'null'
-          description: Row ID from Import.
-      additionalProperties: false
-      description: 'Data Impact Demotions.
-
-        Total Changes between selected versions.'
-    dirowDTO:
-      required:
-      - c
-      - r
-      - t
-      type: object
-      properties:
-        r:
-          maxLength: 400
-          minLength: 0
-          type: string
-          description: Row ID.
-        t:
-          maxLength: 400
-          minLength: 0
-          type: string
-          description: LLT/PT Term.
-        c:
+          description: Notes.
+        rt:
           type: integer
-          description: LLT/PT Code.
+          description: Report Type.
           format: int32
+        rts:
+          type:
+          - string
+          - 'null'
+          description: Report Type String.
       additionalProperties: false
-      description: Row from import for Data Impact Report.
+      description: Rows for Data Impact Report.
     dimcsDTO:
       type: object
       properties:
@@ -221,6 +146,450 @@ components:
           description: Row ID from Import.
       additionalProperties: false
       description: 'MedDRA Code Switches.
+
+        Total Changes between selected versions.'
+    dipromoDTO:
+      type: object
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+          description: Promoted LLT Code.
+        llt:
+          type:
+          - string
+          - 'null'
+          description: Promoted LLT Name English Translation.
+        sptc:
+          type:
+          - string
+          - 'null'
+          description: Start Version PT Code.
+        spt:
+          type:
+          - string
+          - 'null'
+          description: Start Version PT Name.
+        esocc:
+          type:
+          - string
+          - 'null'
+          description: End Version Primary SOC Code.
+        esoc:
+          type:
+          - string
+          - 'null'
+          description: End Version Primary SOC Name.
+        rowid:
+          type:
+          - string
+          - 'null'
+          description: Row ID from Import.
+        ispsoc:
+          type:
+          - string
+          - 'null'
+          description: Is Primary SOC.
+      additionalProperties: false
+      description: 'Data Impact Promotions.
+
+        Total Changes between selected versions.'
+    dirowDTO:
+      required:
+      - c
+      - r
+      - t
+      type: object
+      properties:
+        r:
+          maxLength: 400
+          minLength: 0
+          type: string
+          description: Row ID.
+        t:
+          maxLength: 400
+          minLength: 0
+          type: string
+          description: LLT/PT Term.
+        c:
+          type: integer
+          description: LLT/PT Code.
+          format: int32
+      additionalProperties: false
+      description: Row from import for Data Impact Report.
+    disclltDTO:
+      type: object
+      properties:
+        ct:
+          type:
+          - string
+          - 'null'
+          description: Change Type.
+        lltc:
+          type:
+          - string
+          - 'null'
+          description: LLT Code.
+        llt:
+          type:
+          - string
+          - 'null'
+          description: LLT Name.
+        sptc:
+          type:
+          - string
+          - 'null'
+          description: Start Version PT Code.
+        spt:
+          type:
+          - string
+          - 'null'
+          description: Start Version PT Name.
+        ssocc:
+          type:
+          - string
+          - 'null'
+          description: Start Version SOC Code.
+        ssoc:
+          type:
+          - string
+          - 'null'
+          description: Start Version SOC Name.
+        sisp:
+          type:
+          - string
+          - 'null'
+          description: Is Start Version Primary SOC Name .
+        eptc:
+          type:
+          - string
+          - 'null'
+          description: End Version PT Code.
+        ept:
+          type:
+          - string
+          - 'null'
+          description: End Version PT Name.
+        esocc:
+          type:
+          - string
+          - 'null'
+          description: End Version SOC Code.
+        esoc:
+          type:
+          - string
+          - 'null'
+          description: End Version SOC Name.
+        eisp:
+          type:
+          - string
+          - 'null'
+          description: Is End Version Primary SOC Name.
+        rowid:
+          type:
+          - string
+          - 'null'
+          description: Row ID from Import.
+      additionalProperties: false
+      description: 'LLT (excl PT) SOC Changes.
+
+        Total Changes between selected versions.'
+    dimtncDTO:
+      type: object
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+          description: Term Code.
+        name:
+          type:
+          - string
+          - 'null'
+          description: Term Name.
+        ename:
+          type:
+          - string
+          - 'null'
+          description: End Version Term Name.
+        level:
+          type:
+          - string
+          - 'null'
+          description: Term Level.
+        rowid:
+          type:
+          - string
+          - 'null'
+          description: Row ID from Import.
+      additionalProperties: false
+      description: 'MedDRA Term Name Changes.
+
+        Total Changes between selected versions.'
+    dimlltDTO:
+      type: object
+      properties:
+        lltc:
+          type:
+          - string
+          - 'null'
+          description: LLT Code.
+        llt:
+          type:
+          - string
+          - 'null'
+          description: LLT Name English Translation.
+        sptc:
+          type:
+          - string
+          - 'null'
+          description: Start Version PT Code.
+        spt:
+          type:
+          - string
+          - 'null'
+          description: Start Version PT Name.
+        eptc:
+          type:
+          - string
+          - 'null'
+          description: End Version PT Code.
+        ept:
+          type:
+          - string
+          - 'null'
+          description: End Version PT Name.
+        ecurrent:
+          type:
+          - string
+          - 'null'
+          description: Is End Version Curency.
+        rowid:
+          type:
+          - string
+          - 'null'
+          description: Row ID from Import.
+      additionalProperties: false
+      description: 'LLTs under different PTs.
+
+        Total Changes between selected versions.'
+    diDTO:
+      required:
+      - dlang
+      - dtype
+      - ever
+      - filters
+      - force
+      - lang
+      - rows
+      - ssoc
+      - sver
+      type: object
+      properties:
+        lang:
+          type: string
+          description: '[Required]
+
+            Language.'
+        dlang:
+          type: string
+          description: '[Required]
+
+            Display Language.'
+        sver:
+          type: number
+          description: '[Required]
+
+            Starting Version to use.
+
+            Refer to Release API for valid Language/Version Combinations.'
+          format: double
+        ever:
+          type: number
+          description: "[Required]\nEnding Version to use.\nRefer to Release API for valid Language/Version Combinations. \n888.8 supplemental view english only."
+          format: double
+        dtype:
+          type: integer
+          description: "Type of Data Impact to Return.\nOption 1 or 10 \n888.8 supplemental view english only.\n999.9 imo view english only."
+          format: int32
+        ssoc:
+          type: boolean
+          description: '[Required]
+
+            Include Secondary SOC Information True/False'
+        force:
+          type: boolean
+          description: "[Required]\nfalse - the data validation will be run \n        if no errors the data impact report will run\n        if validation errors exist just the errors will return.\ntrue - the data impact will run wiether \n       or not there is validation error."
+        filters:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: Filter results to Specific SOC codes
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/dirowDTO'
+          description: Imported Rows.
+      additionalProperties: false
+      description: Data Impact Report.
+    didemoDTO:
+      type: object
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+          description: Demoted PT Code.
+        pt:
+          type:
+          - string
+          - 'null'
+          description: Demoted PT Name Translation.
+        eptc:
+          type:
+          - string
+          - 'null'
+          description: End Version PT Code.
+        ept:
+          type:
+          - string
+          - 'null'
+          description: End Version PT Name.
+        rowid:
+          type:
+          - string
+          - 'null'
+          description: Row ID from Import.
+      additionalProperties: false
+      description: 'Data Impact Demotions.
+
+        Total Changes between selected versions.'
+    diclltDTO:
+      type: object
+      properties:
+        lltc:
+          type:
+          - string
+          - 'null'
+          description: LLT Code.
+        llt:
+          type:
+          - string
+          - 'null'
+          description: LLT Name.
+        sptc:
+          type:
+          - string
+          - 'null'
+          description: Start Version PT Code.
+        spt:
+          type:
+          - string
+          - 'null'
+          description: Start Version PT Name.
+        eptc:
+          type:
+          - string
+          - 'null'
+          description: End Version PT Code.
+        ept:
+          type:
+          - string
+          - 'null'
+          description: End Version PT Name.
+        rowid:
+          type:
+          - string
+          - 'null'
+          description: Row ID from Import.
+      additionalProperties: false
+      description: 'Data Impact LLTs Changes.
+
+        Total Changes between selected versions.'
+    dicptDTO:
+      type: object
+      properties:
+        ct:
+          type:
+          - string
+          - 'null'
+          description: Change Type.
+        sptc:
+          type:
+          - string
+          - 'null'
+          description: Start Version PT Code.
+        spt:
+          type:
+          - string
+          - 'null'
+          description: Start Version PT Name.
+        ssocc:
+          type:
+          - string
+          - 'null'
+          description: Start Version SOC Code.
+        ssoc:
+          type:
+          - string
+          - 'null'
+          description: Start Version SOC Name.
+        sisp:
+          type:
+          - string
+          - 'null'
+          description: Is Start Version Primary SOC Name .
+        esocc:
+          type:
+          - string
+          - 'null'
+          description: End Version SOC Code.
+        esoc:
+          type:
+          - string
+          - 'null'
+          description: End Version SOC Name.
+        eisp:
+          type:
+          - string
+          - 'null'
+          description: Is End Version Primary SOC Name.
+        rowid:
+          type:
+          - string
+          - 'null'
+          description: Row ID from Import.
+      additionalProperties: false
+      description: 'PT Primary SOC Changes.
+
+        Total Changes between selected versions.'
+    diieDTO:
+      type: object
+      properties:
+        rowid:
+          type:
+          - string
+          - 'null'
+          description: Row ID from Import.
+        name:
+          type:
+          - string
+          - 'null'
+          description: Term Name.
+        code:
+          type:
+          - string
+          - 'null'
+          description: Term Code.
+        com:
+          type:
+          - string
+          - 'null'
+          description: Comment.
+      additionalProperties: false
+      description: 'Input Errors.
 
         Total Changes between selected versions.'
     dirDTO:
@@ -380,284 +749,6 @@ components:
         12            9  - LLT and PT Hierarchy Changes Count(101)
 
         13            10 - Count(101)'
-    dipromoDTO:
-      type: object
-      properties:
-        code:
-          type:
-          - string
-          - 'null'
-          description: Promoted LLT Code.
-        llt:
-          type:
-          - string
-          - 'null'
-          description: Promoted LLT Name English Translation.
-        sptc:
-          type:
-          - string
-          - 'null'
-          description: Start Version PT Code.
-        spt:
-          type:
-          - string
-          - 'null'
-          description: Start Version PT Name.
-        esocc:
-          type:
-          - string
-          - 'null'
-          description: End Version Primary SOC Code.
-        esoc:
-          type:
-          - string
-          - 'null'
-          description: End Version Primary SOC Name.
-        rowid:
-          type:
-          - string
-          - 'null'
-          description: Row ID from Import.
-        ispsoc:
-          type:
-          - string
-          - 'null'
-          description: Is Primary SOC.
-      additionalProperties: false
-      description: 'Data Impact Promotions.
-
-        Total Changes between selected versions.'
-    diDTO:
-      required:
-      - dlang
-      - dtype
-      - ever
-      - filters
-      - force
-      - lang
-      - rows
-      - ssoc
-      - sver
-      type: object
-      properties:
-        lang:
-          type: string
-          description: '[Required]
-
-            Language.'
-        dlang:
-          type: string
-          description: '[Required]
-
-            Display Language.'
-        sver:
-          type: number
-          description: '[Required]
-
-            Starting Version to use.
-
-            Refer to Release API for valid Language/Version Combinations.'
-          format: double
-        ever:
-          type: number
-          description: "[Required]\nEnding Version to use.\nRefer to Release API for valid Language/Version Combinations. \n888.8 supplemental view english only."
-          format: double
-        dtype:
-          type: integer
-          description: "Type of Data Impact to Return.\nOption 1 or 10 \n888.8 supplemental view english only.\n999.9 imo view english only."
-          format: int32
-        ssoc:
-          type: boolean
-          description: '[Required]
-
-            Include Secondary SOC Information True/False'
-        force:
-          type: boolean
-          description: "[Required]\nfalse - the data validation will be run \n        if no errors the data impact report will run\n        if validation errors exist just the errors will return.\ntrue - the data impact will run wiether \n       or not there is validation error."
-        filters:
-          type: array
-          items:
-            type: integer
-            format: int32
-          description: Filter results to Specific SOC codes
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/dirowDTO'
-          description: Imported Rows.
-      additionalProperties: false
-      description: Data Impact Report.
-    dicptDTO:
-      type: object
-      properties:
-        ct:
-          type:
-          - string
-          - 'null'
-          description: Change Type.
-        sptc:
-          type:
-          - string
-          - 'null'
-          description: Start Version PT Code.
-        spt:
-          type:
-          - string
-          - 'null'
-          description: Start Version PT Name.
-        ssocc:
-          type:
-          - string
-          - 'null'
-          description: Start Version SOC Code.
-        ssoc:
-          type:
-          - string
-          - 'null'
-          description: Start Version SOC Name.
-        sisp:
-          type:
-          - string
-          - 'null'
-          description: Is Start Version Primary SOC Name .
-        esocc:
-          type:
-          - string
-          - 'null'
-          description: End Version SOC Code.
-        esoc:
-          type:
-          - string
-          - 'null'
-          description: End Version SOC Name.
-        eisp:
-          type:
-          - string
-          - 'null'
-          description: Is End Version Primary SOC Name.
-        rowid:
-          type:
-          - string
-          - 'null'
-          description: Row ID from Import.
-      additionalProperties: false
-      description: 'PT Primary SOC Changes.
-
-        Total Changes between selected versions.'
-    disclltDTO:
-      type: object
-      properties:
-        ct:
-          type:
-          - string
-          - 'null'
-          description: Change Type.
-        lltc:
-          type:
-          - string
-          - 'null'
-          description: LLT Code.
-        llt:
-          type:
-          - string
-          - 'null'
-          description: LLT Name.
-        sptc:
-          type:
-          - string
-          - 'null'
-          description: Start Version PT Code.
-        spt:
-          type:
-          - string
-          - 'null'
-          description: Start Version PT Name.
-        ssocc:
-          type:
-          - string
-          - 'null'
-          description: Start Version SOC Code.
-        ssoc:
-          type:
-          - string
-          - 'null'
-          description: Start Version SOC Name.
-        sisp:
-          type:
-          - string
-          - 'null'
-          description: Is Start Version Primary SOC Name .
-        eptc:
-          type:
-          - string
-          - 'null'
-          description: End Version PT Code.
-        ept:
-          type:
-          - string
-          - 'null'
-          description: End Version PT Name.
-        esocc:
-          type:
-          - string
-          - 'null'
-          description: End Version SOC Code.
-        esoc:
-          type:
-          - string
-          - 'null'
-          description: End Version SOC Name.
-        eisp:
-          type:
-          - string
-          - 'null'
-          description: Is End Version Primary SOC Name.
-        rowid:
-          type:
-          - string
-          - 'null'
-          description: Row ID from Import.
-      additionalProperties: false
-      description: 'LLT (excl PT) SOC Changes.
-
-        Total Changes between selected versions.'
-    dirrowDTO:
-      type: object
-      properties:
-        title:
-          type:
-          - string
-          - 'null'
-          description: Report Title.
-        tut:
-          type:
-          - string
-          - 'null'
-          description: Total Unique Terms between selected versions.
-        impactc:
-          type:
-          - string
-          - 'null'
-          description: Impact on uploaded data count.
-        rs:
-          type: boolean
-          description: Report Selected?.
-        note:
-          type:
-          - string
-          - 'null'
-          description: Notes.
-        rt:
-          type: integer
-          description: Report Type.
-          format: int32
-        rts:
-          type:
-          - string
-          - 'null'
-          description: Report Type String.
-      additionalProperties: false
-      description: Rows for Data Impact Report.
     diccsDTO:
       type: object
       properties:
@@ -690,152 +781,61 @@ components:
       description: 'Currency Changes.
 
         Total Changes between selected versions.'
-    diclltDTO:
+    dihcDTO:
       type: object
       properties:
-        lltc:
+        ver:
           type:
           - string
           - 'null'
-          description: LLT Code.
-        llt:
+          description: Version.
+        ct:
           type:
           - string
           - 'null'
-          description: LLT Name.
-        sptc:
-          type:
-          - string
-          - 'null'
-          description: Start Version PT Code.
-        spt:
-          type:
-          - string
-          - 'null'
-          description: Start Version PT Name.
-        eptc:
-          type:
-          - string
-          - 'null'
-          description: End Version PT Code.
-        ept:
-          type:
-          - string
-          - 'null'
-          description: End Version PT Name.
-        rowid:
-          type:
-          - string
-          - 'null'
-          description: Row ID from Import.
-      additionalProperties: false
-      description: 'Data Impact LLTs Changes.
-
-        Total Changes between selected versions.'
-    dimtncDTO:
-      type: object
-      properties:
-        code:
-          type:
-          - string
-          - 'null'
-          description: Term Code.
-        name:
-          type:
-          - string
-          - 'null'
-          description: Term Name.
-        ename:
-          type:
-          - string
-          - 'null'
-          description: End Version Term Name.
+          description: Change Type.
         level:
           type:
           - string
           - 'null'
-          description: Term Level.
-        rowid:
-          type:
-          - string
-          - 'null'
-          description: Row ID from Import.
-      additionalProperties: false
-      description: 'MedDRA Term Name Changes.
-
-        Total Changes between selected versions.'
-    diieDTO:
-      type: object
-      properties:
-        rowid:
-          type:
-          - string
-          - 'null'
-          description: Row ID from Import.
-        name:
-          type:
-          - string
-          - 'null'
-          description: Term Name.
+          description: Level.
         code:
           type:
           - string
           - 'null'
           description: Term Code.
-        com:
+        name:
           type:
           - string
           - 'null'
-          description: Comment.
-      additionalProperties: false
-      description: 'Input Errors.
-
-        Total Changes between selected versions.'
-    dimlltDTO:
-      type: object
-      properties:
-        lltc:
+          description: Term Name.
+        phlt:
           type:
           - string
           - 'null'
-          description: LLT Code.
-        llt:
+          description: Primary HLT Name.
+        phlgt:
           type:
           - string
           - 'null'
-          description: LLT Name English Translation.
-        sptc:
+          description: Primary HLGT Name.
+        psoc:
           type:
           - string
           - 'null'
-          description: Start Version PT Code.
-        spt:
+          description: Primary SOC Name.
+        ispsoc:
           type:
           - string
           - 'null'
-          description: Start Version PT Name.
-        eptc:
-          type:
-          - string
-          - 'null'
-          description: End Version PT Code.
-        ept:
-          type:
-          - string
-          - 'null'
-          description: End Version PT Name.
-        ecurrent:
-          type:
-          - string
-          - 'null'
-          description: Is End Version Curency.
+          description: Is Primary SOC.
         rowid:
           type:
           - string
           - 'null'
           description: Row ID from Import.
       additionalProperties: false
-      description: 'LLTs under different PTs.
+      description: 'LLT and PT Hierarchy Changes.
 
         Total Changes between selected versions.'
   securitySchemes:

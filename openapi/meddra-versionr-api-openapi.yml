@@ -122,113 +122,7 @@ components:
           description: Include Secondary SOC Information True/False
       additionalProperties: false
       description: Input to retrieve Version Report
-    mcsDTO:
-      type: object
-      properties:
-        scode:
-          type:
-          - string
-          - 'null'
-          description: Start Version Term Code.
-        sname:
-          type:
-          - string
-          - 'null'
-          description: Start Version Term Name.
-        slevel:
-          type:
-          - string
-          - 'null'
-          description: Start Version Term Level.
-        ecode:
-          type:
-          - string
-          - 'null'
-          description: End Version Term Code.
-        ename:
-          type:
-          - string
-          - 'null'
-          description: End Version Term Name.
-        elevel:
-          type:
-          - string
-          - 'null'
-          description: End Version Term Level.
-      additionalProperties: false
-      description: 'MedDRA Code Switches.
-
-        Total Changes between selected versions.'
-    promoDTO:
-      type: object
-      properties:
-        code:
-          type:
-          - string
-          - 'null'
-          description: Promoted LLT Code.
-        llt:
-          type:
-          - string
-          - 'null'
-          description: Promoted LLT Name.
-        sptc:
-          type:
-          - string
-          - 'null'
-          description: Start Version PT Code.
-        spt:
-          type:
-          - string
-          - 'null'
-          description: Start Version PT Name.
-        esocc:
-          type:
-          - string
-          - 'null'
-          description: End Version Primary SOC Code.
-        esoc:
-          type:
-          - string
-          - 'null'
-          description: End Version Primary SOC Name.
-        ispsoc:
-          type:
-          - string
-          - 'null'
-          description: Is Primary SOC.
-      additionalProperties: false
-      description: 'Promotions.
-
-        Total Changes between selected versions.'
-    mtncDTO:
-      type: object
-      properties:
-        code:
-          type:
-          - string
-          - 'null'
-          description: Term Code.
-        name:
-          type:
-          - string
-          - 'null'
-          description: Term Name.
-        ename:
-          type:
-          - string
-          - 'null'
-          description: End Version Term Name.
-        level:
-          type:
-          - string
-          - 'null'
-          description: Term Level.
-      additionalProperties: false
-      description: 'MedDRA Term Name Changes.
-
-        Total Changes between selected versions.'
-    cptDTO:
+    smqcDTO:
       type: object
       properties:
         ct:
@@ -236,169 +130,28 @@ components:
           - string
           - 'null'
           description: Change Type.
-        sptc:
+        sc:
           type:
           - string
           - 'null'
-          description: Start Version PT Code.
-        spt:
+          description: SMQ Code.
+        sn:
           type:
           - string
           - 'null'
-          description: Start Version PT Name.
-        ssocc:
+          description: SMQ Name.
+        sl:
           type:
           - string
           - 'null'
-          description: Start Version SOC Code.
-        ssoc:
-          type:
-          - string
-          - 'null'
-          description: Start Version SOC Name.
-        sisp:
-          type:
-          - string
-          - 'null'
-          description: Is Start Version Primary SOC Name .
-        esocc:
-          type:
-          - string
-          - 'null'
-          description: End Version SOC Code.
-        esoc:
-          type:
-          - string
-          - 'null'
-          description: End Version SOC Name.
-        eisp:
-          type:
-          - string
-          - 'null'
-          description: Is End Version Primary SOC Name.
-      additionalProperties: false
-      description: 'PT Primary SOC Changes.
-
-        Total Changes between selected versions.'
-    hcDTO:
-      type: object
-      properties:
-        ver:
-          type:
-          - string
-          - 'null'
-          description: Version.
-        ct:
-          type:
-          - string
-          - 'null'
-          description: Change Type.
-        level:
-          type:
-          - string
-          - 'null'
-          description: Level.
-        code:
-          type:
-          - string
-          - 'null'
-          description: Term Code.
-        name:
-          type:
-          - string
-          - 'null'
-          description: Term Name.
-        phlt:
-          type:
-          - string
-          - 'null'
-          description: Primary HLT Name.
-        phlgt:
-          type:
-          - string
-          - 'null'
-          description: Primary HLGT Name.
-        psoc:
-          type:
-          - string
-          - 'null'
-          description: Primary SOC Name.
-        ispsoc:
-          type:
-          - string
-          - 'null'
-          description: Is Primary SOC.
-      additionalProperties: false
-      description: 'LLT and PT Hierarchy Changes.
-
-        Total Changes between selected versions.'
-    comcDTO:
-      type: object
-      properties:
-        ct:
-          type:
-          - string
-          - 'null'
-          description: Change Type.
-        level:
-          type:
-          - string
-          - 'null'
-          description: Term Level.
-        cterm:
-          type:
-          - string
-          - 'null'
-          description: Changed Term.
-        isoc:
-          type:
-          - string
-          - 'null'
-          description: Impacted SOC.
+          description: SMQ Level.
         notes:
           type:
           - string
           - 'null'
           description: Notes.
       additionalProperties: false
-      description: 'Complex Changes.
-
-        Total Changes between selected versions.'
-    newptDTO:
-      type: object
-      properties:
-        code:
-          type:
-          - string
-          - 'null'
-          description: PT Code.
-        pt:
-          type:
-          - string
-          - 'null'
-          description: PT Name.
-        hlt:
-          type:
-          - string
-          - 'null'
-          description: End Version HLT Name.
-        hlgt:
-          type:
-          - string
-          - 'null'
-          description: End Version HLGT Name.
-        soc:
-          type:
-          - string
-          - 'null'
-          description: End Version SOC Name.
-        ispsoc:
-          type:
-          - string
-          - 'null'
-          description: Is Primary SOC.
-      additionalProperties: false
-      description: 'New PTs.
+      description: 'SMQ Changes.
 
         Total Changes between selected versions.'
     clltDTO:
@@ -473,105 +226,18 @@ components:
       description: 'LLT (excl PT) SOC Changes.
 
         Total Changes between selected versions.'
-    demoDTO:
-      type: object
-      properties:
-        code:
-          type:
-          - string
-          - 'null'
-          description: Demoted PT Code.
-        pt:
-          type:
-          - string
-          - 'null'
-          description: Demoted PT Name Translation.
-        eptc:
-          type:
-          - string
-          - 'null'
-          description: End Version PT Code.
-        ept:
-          type:
-          - string
-          - 'null'
-          description: End Version PT Name.
-      additionalProperties: false
-      description: 'Data Impact Demotions.
-
-        Total Changes between selected versions.'
-    vrrowDTO:
-      type: object
-      properties:
-        rt:
-          type: integer
-          description: Report Type.
-          format: int32
-        title:
-          type:
-          - string
-          - 'null'
-          description: Report Title.
-        tot:
-          type:
-          - string
-          - 'null'
-          description: Total Changes between selected versions.
-        note:
-          type:
-          - string
-          - 'null'
-          description: Notes.
-        rts:
-          type:
-          - string
-          - 'null'
-          description: Report Type String.
-        rs:
-          type: boolean
-          description: Report Selected?.
-      additionalProperties: false
-      description: Rows for Version Report.
-    smqcDTO:
+    ptsmqcDTO:
       type: object
       properties:
         ct:
           type:
           - string
           - 'null'
-          description: Change Type.
-        sc:
-          type:
-          - string
-          - 'null'
-          description: SMQ Code.
-        sn:
-          type:
-          - string
-          - 'null'
-          description: SMQ Name.
-        sl:
-          type:
-          - string
-          - 'null'
-          description: SMQ Level.
-        notes:
-          type:
-          - string
-          - 'null'
-          description: Notes.
-      additionalProperties: false
-      description: 'SMQ Changes.
+          description: 'Change Type.
 
-        Total Changes between selected versions.'
-    lltsmqcDTO:
-      type: object
-      properties:
-        ct:
-          type:
-          - string
-          - 'null'
-          description: Change Type.
+            ( Deleted, Demoted, New LLT Added, Existing LLT Added,
+
+            Promoted, Scope Change, Status Change)'
         code:
           type:
           - string
@@ -602,78 +268,100 @@ components:
           - string
           - 'null'
           description: End Version SMQ Name.
-        sptc:
-          type:
-          - string
-          - 'null'
-          description: Start Version PT Code.
-        spt:
-          type:
-          - string
-          - 'null'
-          description: Start Version PT Name.
-        eptc:
-          type:
-          - string
-          - 'null'
-          description: End Version PT Code.
-        ept:
-          type:
-          - string
-          - 'null'
-          description: End Version PT Name.
         ssl:
           type:
           - string
           - 'null'
-          description: Start SMQ Level.
+          description: Start Version Term Level.
         esl:
           type:
           - string
           - 'null'
-          description: End SMQ Level.
+          description: End Version Term Level.
         ssst:
           type:
           - string
           - 'null'
-          description: Start SMQ Status.
+          description: Start Version Term Status.
         esst:
           type:
           - string
           - 'null'
-          description: End SMQ Status.
+          description: End Version Term Status.
         sscp:
           type:
           - string
           - 'null'
-          description: Start SMQ Scope.
+          description: Start Version Term Scope.
         escp:
           type:
           - string
           - 'null'
-          description: End SMQ Scope.
+          description: End Version Term Scope.
         sscat:
           type:
           - string
           - 'null'
-          description: Start SMQ Category.
+          description: Start Version Term Category.
         escat:
           type:
           - string
           - 'null'
-          description: End SMQ Category.
+          description: End Version Term Category.
         ssw:
           type:
           - string
           - 'null'
-          description: Start SMQ Weight.
+          description: Start Version Term Weight.
         esw:
           type:
           - string
           - 'null'
-          description: End SMQ Weight.
+          description: End Version Term Weight.
       additionalProperties: false
-      description: 'LLT Changes in SMQs.
+      description: 'PT Changes in SMQs.
+
+        Total Changes between selected versions.'
+    newlltDTO:
+      type: object
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+          description: LLT Code.
+        llt:
+          type:
+          - string
+          - 'null'
+          description: LLT Name.
+        pt:
+          type:
+          - string
+          - 'null'
+          description: End Version PT Name.
+        hlt:
+          type:
+          - string
+          - 'null'
+          description: End Version HLT Name.
+        hlgt:
+          type:
+          - string
+          - 'null'
+          description: End Version HLGT Name.
+        soc:
+          type:
+          - string
+          - 'null'
+          description: End Version SOC Name.
+        ispsoc:
+          type:
+          - string
+          - 'null'
+          description: Is Primary SOC.
+      additionalProperties: false
+      description: 'New LLTs including New PTs.
 
         Total Changes between selected versions.'
     mlltDTO:
@@ -908,18 +596,204 @@ components:
       description: 'Currency Changes.
 
         Total Changes between selected versions.'
-    ptsmqcDTO:
+    mcsDTO:
+      type: object
+      properties:
+        scode:
+          type:
+          - string
+          - 'null'
+          description: Start Version Term Code.
+        sname:
+          type:
+          - string
+          - 'null'
+          description: Start Version Term Name.
+        slevel:
+          type:
+          - string
+          - 'null'
+          description: Start Version Term Level.
+        ecode:
+          type:
+          - string
+          - 'null'
+          description: End Version Term Code.
+        ename:
+          type:
+          - string
+          - 'null'
+          description: End Version Term Name.
+        elevel:
+          type:
+          - string
+          - 'null'
+          description: End Version Term Level.
+      additionalProperties: false
+      description: 'MedDRA Code Switches.
+
+        Total Changes between selected versions.'
+    cptDTO:
       type: object
       properties:
         ct:
           type:
           - string
           - 'null'
-          description: 'Change Type.
+          description: Change Type.
+        sptc:
+          type:
+          - string
+          - 'null'
+          description: Start Version PT Code.
+        spt:
+          type:
+          - string
+          - 'null'
+          description: Start Version PT Name.
+        ssocc:
+          type:
+          - string
+          - 'null'
+          description: Start Version SOC Code.
+        ssoc:
+          type:
+          - string
+          - 'null'
+          description: Start Version SOC Name.
+        sisp:
+          type:
+          - string
+          - 'null'
+          description: Is Start Version Primary SOC Name .
+        esocc:
+          type:
+          - string
+          - 'null'
+          description: End Version SOC Code.
+        esoc:
+          type:
+          - string
+          - 'null'
+          description: End Version SOC Name.
+        eisp:
+          type:
+          - string
+          - 'null'
+          description: Is End Version Primary SOC Name.
+      additionalProperties: false
+      description: 'PT Primary SOC Changes.
 
-            ( Deleted, Demoted, New LLT Added, Existing LLT Added,
+        Total Changes between selected versions.'
+    newptDTO:
+      type: object
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+          description: PT Code.
+        pt:
+          type:
+          - string
+          - 'null'
+          description: PT Name.
+        hlt:
+          type:
+          - string
+          - 'null'
+          description: End Version HLT Name.
+        hlgt:
+          type:
+          - string
+          - 'null'
+          description: End Version HLGT Name.
+        soc:
+          type:
+          - string
+          - 'null'
+          description: End Version SOC Name.
+        ispsoc:
+          type:
+          - string
+          - 'null'
+          description: Is Primary SOC.
+      additionalProperties: false
+      description: 'New PTs.
 
-            Promoted, Scope Change, Status Change)'
+        Total Changes between selected versions.'
+    vrrowDTO:
+      type: object
+      properties:
+        rt:
+          type: integer
+          description: Report Type.
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+          description: Report Title.
+        tot:
+          type:
+          - string
+          - 'null'
+          description: Total Changes between selected versions.
+        note:
+          type:
+          - string
+          - 'null'
+          description: Notes.
+        rts:
+          type:
+          - string
+          - 'null'
+          description: Report Type String.
+        rs:
+          type: boolean
+          description: Report Selected?.
+      additionalProperties: false
+      description: Rows for Version Report.
+    comcDTO:
+      type: object
+      properties:
+        ct:
+          type:
+          - string
+          - 'null'
+          description: Change Type.
+        level:
+          type:
+          - string
+          - 'null'
+          description: Term Level.
+        cterm:
+          type:
+          - string
+          - 'null'
+          description: Changed Term.
+        isoc:
+          type:
+          - string
+          - 'null'
+          description: Impacted SOC.
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Notes.
+      additionalProperties: false
+      description: 'Complex Changes.
+
+        Total Changes between selected versions.'
+    lltsmqcDTO:
+      type: object
+      properties:
+        ct:
+          type:
+          - string
+          - 'null'
+          description: Change Type.
         code:
           type:
           - string
@@ -950,100 +824,226 @@ components:
           - string
           - 'null'
           description: End Version SMQ Name.
+        sptc:
+          type:
+          - string
+          - 'null'
+          description: Start Version PT Code.
+        spt:
+          type:
+          - string
+          - 'null'
+          description: Start Version PT Name.
+        eptc:
+          type:
+          - string
+          - 'null'
+          description: End Version PT Code.
+        ept:
+          type:
+          - string
+          - 'null'
+          description: End Version PT Name.
         ssl:
           type:
           - string
           - 'null'
-          description: Start Version Term Level.
+          description: Start SMQ Level.
         esl:
           type:
           - string
           - 'null'
-          description: End Version Term Level.
+          description: End SMQ Level.
         ssst:
           type:
           - string
           - 'null'
-          description: Start Version Term Status.
+          description: Start SMQ Status.
         esst:
           type:
           - string
           - 'null'
-          description: End Version Term Status.
+          description: End SMQ Status.
         sscp:
           type:
           - string
           - 'null'
-          description: Start Version Term Scope.
+          description: Start SMQ Scope.
         escp:
           type:
           - string
           - 'null'
-          description: End Version Term Scope.
+          description: End SMQ Scope.
         sscat:
           type:
           - string
           - 'null'
-          description: Start Version Term Category.
+          description: Start SMQ Category.
         escat:
           type:
           - string
           - 'null'
-          description: End Version Term Category.
+          description: End SMQ Category.
         ssw:
           type:
           - string
           - 'null'
-          description: Start Version Term Weight.
+          description: Start SMQ Weight.
         esw:
           type:
           - string
           - 'null'
-          description: End Version Term Weight.
+          description: End SMQ Weight.
       additionalProperties: false
-      description: 'PT Changes in SMQs.
+      description: 'LLT Changes in SMQs.
 
         Total Changes between selected versions.'
-    newlltDTO:
+    demoDTO:
       type: object
       properties:
         code:
           type:
           - string
           - 'null'
-          description: LLT Code.
-        llt:
-          type:
-          - string
-          - 'null'
-          description: LLT Name.
+          description: Demoted PT Code.
         pt:
           type:
           - string
           - 'null'
+          description: Demoted PT Name Translation.
+        eptc:
+          type:
+          - string
+          - 'null'
+          description: End Version PT Code.
+        ept:
+          type:
+          - string
+          - 'null'
           description: End Version PT Name.
-        hlt:
+      additionalProperties: false
+      description: 'Data Impact Demotions.
+
+        Total Changes between selected versions.'
+    mtncDTO:
+      type: object
+      properties:
+        code:
           type:
           - string
           - 'null'
-          description: End Version HLT Name.
-        hlgt:
+          description: Term Code.
+        name:
           type:
           - string
           - 'null'
-          description: End Version HLGT Name.
-        soc:
+          description: Term Name.
+        ename:
           type:
           - string
           - 'null'
-          description: End Version SOC Name.
+          description: End Version Term Name.
+        level:
+          type:
+          - string
+          - 'null'
+          description: Term Level.
+      additionalProperties: false
+      description: 'MedDRA Term Name Changes.
+
+        Total Changes between selected versions.'
+    hcDTO:
+      type: object
+      properties:
+        ver:
+          type:
+          - string
+          - 'null'
+          description: Version.
+        ct:
+          type:
+          - string
+          - 'null'
+          description: Change Type.
+        level:
+          type:
+          - string
+          - 'null'
+          description: Level.
+        code:
+          type:
+          - string
+          - 'null'
+          description: Term Code.
+        name:
+          type:
+          - string
+          - 'null'
+          description: Term Name.
+        phlt:
+          type:
+          - string
+          - 'null'
+          description: Primary HLT Name.
+        phlgt:
+          type:
+          - string
+          - 'null'
+          description: Primary HLGT Name.
+        psoc:
+          type:
+          - string
+          - 'null'
+          description: Primary SOC Name.
         ispsoc:
           type:
           - string
           - 'null'
           description: Is Primary SOC.
       additionalProperties: false
-      description: 'New LLTs including New PTs.
+      description: 'LLT and PT Hierarchy Changes.
+
+        Total Changes between selected versions.'
+    promoDTO:
+      type: object
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+          description: Promoted LLT Code.
+        llt:
+          type:
+          - string
+          - 'null'
+          description: Promoted LLT Name.
+        sptc:
+          type:
+          - string
+          - 'null'
+          description: Start Version PT Code.
+        spt:
+          type:
+          - string
+          - 'null'
+          description: Start Version PT Name.
+        esocc:
+          type:
+          - string
+          - 'null'
+          description: End Version Primary SOC Code.
+        esoc:
+          type:
+          - string
+          - 'null'
+          description: End Version Primary SOC Name.
+        ispsoc:
+          type:
+          - string
+          - 'null'
+          description: Is Primary SOC.
+      additionalProperties: false
+      description: 'Promotions.
 
         Total Changes between selected versions.'
   securitySchemes:

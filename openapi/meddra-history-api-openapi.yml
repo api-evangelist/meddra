@@ -136,103 +136,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    historyCDTO:
-      type: object
-      properties:
-        vername:
-          type:
-          - string
-          - 'null'
-          description: 'Language/Version
-
-            //English Version 4'
-        changes:
-          type:
-          - string
-          - 'null'
-          description: Discription of changes for this version.
-        tlvl:
-          type:
-          - string
-          - 'null'
-          description: Term Level ie SOC/HLGT/HLT/PT/LLT.
-        rdate:
-          type: string
-          description: Release Date
-          format: date-time
-        cp:
-          type: boolean
-          description: Current Placement
-        vers:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/historyTDTO'
-          description: Tree View of history
-      additionalProperties: false
-      description: View Model for returning TreeNode History of MedDRA terms.
-    historyDTO:
-      type: object
-      properties:
-        Id:
-          type:
-          - string
-          - 'null'
-        code:
-          type: integer
-          description: term code
-          format: int32
-        type:
-          type:
-          - string
-          - 'null'
-          description: type of code
-        fhists:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/historyFDTO'
-          description: List of history view models by language
-      additionalProperties: false
-      description: View Model for returning Raw History of MedDRA terms.
-    historyRCDTO:
-      type: object
-      properties:
-        vername:
-          type:
-          - string
-          - 'null'
-          description: 'Language/Version
-
-            //English Version 4'
-        changes:
-          type:
-          - string
-          - 'null'
-          description: Discription of changes for this version.
-        tlvl:
-          type:
-          - string
-          - 'null'
-          description: Term Level ie SOC/HLGT/HLT/PT/LLT.
-        rdate:
-          type: string
-          description: Release Date
-          format: date-time
-        cp:
-          type: boolean
-          description: Current Placement
-        vers:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/historyRNDTO'
-          description: List of History Hierachies for this version.
-      additionalProperties: false
-      description: View Model for returning List of History Hierachies of MedDRA terms.
     historyTDTO:
       type: object
       properties:
@@ -286,6 +189,34 @@ components:
           $ref: '#/components/schemas/historyTDTO'
       additionalProperties: false
       description: View Model for returning TreeNode History of MedDRA terms.
+    historyFDTO:
+      type: object
+      properties:
+        lang:
+          type:
+          - string
+          - 'null'
+          description: history objects
+        lcv:
+          type: number
+          description: Last Change Version
+          format: double
+        hists:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/historyRCDTO'
+          description: List of history view models
+        thists:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/historyCDTO'
+          description: List of history tree models
+      additionalProperties: false
+      description: View Model for returning Raw History of MedDRA terms.
     historyRNDTO:
       type: object
       properties:
@@ -422,34 +353,103 @@ components:
             There are a few situations in English MedDRA where two different term names where assigned to the same term code.When asking for the history of such a term, the term names is listed in this parameter separated by a ‘$”.'
       additionalProperties: false
       description: View Model for returning Raw History of MedDRA terms.
-    historyFDTO:
+    historyDTO:
       type: object
       properties:
-        lang:
+        Id:
           type:
           - string
           - 'null'
-          description: history objects
-        lcv:
-          type: number
-          description: Last Change Version
-          format: double
-        hists:
+        code:
+          type: integer
+          description: term code
+          format: int32
+        type:
+          type:
+          - string
+          - 'null'
+          description: type of code
+        fhists:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/historyRCDTO'
-          description: List of history view models
-        thists:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/historyCDTO'
-          description: List of history tree models
+            $ref: '#/components/schemas/historyFDTO'
+          description: List of history view models by language
       additionalProperties: false
       description: View Model for returning Raw History of MedDRA terms.
+    historyRCDTO:
+      type: object
+      properties:
+        vername:
+          type:
+          - string
+          - 'null'
+          description: 'Language/Version
+
+            //English Version 4'
+        changes:
+          type:
+          - string
+          - 'null'
+          description: Discription of changes for this version.
+        tlvl:
+          type:
+          - string
+          - 'null'
+          description: Term Level ie SOC/HLGT/HLT/PT/LLT.
+        rdate:
+          type: string
+          description: Release Date
+          format: date-time
+        cp:
+          type: boolean
+          description: Current Placement
+        vers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/historyRNDTO'
+          description: List of History Hierachies for this version.
+      additionalProperties: false
+      description: View Model for returning List of History Hierachies of MedDRA terms.
+    historyCDTO:
+      type: object
+      properties:
+        vername:
+          type:
+          - string
+          - 'null'
+          description: 'Language/Version
+
+            //English Version 4'
+        changes:
+          type:
+          - string
+          - 'null'
+          description: Discription of changes for this version.
+        tlvl:
+          type:
+          - string
+          - 'null'
+          description: Term Level ie SOC/HLGT/HLT/PT/LLT.
+        rdate:
+          type: string
+          description: Release Date
+          format: date-time
+        cp:
+          type: boolean
+          description: Current Placement
+        vers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/historyTDTO'
+          description: Tree View of history
+      additionalProperties: false
+      description: View Model for returning TreeNode History of MedDRA terms.
   securitySchemes:
     oauth2:
       type: oauth2
