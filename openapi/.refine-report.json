@@ -1,0 +1,52 @@
+{
+  "provider": "meddra",
+  "sources": [
+    "_original/meddra-api-openapi.json"
+  ],
+  "outputs": [
+    "meddra-dataimpact-api-openapi.yml",
+    "meddra-details-api-openapi.yml",
+    "meddra-download-api-openapi.yml",
+    "meddra-export-api-openapi.yml",
+    "meddra-gettop-api-openapi.yml",
+    "meddra-hierarchy-api-openapi.yml",
+    "meddra-history-api-openapi.yml",
+    "meddra-language-api-openapi.yml",
+    "meddra-release-api-openapi.yml",
+    "meddra-smq-api-openapi.yml",
+    "meddra-svalidation-api-openapi.yml",
+    "meddra-search-api-openapi.yml",
+    "meddra-status-api-openapi.yml",
+    "meddra-type-api-openapi.yml",
+    "meddra-versionr-api-openapi.yml"
+  ],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "meddra-api-openapi.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "meddra-api-openapi.json: declared missing tag: DataImpact",
+    "meddra-api-openapi.json: declared missing tag: Details",
+    "meddra-api-openapi.json: declared missing tag: Download",
+    "meddra-api-openapi.json: declared missing tag: Export",
+    "meddra-api-openapi.json: declared missing tag: GetTop",
+    "meddra-api-openapi.json: declared missing tag: Hierarchy",
+    "meddra-api-openapi.json: declared missing tag: History",
+    "meddra-api-openapi.json: declared missing tag: Language",
+    "meddra-api-openapi.json: declared missing tag: Release",
+    "meddra-api-openapi.json: declared missing tag: SMQ",
+    "meddra-api-openapi.json: declared missing tag: SValidation",
+    "meddra-api-openapi.json: declared missing tag: Search",
+    "meddra-api-openapi.json: declared missing tag: Status",
+    "meddra-api-openapi.json: declared missing tag: Type",
+    "meddra-api-openapi.json: declared missing tag: VersionR",
+    "superseded outputs removed: meddra-api-openapi.yml",
+    "apis.yml register: written (+15 apis, 15 total)"
+  ],
+  "skipped": [
+    "meddra-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}

@@ -1,0 +1,153 @@
+openapi: 3.2.0
+info:
+  title: MedDRA API EUS SBX SMQ API
+  description: Web API to access MedDRA Data
+  contact:
+    name: Web Admin
+    url: http://www.meddra.org/
+    email: wadmin@meddra.org
+  version: '1'
+security:
+- oauth2:
+  - meddraapi
+tags:
+- name: SMQ
+paths:
+  /api/smqa:
+    post:
+      tags:
+      - SMQ
+      summary: Returns SMQ Analysis specific input
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/smqaDTO'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/smqaDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/smqaDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/smqaDTO'
+      responses:
+        '200':
+          description: Success
+        200 type=1:
+          description: smqaRDTO
+        200 type=10:
+          description: smqaRDTO
+        400 v1:
+          description: Failed Model Validation
+        400 v2:
+          description: Language/Version Does Not exist
+        400 v3:
+          description: Insufficient Authorization
+        400 v4:
+          description: Invalid Input
+        400 v5:
+          description: Internal Server Exception
+        '401':
+          description: Unauthorized Access
+        '415':
+          description: Unsupported Media Type
+        '429':
+          description: The throttling limit on this API has been exceeded.  Please review the MedDRA API documentation on throttling limits.
+        '500':
+          description: Internal Server Error
+      operationId: postApiSmqa
+      x-operation-id-source: derived
+components:
+  schemas:
+    sirowDTO:
+      required:
+      - c
+      - cs
+      - r
+      - t
+      type: object
+      properties:
+        r:
+          maxLength: 400
+          minLength: 0
+          type: string
+          description: Row ID.
+        t:
+          maxLength: 400
+          minLength: 0
+          type: string
+          description: LLT/PT Term.
+        c:
+          type: integer
+          description: LLT/PT Code.
+          format: int32
+        cs:
+          maxLength: 400
+          minLength: 0
+          type: string
+          description: 'Case ID Code.
+
+            Required for algorithmic Search'
+      additionalProperties: false
+      description: Row from import for Data Impact Report.
+    smqaDTO:
+      required:
+      - force
+      - lang
+      - rows
+      - search
+      - stype
+      - ver
+      type: object
+      properties:
+        lang:
+          type: string
+          description: Language
+        ver:
+          type: number
+          description: 'Version to use.
+
+            Refer to Release API for valid Language/Version Combinations.'
+          format: double
+        stype:
+          type: integer
+          description: "Type of SMQ Analysis to Return.\nOption 1. \nFuture Use."
+          format: int32
+        search:
+          type: integer
+          description: 'Search Type.
+
+            1 - Broad
+
+            2 - Narrow
+
+            3 - Algorithmic'
+          format: int32
+        force:
+          type: boolean
+          description: "[Required]\nfalse - the data validation will be run \n        if no errors the data impact report will run\n        if validation errors exist just the errors will return.\ntrue - the data impact will run wiether \n       or not there is validation error."
+        filters:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+          description: SMQ Code List to filter results.
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/sirowDTO'
+          description: Hierachy Rows.
+      additionalProperties: false
+      description: SMQ Analysis Request.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://mid.meddra.org/connect/authorize
+          scopes:
+            meddraapi: Meddra API - full access

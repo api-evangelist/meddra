@@ -1,0 +1,48 @@
+openapi: 3.2.0
+info:
+  title: MedDRA API EUS SBX Release API
+  description: Web API to access MedDRA Data
+  contact:
+    name: Web Admin
+    url: http://www.meddra.org/
+    email: wadmin@meddra.org
+  version: '1'
+security:
+- oauth2:
+  - meddraapi
+tags:
+- name: Release
+paths:
+  /api/rel:
+    get:
+      tags:
+      - Release
+      summary: Returns list of Available Releases
+      responses:
+        '200':
+          description: List of ReleaseMDTO
+        400 v1:
+          description: Failed Model Validation
+        400 v2:
+          description: Insufficient Authorization
+        400 v3:
+          description: Internal Server Exception
+        '401':
+          description: Unauthorized Access
+        '404':
+          description: Not Found
+        '429':
+          description: The throttling limit on this API has been exceeded.  Please review the MedDRA API documentation on throttling limits.
+        '500':
+          description: Internal Server Error
+      operationId: getApiRel
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://mid.meddra.org/connect/authorize
+          scopes:
+            meddraapi: Meddra API - full access
