@@ -1,0 +1,12 @@
+{
+ "url": "https://mapisbx.meddra.org/swagger/v1/swagger.json",
+ "requested_url": "https://mapisbx.meddra.org/swagger/v1/swagger.json",
+ "status": 200,
+ "content_type": "application/json;charset=utf-8",
+ "bytes": 319384,
+ "sha256": "443d0e08d320fc0186525e27bf9df8d2539c6c8b3b5ed5125a8aaff4389289b5",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
