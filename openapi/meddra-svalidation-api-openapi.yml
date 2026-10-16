@@ -57,6 +57,19 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    validateDTO:
+      required:
+      - mids
+      type: object
+      properties:
+        mids:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: Meddra ID List.
+      additionalProperties: false
+      description: MedDRA Account Request.
     validateRDTO:
       type: object
       properties:
@@ -91,19 +104,6 @@ components:
           description: Month of renewal.
       additionalProperties: false
       description: Rows for MedDRA Account Validation.
-    validateDTO:
-      required:
-      - mids
-      type: object
-      properties:
-        mids:
-          type: array
-          items:
-            type: integer
-            format: int32
-          description: Meddra ID List.
-      additionalProperties: false
-      description: MedDRA Account Request.
   securitySchemes:
     oauth2:
       type: oauth2

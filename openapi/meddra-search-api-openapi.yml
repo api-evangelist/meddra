@@ -65,36 +65,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AVSearchDTO:
-      required:
-      - searchlogic
-      - searchterm
-      - searchtype
-      type: object
-      properties:
-        searchtype:
-          type: integer
-          description: "acceptable searchtypes\n 0 - basic -- for basic search all logic is AND\n 1 - contains\n 2 - begins with\n 3 - exact match\n 4 - ends with"
-          format: int32
-        searchterm:
-          maxLength: 400
-          minLength: 0
-          type: string
-          description: 'Single or multiple terms
-
-            if first term is 8 digit numerical code the rest are ignored'
-        searchlogic:
-          type: integer
-          description: '0 - no logic defaults to AND
-
-            1 - AND
-
-            2 - OR
-
-            3 - NOT'
-          format: int32
-      additionalProperties: false
-      description: Model for advanced search terms and types
     SearchDTO:
       required:
       - bview
@@ -220,6 +190,36 @@ components:
         separator:
           type: integer
           description: "Separator to use if selecting Additional Languages.\n0 = \" \" \n1 = \"\\n\"\n2 = \" | \""
+          format: int32
+      additionalProperties: false
+      description: Model for advanced search terms and types
+    AVSearchDTO:
+      required:
+      - searchlogic
+      - searchterm
+      - searchtype
+      type: object
+      properties:
+        searchtype:
+          type: integer
+          description: "acceptable searchtypes\n 0 - basic -- for basic search all logic is AND\n 1 - contains\n 2 - begins with\n 3 - exact match\n 4 - ends with"
+          format: int32
+        searchterm:
+          maxLength: 400
+          minLength: 0
+          type: string
+          description: 'Single or multiple terms
+
+            if first term is 8 digit numerical code the rest are ignored'
+        searchlogic:
+          type: integer
+          description: '0 - no logic defaults to AND
+
+            1 - AND
+
+            2 - OR
+
+            3 - NOT'
           format: int32
       additionalProperties: false
       description: Model for advanced search terms and types

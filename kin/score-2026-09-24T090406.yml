@@ -1,23 +1,43 @@
-# Kin Score artifact — meddra — 2026-10-09T213714
+<<<<<<<< HEAD:kin/score-2026-10-04T225258.yml
+# Kin Score artifact — meddra — 2026-10-04T225258
+========
+# Kin Score artifact — meddra — 2026-09-24T090406
+>>>>>>>> @{u}:kin/score-2026-09-24T090406.yml
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: meddra
+<<<<<<<< HEAD:kin/score-2026-10-04T225258.yml
   schema_version: 0.23.0
-  scored_at: '2026-10-09'
-  run_ts: 2026-10-09T213714
+  scored_at: '2026-10-04'
+  run_ts: 2026-10-04T225258
   composite: 40.7
   band: developing
   facets:
     discoverability: 66.1
     contract_quality: 46.4
+========
+  schema_version: 0.22.0
+  scored_at: '2026-09-24'
+  run_ts: 2026-09-24T090406
+  composite: 43.6
+  band: developing
+  facets:
+    discoverability: 68.5
+    contract_quality: 49.7
+>>>>>>>> @{u}:kin/score-2026-09-24T090406.yml
     contract_governance: 28.0
     operational_transparency: 15.8
     developer_ergonomics: 28.0
     access_clarity: 47.4
   agent_readiness:
+<<<<<<<< HEAD:kin/score-2026-10-04T225258.yml
     score: 27.8
     band: agent-aware
+========
+    score: 31.8
+    band: agent-ready
+>>>>>>>> @{u}:kin/score-2026-09-24T090406.yml
     dimensions:
       spec_presence: true
       agentic_access: derived
@@ -25,7 +45,11 @@ kin_score:
       mcp_server: false
       auth_clarity: served
       idempotency: false
+<<<<<<<< HEAD:kin/score-2026-10-04T225258.yml
       error_semantics: derived
+========
+      error_semantics: documented
+>>>>>>>> @{u}:kin/score-2026-09-24T090406.yml
       openapi_examples: false
       rate_limit_signal: derived
       event_surface_described: false
@@ -42,7 +66,11 @@ kin_score:
     applies: true
     regime: Health
     regime_id: health
+<<<<<<<< HEAD:kin/score-2026-10-04T225258.yml
     score: 30.5
+========
+    score: 48.8
+>>>>>>>> @{u}:kin/score-2026-09-24T090406.yml
     matched_via: tags
   provenance:
     mcp: derived
@@ -50,7 +78,11 @@ kin_score:
     agentic_access: derived
     conformance: first-party
     contracts:
+<<<<<<<< HEAD:kin/score-2026-10-04T225258.yml
       total: 15
+========
+      total: 1
+>>>>>>>> @{u}:kin/score-2026-09-24T090406.yml
       derived: 0
       coverage: 0.0
       callable: 0.0

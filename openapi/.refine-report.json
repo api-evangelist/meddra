@@ -20,9 +20,7 @@
     "meddra-type-api-openapi.yml",
     "meddra-versionr-api-openapi.yml"
   ],
-  "archived": [
-    "deleted 1 superseded output(s) from the previous generation"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -43,10 +41,23 @@
     "meddra-api-openapi.json: declared missing tag: Status",
     "meddra-api-openapi.json: declared missing tag: Type",
     "meddra-api-openapi.json: declared missing tag: VersionR",
-    "superseded outputs removed: meddra-api-openapi.yml",
-    "apis.yml register: written (+15 apis, 15 total)"
+    "apis.yml register: already-registered"
   ],
   "skipped": [
-    "meddra-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+    "meddra-dataimpact-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meddra-details-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meddra-download-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meddra-export-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meddra-gettop-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meddra-hierarchy-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meddra-history-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meddra-language-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meddra-release-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meddra-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meddra-smq-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meddra-status-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meddra-svalidation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meddra-type-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meddra-versionr-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]
 }

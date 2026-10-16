@@ -65,6 +65,102 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    hrowDTO:
+      type: object
+      properties:
+        r:
+          type:
+          - string
+          - 'null'
+          description: Row ID.
+        t:
+          type:
+          - string
+          - 'null'
+          description: Term Name.
+        c:
+          type: integer
+          description: Term Code.
+          format: int32
+        l:
+          type:
+          - string
+          - 'null'
+          description: Level.
+        p:
+          type:
+          - string
+          - 'null'
+          description: PT Name.
+        pc:
+          type: integer
+          description: PT Code.
+          format: int32
+        h:
+          type:
+          - string
+          - 'null'
+          description: HLT Name.
+        hc:
+          type: integer
+          description: HLT Code.
+          format: int32
+        hg:
+          type:
+          - string
+          - 'null'
+          description: HLGT Name.
+        hgc:
+          type: integer
+          description: HLGT Code.
+          format: int32
+        s:
+          type:
+          - string
+          - 'null'
+          description: SOC Name.
+        sc:
+          type: integer
+          description: SOC Code.
+          format: int32
+        ps:
+          type:
+          - string
+          - 'null'
+          description: Primary SOC Y/N.
+      additionalProperties: false
+      description: Hierarchy Row.
+    hierarchyRDTO:
+      type: object
+      properties:
+        lang:
+          type:
+          - string
+          - 'null'
+          description: Language
+        ver:
+          type:
+          - string
+          - 'null'
+          description: 'Version to use.
+
+            Refer to Release API for valid Language/Version Combinations.'
+        rows:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/hrowDTO'
+          description: Hierachy Rows.
+        hies:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/hieDTO'
+          description: Input Errors.
+      additionalProperties: false
+      description: Hierarchy Response.
     hierarchyDTO:
       required:
       - acodes
@@ -164,102 +260,6 @@ components:
       description: 'Input Errors.
 
         Total Changes between selected versions.'
-    hierarchyRDTO:
-      type: object
-      properties:
-        lang:
-          type:
-          - string
-          - 'null'
-          description: Language
-        ver:
-          type:
-          - string
-          - 'null'
-          description: 'Version to use.
-
-            Refer to Release API for valid Language/Version Combinations.'
-        rows:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/hrowDTO'
-          description: Hierachy Rows.
-        hies:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/hieDTO'
-          description: Input Errors.
-      additionalProperties: false
-      description: Hierarchy Response.
-    hrowDTO:
-      type: object
-      properties:
-        r:
-          type:
-          - string
-          - 'null'
-          description: Row ID.
-        t:
-          type:
-          - string
-          - 'null'
-          description: Term Name.
-        c:
-          type: integer
-          description: Term Code.
-          format: int32
-        l:
-          type:
-          - string
-          - 'null'
-          description: Level.
-        p:
-          type:
-          - string
-          - 'null'
-          description: PT Name.
-        pc:
-          type: integer
-          description: PT Code.
-          format: int32
-        h:
-          type:
-          - string
-          - 'null'
-          description: HLT Name.
-        hc:
-          type: integer
-          description: HLT Code.
-          format: int32
-        hg:
-          type:
-          - string
-          - 'null'
-          description: HLGT Name.
-        hgc:
-          type: integer
-          description: HLGT Code.
-          format: int32
-        s:
-          type:
-          - string
-          - 'null'
-          description: SOC Name.
-        sc:
-          type: integer
-          description: SOC Code.
-          format: int32
-        ps:
-          type:
-          - string
-          - 'null'
-          description: Primary SOC Y/N.
-      additionalProperties: false
-      description: Hierarchy Row.
     hirowDTO:
       required:
       - c

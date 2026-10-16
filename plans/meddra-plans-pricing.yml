@@ -93,3 +93,77 @@ evidence:
 - url: https://files.meddra.org/www/Website%20Files/Fact%20Sheets/Sub%20Rates-1998-2026.pdf
   status: 200
   note: '"Subscription Rate Evolution" - the MSSO publishes its rate history 1998-2026.'
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units: []
+  plans:
+  - name: Regulatory Authority
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Non-Commercial / Non-Profit
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Commercial Level 0
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Commercial Level 1
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Commercial Level 2
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Commercial Level 3
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Commercial Level 4
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Commercial Level 5
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Commercial Level 6
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Commercial Level 7
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: System Developer
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []

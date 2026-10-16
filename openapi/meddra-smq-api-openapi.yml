@@ -61,37 +61,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    sirowDTO:
-      required:
-      - c
-      - cs
-      - r
-      - t
-      type: object
-      properties:
-        r:
-          maxLength: 400
-          minLength: 0
-          type: string
-          description: Row ID.
-        t:
-          maxLength: 400
-          minLength: 0
-          type: string
-          description: LLT/PT Term.
-        c:
-          type: integer
-          description: LLT/PT Code.
-          format: int32
-        cs:
-          maxLength: 400
-          minLength: 0
-          type: string
-          description: 'Case ID Code.
-
-            Required for algorithmic Search'
-      additionalProperties: false
-      description: Row from import for Data Impact Report.
     smqaDTO:
       required:
       - force
@@ -143,6 +112,37 @@ components:
           description: Hierachy Rows.
       additionalProperties: false
       description: SMQ Analysis Request.
+    sirowDTO:
+      required:
+      - c
+      - cs
+      - r
+      - t
+      type: object
+      properties:
+        r:
+          maxLength: 400
+          minLength: 0
+          type: string
+          description: Row ID.
+        t:
+          maxLength: 400
+          minLength: 0
+          type: string
+          description: LLT/PT Term.
+        c:
+          type: integer
+          description: LLT/PT Code.
+          format: int32
+        cs:
+          maxLength: 400
+          minLength: 0
+          type: string
+          description: 'Case ID Code.
+
+            Required for algorithmic Search'
+      additionalProperties: false
+      description: Row from import for Data Impact Report.
   securitySchemes:
     oauth2:
       type: oauth2
