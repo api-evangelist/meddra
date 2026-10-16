@@ -119,6 +119,8 @@ apis:
   humanURL: https://www.meddra.org/meddra-apis
   baseURL: https://mapisbx.meddra.org
   tags:
+  - Downloads
+  tags_raw:
   - Download
   properties:
   - type: OpenAPI
@@ -287,6 +289,8 @@ apis:
   humanURL: https://www.meddra.org/meddra-apis
   baseURL: https://mapisbx.meddra.org
   tags:
+  - Releases
+  tags_raw:
   - Release
   properties:
   - type: OpenAPI
