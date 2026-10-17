@@ -70,18 +70,6 @@ components:
           description: Meddra ID List.
       additionalProperties: false
       description: MedDRA Account Request.
-    validateRDTO:
-      type: object
-      properties:
-        mids:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/vrowDTO'
-          description: Meddra ID List.
-      additionalProperties: false
-      description: MedDRA Account Response.
     vrowDTO:
       type: object
       properties:
@@ -104,6 +92,18 @@ components:
           description: Month of renewal.
       additionalProperties: false
       description: Rows for MedDRA Account Validation.
+    validateRDTO:
+      type: object
+      properties:
+        mids:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/vrowDTO'
+          description: Meddra ID List.
+      additionalProperties: false
+      description: MedDRA Account Response.
   securitySchemes:
     oauth2:
       type: oauth2

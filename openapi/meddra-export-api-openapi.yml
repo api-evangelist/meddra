@@ -61,103 +61,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    rbinDTO:
-      type: object
-      properties:
-        c:
-          type:
-          - string
-          - 'null'
-          description: Term Code.
-        t:
-          type:
-          - string
-          - 'null'
-          description: Term Name.
-        lv:
-          type:
-          - string
-          - 'null'
-          description: 'Level of requested term
-
-            SOC/HLGT/HLT/PT/LLT'
-        sc:
-          type:
-          - string
-          - 'null'
-          description: SOC Code.
-        st:
-          type:
-          - string
-          - 'null'
-          description: SOC Term Name.
-        hgc:
-          type:
-          - string
-          - 'null'
-          description: HLGT Code.
-        hgt:
-          type:
-          - string
-          - 'null'
-          description: HLGT Term Name.
-        hc:
-          type:
-          - string
-          - 'null'
-          description: HLT Code.
-        ht:
-          type:
-          - string
-          - 'null'
-          description: HLT Term Name.
-        pc:
-          type:
-          - string
-          - 'null'
-          description: PT Code.
-        pt:
-          type:
-          - string
-          - 'null'
-          description: PT Term Name.
-        lc:
-          type:
-          - string
-          - 'null'
-          description: LLT Code.
-        lt:
-          type:
-          - string
-          - 'null'
-          description: LLT Term Name.
-        tc:
-          type:
-          - string
-          - 'null'
-          description: Term Currency.
-        jc:
-          type:
-          - string
-          - 'null'
-          description: Japanese Currency.
-        l:
-          type:
-          - string
-          - 'null'
-          description: Term Language.
-        v:
-          type:
-          - string
-          - 'null'
-          description: Term Version.
-        ps:
-          type:
-          - string
-          - 'null'
-          description: Primary SOC.
-      additionalProperties: false
-      description: Model for Returning Research Bin Terms.
     exportDTO:
       required:
       - bview
@@ -261,6 +164,103 @@ components:
           description: Add code(s) to include LLTs in the Export Results.
       additionalProperties: false
       description: Model for advanced search terms and types
+    rbinDTO:
+      type: object
+      properties:
+        c:
+          type:
+          - string
+          - 'null'
+          description: Term Code.
+        t:
+          type:
+          - string
+          - 'null'
+          description: Term Name.
+        lv:
+          type:
+          - string
+          - 'null'
+          description: 'Level of requested term
+
+            SOC/HLGT/HLT/PT/LLT'
+        sc:
+          type:
+          - string
+          - 'null'
+          description: SOC Code.
+        st:
+          type:
+          - string
+          - 'null'
+          description: SOC Term Name.
+        hgc:
+          type:
+          - string
+          - 'null'
+          description: HLGT Code.
+        hgt:
+          type:
+          - string
+          - 'null'
+          description: HLGT Term Name.
+        hc:
+          type:
+          - string
+          - 'null'
+          description: HLT Code.
+        ht:
+          type:
+          - string
+          - 'null'
+          description: HLT Term Name.
+        pc:
+          type:
+          - string
+          - 'null'
+          description: PT Code.
+        pt:
+          type:
+          - string
+          - 'null'
+          description: PT Term Name.
+        lc:
+          type:
+          - string
+          - 'null'
+          description: LLT Code.
+        lt:
+          type:
+          - string
+          - 'null'
+          description: LLT Term Name.
+        tc:
+          type:
+          - string
+          - 'null'
+          description: Term Currency.
+        jc:
+          type:
+          - string
+          - 'null'
+          description: Japanese Currency.
+        l:
+          type:
+          - string
+          - 'null'
+          description: Term Language.
+        v:
+          type:
+          - string
+          - 'null'
+          description: Term Version.
+        ps:
+          type:
+          - string
+          - 'null'
+          description: Primary SOC.
+      additionalProperties: false
+      description: Model for Returning Research Bin Terms.
   securitySchemes:
     oauth2:
       type: oauth2
