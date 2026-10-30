@@ -1,4 +1,4 @@
-# meddra (meddra)
+# Meddra
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,44 +64,173 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-MedDRA (Medical Dictionary for Regulatory Activities) is a clinically validated international medical terminology dictionary used by regulatory authorities and the regulated biopharmaceutical industry.
+MedDRA (Medical Dictionary for Regulatory Activities) is the clinically validated international medical terminology developed under the auspices of the International Council for Harmonisation (ICH) and used by regulatory authorities and the regulated biopharmaceutical industry for adverse event coding, drug safety reporting and pharmacovigilance. It is maintained by the MedDRA Maintenance and Support Services Organization (MSSO), which publishes a new version twice a year in English and more than a dozen translations. The MSSO operates a REST API programme so subscribers can embed MedDRA term search, hierarchy navigation (SOC, HLGT, HLT, PT, LLT), SMQ analysis, version-impact reporting and subscription validation in their own pharmacovigilance and clinical systems. Two API environments are operated: a GxP-assessed one carrying four APIs for validated systems, and a wider non-GxP environment carrying sixteen. Access requires an MSSO subscription.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/apis.yml)
+**Areas:** Medical Terminology · Pharmacovigilance · Drug Safety · Adverse Events · Regulatory · Clinical Trials · Healthcare · Life Sciences · Standards · Ontology
 
-## Timestamps
+## Meddra on APIs.io
 
-- **Modified:** 2026-05-19
+Everything profiled for Meddra is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/meddra/](https://apis.io/providers/meddra/)** — or go straight to one of the APIs or properties below.
 
-## APIs
+### APIs (15)
 
-### MedDRA / WHO Drug Dictionary API
+- [Meddra Data Impact API](https://apis.io/apis/meddra/meddra-dataimpact-api/) — The DataImpact API from Meddra — 1 operation(s) for dataimpact.
+- [Meddra Details API](https://apis.io/apis/meddra/meddra-details-api/) — The Details API from Meddra — 1 operation(s) for details.
+- [Meddra Download API](https://apis.io/apis/meddra/meddra-download-api/) — The Download API from Meddra — 1 operation(s) for download.
+- [Meddra Export API](https://apis.io/apis/meddra/meddra-export-api/) — The Export API from Meddra — 1 operation(s) for export.
+- [Meddra Get Top API](https://apis.io/apis/meddra/meddra-gettop-api/) — The GetTop API from Meddra — 1 operation(s) for gettop.
+- [Meddra Hierarchy API](https://apis.io/apis/meddra/meddra-hierarchy-api/) — The Hierarchy API from Meddra — 1 operation(s) for hierarchy.
+- [Meddra History API](https://apis.io/apis/meddra/meddra-history-api/) — The History API from Meddra — 2 operation(s) for history.
+- [Meddra Language API](https://apis.io/apis/meddra/meddra-language-api/) — The Language API from Meddra — 1 operation(s) for language.
+- [Meddra Release API](https://apis.io/apis/meddra/meddra-release-api/) — The Release API from Meddra — 1 operation(s) for release.
+- [Meddra Search API](https://apis.io/apis/meddra/meddra-search-api/) — The Search API from Meddra — 1 operation(s) for search.
+- [Meddra SMQ API](https://apis.io/apis/meddra/meddra-smq-api/) — The SMQ API from Meddra — 1 operation(s) for smq.
+- [Meddra Status API](https://apis.io/apis/meddra/meddra-status-api/) — The Status API from Meddra — 1 operation(s) for status.
+- [Meddra S Validation API](https://apis.io/apis/meddra/meddra-svalidation-api/) — The SValidation API from Meddra — 1 operation(s) for svalidation.
+- [Meddra Type API](https://apis.io/apis/meddra/meddra-type-api/) — The Type API from Meddra — 1 operation(s) for type.
+- [Meddra Version R API](https://apis.io/apis/meddra/meddra-versionr-api/) — The VersionR API from Meddra — 1 operation(s) for versionr.
 
-MedDRA (Medical Dictionary for Regulatory Activities) and the WHO Drug Dictionary provide standardized medical terminology APIs for adverse event coding, drug safety reporting, and pharmacovigilance. APIs enable term lookup, hierarchy navigation, and coding validation for regulatory submissions.
+### Published properties
 
-- **Human URL:** [https://www.meddra.org/](https://www.meddra.org/)
-- **Base URL:** `https://api.meddra.example.com`
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-#### Tags
+#### MCP servers (1)
 
-- Adverse Events
-- Coding
-- Medical Terminology
-- Pharma
+Model Context Protocol servers that expose the API to agents.
 
-#### Properties
+- [MedDRA (candidate)](https://apis.io/servers/meddra/meddra/)
 
-- [Documentation](https://www.meddra.org/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/openapi/meddra-terminology-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld)
-- [Postman Collection](collections/meddra-terminology.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/meddra-terminology.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Agentic access (1)
 
-## Common Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [LinkedIn](https://www.linkedin.com/company/meddra-msso)
-- [Portal](https://www.meddra.org/)
+- [Meddra Agentic Access](https://apis.io/agentic-access/meddra/meddra-agentic-access/)
+
+#### JSON Schema (1)
+
+The data models the API reads and writes.
+
+- [MedDRA Term](https://apis.io/schemas/meddra/meddra-term/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Meddra Context](https://apis.io/jsonld/meddra/meddra-context/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [Moved to /providers/meddra/](https://apis.io/collections/meddra/open-meddra-hierarchy-api/)
+- [Moved to /providers/meddra/](https://apis.io/collections/meddra/open-meddra-terminology/)
+- [Moved to /providers/meddra/](https://apis.io/collections/meddra/open-meddra-terms-api/)
+- [Moved to /providers/meddra/](https://apis.io/collections/meddra/open-meddra-validation-api/)
+- [Moved to /providers/meddra/](https://apis.io/collections/meddra/open-meddra-versions-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Meddra Api Overlay](https://apis.io/overlays/meddra/meddra-api-overlay/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Meddra — jsonschema rules](https://apis.io/rules/meddra/meddra-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Meddra Authentication](https://apis.io/security/meddra/meddra-authentication/)
+- [Meddra Domain Security](https://apis.io/security/meddra/meddra-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Meddra Scopes](https://apis.io/scopes/meddra/meddra-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Meddra Plans Pricing](https://apis.io/plans/meddra/meddra-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Meddra Rate Limits](https://apis.io/rate-limits/meddra/meddra-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Meddra Finops](https://apis.io/finops/meddra/meddra-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.meddra.org/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/openapi/meddra-terminology-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-schema/meddra-term-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/meddra/refs/heads/main/json-ld/meddra-context.jsonld)
+- [Documentation](https://www.meddra.org/meddra-apis)
+- [API reference](https://mapisbx.meddra.org/index.html)
+- [Pricing](https://www.meddra.org/subscription-rates)
+- [Sign up](https://www.meddra.org/subscription/subscription-form)
+- [Support](https://www.meddra.org/contact)
+
+## API Evangelist rating
+
+**Kin Score 39.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 46.4 |
+| Contract governance | 28.0 |
+| Operational transparency | 15.8 |
+| Developer ergonomics | 28.0 |
+| Access clarity | 39.5 |
+
+**Agent readiness 27.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 30.5** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/meddra/](https://apis.io/providers/meddra/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Meddra: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/meddra/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
