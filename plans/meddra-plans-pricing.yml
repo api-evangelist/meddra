@@ -1,0 +1,169 @@
+generated: '2026-09-17'
+method: searched
+source: https://www.meddra.org/subscription-rates
+docs: https://www.meddra.org/subscription/subscription-type
+note: MedDRA is licensed by annual MSSO subscription, and the rates are published in full - unusual for a standards
+  body. Regulatory authorities, non-profits, educational institutions and direct patient-care providers pay nothing;
+  commercial organisations pay on a sliding scale set against the parent company's total consolidated revenue and
+  approved annually by the ICH MedDRA Steering Committee. The subscription is the licence to MedDRA itself - the APIs
+  are an access route to the terminology a subscription already grants, not a separately metered product, and no per-call
+  or per-seat API pricing is published. Organisations headquartered in Japan subscribe through the JMO instead. Rates
+  below are verbatim as of 2026-09-17 and exclude consumption taxes, withheld taxes and customs charges.
+plan_count: 10
+currency: USD
+billing_period: annual (12 months)
+plans:
+- id: regulatory-authority
+  name: Regulatory Authority
+  price: 0
+  currency: USD
+  billing_period: annual
+  note: All regulatory authorities receive MedDRA at no charge, English plus all translations.
+- id: non-commercial---non-profit
+  name: Non-Commercial / Non-Profit
+  price: 0
+  currency: USD
+  billing_period: annual
+  note: Non-profit medical libraries, educational institutions and direct patient-care providers.
+- id: commercial-level-0
+  name: Commercial Level 0
+  price: 139
+  currency: USD
+  billing_period: annual
+  note: Parent company annual revenue under $1 million.
+- id: commercial-level-1
+  name: Commercial Level 1
+  price: 589
+  currency: USD
+  billing_period: annual
+  note: Parent company annual revenue $1-10 million.
+- id: commercial-level-2
+  name: Commercial Level 2
+  price: 2246
+  currency: USD
+  billing_period: annual
+  note: Parent company annual revenue $10-100 million.
+- id: commercial-level-3
+  name: Commercial Level 3
+  price: 4254
+  currency: USD
+  billing_period: annual
+  note: Parent company annual revenue $100-500 million.
+- id: commercial-level-4
+  name: Commercial Level 4
+  price: 8926
+  currency: USD
+  billing_period: annual
+  note: Parent company annual revenue $500 million-$1 billion.
+- id: commercial-level-5
+  name: Commercial Level 5
+  price: 37035
+  currency: USD
+  billing_period: annual
+  note: Parent company annual revenue $1-5 billion.
+- id: commercial-level-6
+  name: Commercial Level 6
+  price: 48901
+  currency: USD
+  billing_period: annual
+  note: Parent company annual revenue $5-20 billion.
+- id: commercial-level-7
+  name: Commercial Level 7
+  price: 63800
+  currency: USD
+  billing_period: annual
+  note: Parent company annual revenue over $20 billion.
+- id: system-developer
+  name: System Developer
+  price: 2300
+  currency: USD
+  billing_period: annual
+  note: Organisations building software products that use MedDRA; limited to development and testing, not MedDRA support
+    services.
+api_metering:
+  per_call_pricing: false
+  quota_published: false
+  note: No API request quota or overage is published. Throttling exists (429 on every operation) but its limits are
+    subscriber-only.
+evidence:
+- url: https://www.meddra.org/subscription-rates
+  status: 200
+  note: Read through the site's own content API (https://admin.meddra.org/api/nodes?alias=/subscription-rates, HTTP
+    200) because www.meddra.org is an Angular SPA.
+- url: https://files.meddra.org/www/Website%20Files/Fact%20Sheets/Sub%20Rates-1998-2026.pdf
+  status: 200
+  note: '"Subscription Rate Evolution" - the MSSO publishes its rate history 1998-2026.'
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units: []
+  plans:
+  - name: Regulatory Authority
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Non-Commercial / Non-Profit
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Commercial Level 0
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Commercial Level 1
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Commercial Level 2
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Commercial Level 3
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Commercial Level 4
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Commercial Level 5
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Commercial Level 6
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Commercial Level 7
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: System Developer
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
